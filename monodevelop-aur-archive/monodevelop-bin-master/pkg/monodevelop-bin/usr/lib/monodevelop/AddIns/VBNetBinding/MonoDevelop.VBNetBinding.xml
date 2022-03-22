@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.VBNetBinding</name>
+    </assembly>
+    <members>
+        <member name="T:MonoDevelop.VBNetBinding.VBBindingCompilerServices">
+            <summary>
+            This class controls the compilation of VB.net files and VB.net projects
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.VBNetBinding.VBCompilerParameters.AddDefineSymbol(System.String)">
+            <summary>
+            VB.NET compiler does not support ';' as symbol separators so use ','
+            </summary>
+        </member>
+    </members>
+</doc>

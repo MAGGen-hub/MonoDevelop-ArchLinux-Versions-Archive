@@ -1,0 +1,1231 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.CSharpBinding</name>
+    </assembly>
+    <members>
+        <member name="M:MonoDevelop.CSharp.Completion.CSharpCompletionTextEditorExtension.#ctor(MonoDevelop.Ide.Gui.Document,System.Boolean)">
+            <summary>
+            Used in testing environment.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.PasteStrategy">
+            <summary>
+                Types of text-paste strategies.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils">
+            <summary>
+                Defines some helper methods for dealing with text-paste events.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.Strategies">
+            <summary>
+                Collection of text-paste strategies.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.IPasteStrategy">
+            <summary>
+                The interface for a text-paste strategy.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.IPasteStrategy.Encode(System.String)">
+            <summary>
+                Formats the given text according with this strategy rules.
+            </summary>
+            <param name="text">
+               The text to format.
+            </param>
+            <returns>
+                Formatted text.
+            </returns>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.IPasteStrategy.Decode(System.String)">
+            <summary>
+                Converts text formatted according with this strategy rules
+                to its original form.
+            </summary>
+            <param name="text">
+                Formatted text to convert.
+            </param>
+            <returns>
+                Original form of the given formatted text.
+            </returns>
+        </member>
+        <member name="P:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.IPasteStrategy.Type">
+            <summary>
+                Type of this strategy.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.TextPasteStrategies">
+            <summary>
+                Wrapper that discovers all defined text-paste strategies and defines a way
+                to easily access them through their <see cref="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.PasteStrategy"/> type.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.TextPasteStrategies.strategies">
+            <summary>
+                Collection of discovered text-paste strategies.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.TextPasteStrategies.#ctor">
+            <summary>
+                Uses reflection to find all types derived from <see cref="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.IPasteStrategy"/>
+                and adds an instance of each strategy to <see cref="F:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.TextPasteStrategies.strategies"/>.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.TextPasteStrategies.Item(MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.PasteStrategy)">
+            <summary>
+                Checks if there is a strategy of the given type and returns it.
+            </summary>
+            <param name="strategy">
+                Type of the strategy instance.
+            </param>
+            <returns>
+                A strategy instance of the requested type,
+                or <see cref="F:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.DefaultStrategy"/> if it wasn't found.
+            </returns>
+        </member>
+        <member name="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.PlainTextPasteStrategy">
+            <summary>
+                Doesn't do any formatting. Serves as the default strategy.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.PlainTextPasteStrategy.Encode(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.PlainTextPasteStrategy.Decode(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.PlainTextPasteStrategy.Type">
+            <inheritdoc />
+        </member>
+        <member name="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.StringLiteralPasteStrategy">
+            <summary>
+                Escapes chars in the given text so that they don't
+                break a valid string literal.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.StringLiteralPasteStrategy.Encode(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.StringLiteralPasteStrategy.ConvertChar(System.Char)">
+            <summary>
+            Gets the escape sequence for the specified character.
+            </summary>
+            <remarks>This method does not convert ' or ".</remarks>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.StringLiteralPasteStrategy.ConvertString(System.String)">
+            <summary>
+            Converts special characters to escape sequences within the given string.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.StringLiteralPasteStrategy.Decode(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.StringLiteralPasteStrategy.Type">
+            <inheritdoc />
+        </member>
+        <member name="T:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.VerbatimStringPasteStrategy">
+            <summary>
+                Escapes chars in the given text so that they don't
+                break a valid verbatim string.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.VerbatimStringPasteStrategy.Encode(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.VerbatimStringPasteStrategy.Decode(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.VerbatimStringPasteStrategy.Type">
+            <inheritdoc />
+        </member>
+        <member name="F:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.DefaultStrategy">
+            <summary>
+                The default text-paste strategy.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.StringLiteralStrategy">
+            <summary>
+                String literal text-paste strategy.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.CSharp.Formatting.CSharpTextPasteHandler.TextPasteUtils.VerbatimStringStrategy">
+            <summary>
+                Verbatim string text-paste strategy.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CSharp.Project.CSharpCompilerParameters">
+            <summary>
+            This class handles project specific compiler parameters
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CSharp.ClassOutline.CSharpOutlineTextEditorExtension">
+            <summary>
+            Displays a types and members outline of the current document.
+            </summary>
+            <remarks>
+            Document types and members are displayed in a tree view.
+            The displayed nodes can be sorted by changing the sorting properties state.
+            The sort behaviour is serialized into MonoDevelopProperties.xml.
+            Nodes with lower sortKey value will be sorted before nodes with higher value.
+            Nodes with equal sortKey will be sorted by string comparison of the name of the nodes.
+            The string comparison ignores symbols (e.g. sort 'Foo()' next to '~Foo()').
+            </remarks>
+            <seealso cref="T:MonoDevelop.CSharp.ClassOutline.OutlineNodeComparer"/>
+            <seealso cref="T:MonoDevelop.CSharp.ClassOutline.OutlineSettings"/>
+        </member>
+        <member name="T:MonoDevelop.CSharp.ClassOutline.OutlineSortingPreferencesDialog">
+            <summary>
+            Provides a priority list of the groups that items in the class outline can be grouped in.
+            </summary>
+            <remarks>
+            The user can sort the list with button presses and thereby change the order of groups
+            in the outline, while grouping is active.
+            </remarks>
+        </member>
+        <member name="T:MonoDevelop.CSharp.ClassOutline.OutlineSettings">
+            <summary>
+            Stores sorting status and is serialized to configuration properties.
+            </summary>
+            <remarks>
+            Stores the sorting configuration, e.g. if the class outline is currently sorted
+            or what primary sort key values the individual node groups have. This class is
+            serialized to the configuration file MonoDevelopProperties.xml.
+            </remarks>
+            <seealso cref="T:MonoDevelop.CSharp.ClassOutline.CSharpOutlineTextEditorExtension"/>
+        </member>
+        <member name="T:MonoDevelop.CSharp.ClassOutline.OutlineNodeComparer">
+            <remarks>
+            This implementation uses a primary sort key (int based on node's group) and
+            a secondary sort key (string based on node's name) for comparison.
+            </remarks>
+            <seealso cref="T:MonoDevelop.CSharp.ClassOutline.OutlineSettings"/>
+        </member>
+        <member name="M:MonoDevelop.CSharp.ClassOutline.OutlineNodeComparer.#ctor(MonoDevelop.CSharp.AstAmbience,MonoDevelop.CSharp.ClassOutline.OutlineSettings,Gtk.TreeModel)">
+            <param name="ambience">
+            The ambience used on retrieval of node names.
+            </param>
+            <param name="settings">
+            The properties used on retrieval of node sort keys and sorting settings.
+            </param>
+            <param name="model">
+            The model containing the nodes to compare.
+            </param>
+        </member>
+        <member name="M:MonoDevelop.CSharp.ClassOutline.OutlineNodeComparer.CompareNodes(Gtk.TreeModel,Gtk.TreeIter,Gtk.TreeIter)">
+            <summary>
+            Compares nodes by primary (group) and secondary (name) sort keys depending on
+            sort properties.
+            </summary>
+            <remarks>
+            For methods, constructors and destructors are sorted at the top.
+            </remarks>
+            <param name="model">
+            The TreeModel that the iterators refer to.
+            </param>
+            <param name="node1">
+            The first tree node that will be compared.
+            </param>
+            <param name="node2">
+            The second tree node that will be compared.
+            </param>
+            <returns>
+            Less than zero if nodeA &lt; nodeB
+            Zero if nodeA == nodeB.
+            Greater than zero if nodeA &gt; nodeB.
+            </returns>
+        </member>
+        <member name="M:MonoDevelop.CSharp.ClassOutline.OutlineNodeComparer.GetSortName(System.Object)">
+            <summary>
+            Returns the name of the node that should be used as a secondary sort key.
+            </summary>
+            <param name="node">
+            A node in the tree. Expected to be either an IMember or a FoldingRegion.
+            </param>
+            <returns>
+            A string representing the secondary sort key.
+            The empty string if node is neither an IMember nor a FoldingRegion.
+            </returns>
+        </member>
+        <member name="T:MonoDevelop.CSharp.CodeRefactorings.CodeRefactoring">
+            <summary>
+            Represents a set of transformations that can be applied to a piece of code.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CSharp.CodeRefactorings.CodeRefactoring.Actions">
+            <summary>
+            List of possible actions that can be used to transform the code.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CSharp.OptionProvider.StyleViewModel">
+            <summary>
+            This is the view model for CodeStyle options page.
+            </summary>
+            <remarks>
+            The codestyle options page is defined in <see cref="T:MonoDevelop.CSharp.OptionProvider.CodeStylePage"/>
+            </remarks>
+        </member>
+        <member name="M:MonoDevelop.Ide.Completion.Presentation.RoslynCompletionPresenterSession.QueueSpaceReservationStackRefresh">
+            <summary>
+            Need to postpone this after the current painting on the UI thread is done,
+            otherwise the stack refresh will close the current completion while it's mid-painting.
+            See VSTS 662457.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.Ide.Completion.Presentation.ExtensionMethods.GetOpenDocumentInCurrentContextWithChangesSafe(Microsoft.VisualStudio.Text.ITextSnapshot)">
+            <summary>
+            Temporary workaround for https://devdiv.visualstudio.com/DevDiv/_workitems/edit/662639.
+            The first call may fail with the ArgumentException coming from Mono due to ConditionalWeakTable
+            reentrancy, however by that time the table will have already been populated. 
+            Subsequent call should not hit this problem and should succeed.
+            TODO: remove when https://github.com/dotnet/roslyn/issues/28256 is fixed.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine">
+            <summary>
+                Represents a decorator of an IStateMachineIndentEngine instance that provides
+                logic for reseting and updating the engine on text changed events.
+            </summary>
+            <remarks>
+                The decorator is based on periodical caching of the engine's state and
+                delegating all logic behind indentation to the currently active engine.
+            </remarks>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.#ctor(ICSharpCode.NRefactory6.CSharp.IStateMachineIndentEngine,System.Int32)">
+            <summary>
+                Creates a new CacheIndentEngine instance.
+            </summary>
+            <param name="decoratedEngine">
+                An instance of <see cref="T:ICSharpCode.NRefactory6.CSharp.IStateMachineIndentEngine"/> to which the
+                logic for indentation will be delegated.
+            </param>
+            <param name="cacheRate">
+                The number of chars between caching.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.#ctor(ICSharpCode.NRefactory6.CSharp.CacheIndentEngine)">
+            <summary>
+                Creates a new CacheIndentEngine instance from the given prototype.
+            </summary>
+            <param name="prototype">
+                A CacheIndentEngine instance.
+            </param>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.ThisLineIndent">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.NextLineIndent">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.CurrentIndent">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.NeedsReindent">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.Offset">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.EnableCustomIndentLevels">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.Push(System.Char)">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.ResetEngineToPosition(Microsoft.CodeAnalysis.Text.SourceText,System.Int32)">
+            <summary>
+            Resets the engine to offset. Clears all cached engines after the given offset.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.Update(Microsoft.CodeAnalysis.Text.SourceText,System.Int32)">
+            <inheritdoc />
+            <remarks>
+                If the <paramref name="position"/> is negative, the engine will
+                update to: document.TextLength + (offset % document.TextLength+1)
+                Otherwise it will update to: offset % document.TextLength+1
+            </remarks>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.Clone">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CacheIndentEngine.ICSharpCode#NRefactory6#CSharp#IDocumentIndentEngine#Clone">
+            <inheritdoc />
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine">
+            <summary>
+                Indentation engine based on a state machine.
+                Supports only pushing new chars to the end.
+            </summary>
+            <remarks>
+                Represents the context for transitions between <see cref="T:ICSharpCode.NRefactory6.CSharp.IndentState"/>.
+                Delegates the responsibility for pushing a new char to the current 
+                state and changes between states depending on the pushed chars.
+            </remarks>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.options">
+            <summary>
+                Formatting options.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.newLineChar">
+            <summary>
+                Represents the new line character.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.currentState">
+            <summary>
+                The current indentation state.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.conditionalSymbols">
+            <summary>
+                Stores conditional symbols of #define directives.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.customConditionalSymbols">
+            <summary>
+                Stores custom conditional symbols.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.ifDirectiveEvalResults">
+            <summary>
+                Stores the results of evaluations of the preprocessor if/elif directives 
+                in the current block (between #if and #endif).
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.ifDirectiveIndents">
+            <summary>
+                Stores the indentation levels of the if directives in the current block.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.wordToken">
+            <summary>
+                Stores the last sequence of characters that can form a
+                valid keyword or variable name.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.previousKeyword">
+            <summary>
+                Stores the previous sequence of chars that formed a
+                valid keyword or variable name.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.ThisLineIndent">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.NextLineIndent">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.CurrentIndent">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.NeedsReindent">
+            <inheritdoc />
+            <remarks>
+                This is set depending on the current <see cref="T:Microsoft.CodeAnalysis.Location"/> and
+                can change its value until the <see cref="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.newLineChar"/> char is
+                pushed. If this is true, that doesn't necessarily mean that the
+                current line has an incorrect indent (this can be determined
+                only at the end of the current line).
+            </remarks>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.Offset">
+            <inheritdoc />
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.EnableCustomIndentLevels">
+            <inheritdoc />
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.offset">
+            <summary>
+               Represents the number of pushed chars.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.line">
+            <summary>
+               The current line number.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.column">
+            <summary>
+               The current column number.
+            </summary>
+            <remarks>
+               One char can take up multiple columns (e.g. \t).
+            </remarks>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.isLineStart">
+            <summary>
+               True if <see cref="M:System.Char.IsWhiteSpace(System.Char)"/> is true for all
+               chars at the current line.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.isLineStartBeforeWordToken">
+            <summary>
+               True if <see cref="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.isLineStart"/> was true before the current
+               <see cref="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.wordToken"/>.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.currentChar">
+            <summary>
+               Current char that's being pushed.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.previousChar">
+            <summary>
+               Last non-whitespace char that has been pushed.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.previousNewline">
+            <summary>
+               Previous new line char
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.currentIndent">
+            <summary>
+               Current indent level on this line.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.lineBeganInsideVerbatimString">
+            <summary>
+                True if this line began in <see cref="T:ICSharpCode.NRefactory6.CSharp.VerbatimStringState"/>.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.lineBeganInsideMultiLineComment">
+            <summary>
+                True if this line began in <see cref="T:ICSharpCode.NRefactory6.CSharp.MultiLineCommentState"/>.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.#ctor(Microsoft.CodeAnalysis.Options.OptionSet)">
+            <summary>
+                Creates a new CSharpIndentEngine instance.
+            </summary>
+            <param name="formattingOptions">
+                C# formatting options.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.#ctor(ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine)">
+            <summary>
+                Creates a new CSharpIndentEngine instance from the given prototype.
+            </summary>
+            <param name="prototype">
+                An CSharpIndentEngine instance.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.ICSharpCode#NRefactory6#CSharp#IDocumentIndentEngine#Clone">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.Push(System.Char)">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.Update(Microsoft.CodeAnalysis.Text.SourceText,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.DefineSymbol(System.String)">
+            <summary>
+            Defines the conditional symbol.
+            </summary>
+            <param name="defineSymbol">The symbol to define.</param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.RemoveSymbol(System.String)">
+            <summary>
+            Removes the symbol.
+            </summary>
+            <param name="undefineSymbol">The symbol to undefine.</param>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine">
+            <summary>
+                The base interface for all indent engines.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.ThisLineIndent">
+            <summary>
+                The indentation string of the current line.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.NextLineIndent">
+            <summary>
+                The indentation string of the next line.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.CurrentIndent">
+            <summary>
+                The indent string on the beginning of the current line.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.NeedsReindent">
+            <summary>
+                True if the current line needs to be reindented.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.Offset">
+            <summary>
+                The current offset of the engine.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.EnableCustomIndentLevels">
+            <summary>
+                If this is true, the engine should try to adjust its indent 
+                levels to manual user's corrections, even if they are wrong.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.Push(System.Char)">
+            <summary>
+                Pushes a new char into the engine which calculates the new
+                indentation levels.
+            </summary>
+            <param name="ch">
+                A new character.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.Reset">
+            <summary>
+                Resets the engine.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.Update(Microsoft.CodeAnalysis.Text.SourceText,System.Int32)">
+            <summary>
+                Updates the engine to the given offset.
+            </summary>
+            <param name="offset">
+                Valid offset in <see cref="T:Microsoft.CodeAnalysis.Document"/>.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IDocumentIndentEngine.Clone">
+            <summary>
+                Clones the engine and preserves the current state.
+            </summary>
+            <returns>
+                An indentical clone which can operate without interference
+                with this engine.
+            </returns>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.IndentState">
+            <summary>
+                The base class for all indentation states. 
+                Each state defines the logic for indentation based on chars that
+                are pushed to it.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.IndentState.Engine">
+            <summary>
+                The indentation engine using this state.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.IndentState.Parent">
+            <summary>
+                The parent state. 
+                This state can use the indentation levels of its parent.
+                When this state exits, the engine returns to the parent.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.IndentState.ThisLineIndent">
+            <summary>
+                The indentation of the current line.
+                This is set when the state is created and will be changed to
+                <see cref="F:ICSharpCode.NRefactory6.CSharp.IndentState.NextLineIndent"/> when the <see cref="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.newLineChar"/> 
+                is pushed.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.IndentState.NextLineIndent">
+            <summary>
+                The indentation of the next line.
+                This is set when the state is created and can change depending
+                on the pushed chars.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.#ctor(ICSharpCode.NRefactory6.CSharp.IndentState,ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine)">
+            <summary>
+                Creates a new indentation state that is a copy of the given
+                prototype.
+            </summary>
+            <param name="prototype">
+                The prototype state.
+            </param>
+            <param name="engine">
+                The engine of the new state.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.InitializeState">
+            <summary>
+                Initializes the state:
+                  - sets the default indentation levels.
+            </summary>
+            <remarks>
+                Each state can override this method if it needs a different
+                logic for setting up the default indentations.
+            </remarks>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.OnExit">
+            <summary>
+                Actions performed when this state exits.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.ChangeState``1">
+            <summary>
+                Changes the current state of the <see cref="T:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine"/> using the current
+                state as the parent for the new one.
+            </summary>
+            <typeparam name="T">
+                The type of the new state. Must be assignable from <see cref="T:ICSharpCode.NRefactory6.CSharp.IndentState"/>.
+            </typeparam>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.ExitState">
+            <summary>
+                Exits this state by setting the current state of the
+                <see cref="T:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine"/> to this state's parent.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.Push(System.Char)">
+            <summary>
+                Common logic behind the push method.
+                Each state can override this method and implement its own logic.
+            </summary>
+            <param name="ch">
+                The current character that's being pushed.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.CheckKeyword(System.String)">
+            <summary>
+                When derived, checks if the given sequence of chars form
+                a valid keyword or variable name, depending on the state.
+            </summary>
+            <param name="keyword">
+                A possible keyword.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.IndentState.CheckKeywordOnPush(System.String)">
+            <summary>
+                When derived, checks if the given sequence of chars form
+                a valid keyword or variable name, depending on the state.
+            </summary>
+            <param name="keyword">
+                A possible keyword.
+            </param>
+            <remarks>
+                This method should be called from <see cref="M:ICSharpCode.NRefactory6.CSharp.IndentState.Push(System.Char)"/>.
+                It is left to derived classes to call this method because of
+                performance issues.
+            </remarks>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.NullState">
+            <summary>
+                Null state.
+            </summary>
+            <remarks>
+                Doesn't define any transitions to new states.
+            </remarks>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.BracketsBodyBaseState">
+            <summary>
+                The base for all brackets body states.
+            </summary>
+            <remarks>
+                Represents a block of code between a pair of brackets.
+            </remarks>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.BracketsBodyBaseState.ClosedBracket">
+            <summary>
+                When derived in a concrete bracket body state, represents
+                the closed bracket character pair.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.BracesBodyState">
+            <summary>
+                Braces body state.
+            </summary>
+            <remarks>
+                Represents a block of code between { and }.
+            </remarks>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CurrentBody">
+            <summary>
+                Type of the current block body.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.NextBody">
+            <summary>
+                Type of the next block body.
+                Same as <see cref="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CurrentBody"/> if none of the
+                <see cref="T:ICSharpCode.NRefactory6.CSharp.BracesBodyState.Body"/> keywords have been read.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CurrentStatement">
+            <summary>
+                Type of the current statement.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.NestedIfStatementLevels">
+            <summary>
+               Contains indent levels of nested if statements.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.LastBlockIndent">
+            <summary>
+               Contains the indent level of the last statement or body keyword.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.IsRightHandExpression">
+            <summary>
+                True if the engine is on the right side of the equal operator '='.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.IsEqualCharPushed">
+            <summary>
+                True if the '=' char has been pushed and it's not
+                a part of a relational operator (&gt;=, &lt;=, !=, ==).
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.PreviousLineIndent">
+            <summary>
+                The indentation of the previous line.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.IsMemberReferenceDotHandled">
+            <summary>
+                True if the dot member (e.g. method invocation) indentation has
+                been handled in the current statement.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.BracesBodyState.OnStatementExit">
+            <summary>
+                Actions performed when the current statement exits.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.BracesBodyState.Body">
+            <summary>
+                Types of braces bodies.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.BracesBodyState.Statement">
+            <summary>
+                Types of statements.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CheckKeywordOnPush(System.String)">
+            <summary>
+                Checks if the given string is a keyword and sets the
+                <see cref="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.NextBody"/> and the <see cref="P:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CurrentStatement"/>
+                variables appropriately.
+            </summary>
+            <param name="keyword">
+                A possible keyword.
+            </param>
+            <remarks>
+                This method is called from <see cref="M:ICSharpCode.NRefactory6.CSharp.BracesBodyState.Push(System.Char)"/>
+            </remarks>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CheckKeyword(System.String)">
+            <summary>
+                Checks if the given string is a keyword and sets the
+                <see cref="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.NextBody"/> and the <see cref="P:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CurrentStatement"/>
+                variables appropriately.
+            </summary>
+            <param name="keyword">
+                A possible keyword.
+            </param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.BracesBodyState.AddIndentation(ICSharpCode.NRefactory6.CSharp.BracesBodyState.Body)">
+            <summary>
+                Pushes a new level of indentation depending on the given
+                <paramref name="body"/>.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.BracesBodyState.extractBody(ICSharpCode.NRefactory6.CSharp.IndentState)">
+            <summary>
+                Extracts the <see cref="F:ICSharpCode.NRefactory6.CSharp.BracesBodyState.CurrentBody"/> from the given state.
+            </summary>
+            <returns>
+                The correct <see cref="T:ICSharpCode.NRefactory6.CSharp.BracesBodyState.Body"/> type for this state.
+            </returns>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.GlobalBodyState">
+            <summary>
+                Global body state.
+            </summary>
+            <remarks>
+                Represents the global space of the program.
+            </remarks>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.SwitchCaseState">
+            <summary>
+                Switch-case statement state.
+            </summary>
+            <remarks>
+                Represents the block of code in one switch case (including default).
+            </remarks>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.ParenthesesBodyState">
+            <summary>
+                Parentheses body state.
+            </summary>
+            <remarks>
+                Represents a block of code between ( and ).
+            </remarks>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.ParenthesesBodyState.IsSomethingPushed">
+            <summary>
+                True if any char has been pushed.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.SquareBracketsBodyState">
+            <summary>
+                Square brackets body state.
+            </summary>
+            <remarks>
+                Represents a block of code between [ and ].
+            </remarks>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.SquareBracketsBodyState.IsSomethingPushed">
+            <summary>
+                True if any char has been pushed.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.PreProcessorState">
+            <summary>
+                PreProcessor directive state.
+            </summary>
+            <remarks>
+                Activated when the '#' char is pushed and the 
+                <see cref="F:ICSharpCode.NRefactory6.CSharp.CSharpIndentEngine.isLineStart"/> is true.
+            </remarks>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.PreProcessorState.DirectiveType">
+            <summary>
+                The type of the preprocessor directive.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.PreProcessorState.DirectiveStatement">
+            <summary>
+                If <see cref="F:ICSharpCode.NRefactory6.CSharp.PreProcessorState.DirectiveType"/> is set (not equal to 'None'), this
+                stores the expression of the directive.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.PreProcessorState.PreProcessorDirective">
+            <summary>
+                Types of preprocessor directives.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.PreProcessorCommentState">
+            <summary>
+                PreProcessor comment state.
+            </summary>
+            <remarks>
+                Activates when the #if or #elif directive is false and ignores
+                all pushed chars until the next '#'.
+            </remarks>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.LineCommentState">
+            <summary>
+                Single-line comment state.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.LineCommentState.CheckForDocComment">
+            <summary>
+                It's possible that this should be the DocComment state:
+                    check if the first next pushed char is equal to '/'.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.DocCommentState">
+            <summary>
+                XML documentation comment state.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.MultiLineCommentState">
+            <summary>
+                Multi-line comment state.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.MultiLineCommentState.IsAnyCharPushed">
+            <summary>
+                True if any char has been pushed to this state.
+            </summary>
+            <remarks>
+                Needed to resolve an issue when the first pushed char is '/'.
+                The state would falsely exit on this sequence of chars '/*/',
+                since it only checks if the last two chars are '/' and '*'.
+            </remarks>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.StringLiteralState">
+            <summary>
+                StringLiteral state.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.StringLiteralState.IsEscaped">
+            <summary>
+                True if the next char is escaped with '\'.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.VerbatimStringState">
+            <summary>
+                Verbatim string state.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.VerbatimStringState.IsEscaped">
+            <summary>
+                True if there is an odd number of '"' in a row.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.CharacterState">
+            <summary>
+                Character state.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.CharacterState.IsEscaped">
+            <summary>
+                True if the next char is escaped with '\'.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.ITextPasteHandler">
+            <summary>
+            The text paste handler can do formattings to a text that is about to be pasted
+            into the text document.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.ITextPasteHandler.FormatPlainText(Microsoft.CodeAnalysis.Text.SourceText,System.Int32,System.String,System.Byte[])">
+            <summary>
+            Formats plain text that is inserted at a specified offset.
+            </summary>
+            <returns>
+            The text that will get inserted at that position.
+            </returns>
+            <param name="offset">The offset where the text will be inserted.</param>
+            <param name="text">The text to be inserted.</param>
+            <param name="copyData">Additional data in case the text was copied from a Mono.TextEditor.</param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.ITextPasteHandler.GetCopyData(Microsoft.CodeAnalysis.Text.SourceText,Microsoft.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            Gets the copy data for a specific segment inside the document. This can contain additional information.
+            </summary>
+            <param name="segment">The text segment that is about to be copied.</param>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.NullIStateMachineIndentEngine">
+            <summary>
+            An empty IStateMachineIndentEngine implementation that does nothing.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.CSharp.NullIStateMachineIndentEngine.EnableCustomIndentLevels">
+            <inheritdoc />
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.FormattingOptionsFactory">
+            <summary>
+            The formatting options factory creates pre defined formatting option styles.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.FormattingOptionsFactory.CreateMono">
+            <summary>
+            Creates mono indent style CSharpFormatting options.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.FormattingOptionsFactory.CreateSharpDevelop">
+            <summary>
+            Creates sharp develop indent style CSharpFormatting options.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.FormattingOptionsFactory.CreateKRStyle">
+            <summary>
+            The K&amp;R style, so named because it was used in Kernighan and Ritchie's book The C Programming Language,
+            is commonly used in C. It is less common for C++, C#, and others.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.FormattingOptionsFactory.CreateAllman">
+            <summary>
+            Creates allman indent style CSharpFormatting options used in Visual Studio.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.ArgumentSyntaxExtensions.DetermineParameter(Microsoft.CodeAnalysis.CSharp.Syntax.ArgumentSyntax,Microsoft.CodeAnalysis.SemanticModel,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Returns the parameter to which this argument is passed. If <paramref name="allowParams"/>
+            is true, the last parameter will be returned if it is params parameter and the index of
+            the specified argument is greater than the number of parameters.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpUtil.InvertCondition(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Inverts a boolean condition. Note: The condition object can be frozen (from AST) it's cloned internally.
+            </summary>
+            <param name="condition">The condition to invert.</param>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpUtil.AddParensForUnaryExpressionIfRequired(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            When negating an expression this is required, otherwise you would end up with
+            a or b -> !a or b
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpUtil.NegateRelationalOperator(Microsoft.CodeAnalysis.CSharp.SyntaxKind)">
+            <summary>
+            Get negation of the specified relational operator
+            </summary>
+            <returns>
+            negation of the specified relational operator, or BinaryOperatorType.Any if it's not a relational operator
+            </returns>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpUtil.IsRelationalOperator(Microsoft.CodeAnalysis.CSharp.SyntaxKind)">
+            <summary>
+            Returns true, if the specified operator is a relational operator
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.CSharp.CSharpUtil.NegateConditionOperator(Microsoft.CodeAnalysis.CSharp.SyntaxKind)">
+            <summary>
+            Get negation of the condition operator
+            </summary>
+            <returns>
+            negation of the specified condition operator, or BinaryOperatorType.Any if it's not a condition operator
+            </returns>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.CSharp.NRefactory6Host">
+            <summary>
+            Needs to be implemented from IDE/host side.
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.Features.GotoDefinition.GoToDefinitionService.TryNavigateToSymbol">
+            <summary>
+            Navigate to the first source location of a given symbol.
+            bool TryNavigateToSymbol(ISymbol symbol, Project project, bool usePreviewTab = false);
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.Features.GotoDefinition.GoToDefinitionService.TryNavigateToSpan">
+            <summary>
+            Navigates to the given position in the specified document, opening it if necessary.
+            bool TryNavigateToSpan(Workspace workspace, DocumentId documentId, TextSpan textSpan, bool usePreviewTab = false);
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.Features.GotoDefinition.GoToDefinitionService.CanNavigateToSpan">
+            <summary>
+            Determines whether it is possible to navigate to the given position in the specified document.
+            bool CanNavigateToSpan(Workspace workspace, DocumentId documentId, TextSpan textSpan);
+            </summary>
+        </member>
+        <member name="F:ICSharpCode.NRefactory6.CSharp.Features.GotoDefinition.GoToDefinitionService.TrySymbolNavigationNotify">
+            <summary>
+            bool TrySymbolNavigationNotify(ISymbol symbol, Solution solution);
+            </summary>
+            <returns>True if the navigation was handled, indicating that the caller should not 
+            perform the navigation.
+            
+            </returns>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.Utils.BinaryReaderWith7BitEncodedInts">
+            <summary>
+            A binary reader that can read the output of BinaryWriterWith7BitEncodedInts.
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.Utils.BinaryWriterWith7BitEncodedInts">
+            <summary>
+            A binary writer that encodes all integers as 7-bit-encoded-ints.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.Utils.FastSerializer.SerializationBinder">
+            <summary>
+            Gets/Sets the serialization binder that is being used.
+            The default value is null, which will cause the FastSerializer to use the
+            full assembly and type names.
+            </summary>
+        </member>
+        <member name="P:ICSharpCode.NRefactory6.Utils.FastSerializer.FixedInstances">
+            <summary>
+            Can be used to set several 'fixed' instances.
+            When serializing, such instances will not be included; and any references to a fixed instance
+            will be stored as the index in this array.
+            When deserializing, the same (or equivalent) instances must be specified, and the deserializer
+            will use them in place of the fixed instances.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.SerializationContext.Mark(System.Object)">
+            <summary>
+            Marks an instance for future scanning.
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.EmitScanField(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Reflection.FieldInfo)">
+            <summary>
+            Emit 'scan instance.Field'.
+            Stack transition: ... => ...
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.EmitScanValueType(System.Reflection.Emit.ILGenerator,System.Type)">
+            <summary>
+            Stack transition: ..., value => ...
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.EmitWriteField(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Reflection.Emit.LocalBuilder,System.Reflection.FieldInfo)">
+            <summary>
+            Emit 'write instance.Field'.
+            Stack transition: ... => ...
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.WritePrimitiveValue(System.Reflection.Emit.ILGenerator,System.Type)">
+            <summary>
+            Writes a primitive value of the specified type.
+            Stack transition: ..., writer, value => ...
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.EmitWriteValueType(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Type)">
+            <summary>
+            Stack transition: ..., value => ...
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.ReadPrimitiveValue(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Type)">
+            <summary>
+            Reads a primitive value of the specified type.
+            Stack transition: ... => ..., value
+            </summary>
+        </member>
+        <member name="M:ICSharpCode.NRefactory6.Utils.FastSerializer.EmitReadValueType(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Type)">
+            <summary>
+            Stack transition: ..., field-ref => ...
+            </summary>
+        </member>
+        <member name="T:ICSharpCode.NRefactory6.Utils.FastSerializerVersionAttribute">
+            <summary>
+            Specifies the version of the class.
+            The <see cref="T:ICSharpCode.NRefactory6.Utils.FastSerializer"/> will refuse to deserialize an instance that was stored by
+            a different version of the class than the current one.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.PortingExtensions.GetDelegateInvokeMethod(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Gets the invoke method for a delegate type.
+            </summary>
+            <remarks>
+            Returns null if the type is not a delegate type; or if the invoke method could not be found.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.PortingExtensions.GetAllBaseClassesAndInterfaces(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Gets all base classes and interfaces.
+            </summary>
+            <returns>All classes and interfaces.</returns>
+            <param name="type">Type.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.PortingExtensions.GetEditorBrowsableState(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Gets the EditorBrowsableState of an entity.
+            </summary>
+            <returns>
+            The editor browsable state.
+            </returns>
+            <param name='symbol'>
+            Entity.
+            </param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.PortingExtensions.IsEditorBrowsable(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Determines if an entity should be shown in the code completion window. This is the same as:
+            <c>GetEditorBrowsableState (entity) != System.ComponentModel.EditorBrowsableState.Never</c>
+            </summary>
+            <returns>
+            <c>true</c> if the entity should be shown; otherwise, <c>false</c>.
+            </returns>
+            <param name='symbol'>
+            The entity.
+            </param>
+        </member>
+    </members>
+</doc>

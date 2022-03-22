@@ -1,0 +1,2146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FantomasLib</name></assembly>
+<members>
+<member name="M:Fantomas.CodeFormatter.ParseAsync(System.String,System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpProjectOptions,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpChecker)">
+<summary>
+ Parse a source string using given config
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.Parse(System.String,System.String)">
+<summary>
+ Parse a source string using given config
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodeFormatter.IsValidFSharpCodeAsync(System.String,System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpProjectOptions,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpChecker)">
+<summary>
+ Check whether an input string is invalid in F# by looking for erroneous nodes in ASTs
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.IsValidFSharpCode(System.String,System.String)">
+<summary>
+ Check whether an input string is invalid in F# by looking for erroneous nodes in ASTs
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.IsValidAST(Microsoft.FSharp.Compiler.Ast.ParsedInput)">
+<summary>
+ Check whether an AST consists of parsing errors 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.InferSelectionFromCursorPos(System.String,Microsoft.FSharp.Compiler.Range.pos,System.String)">
+<summary>
+ Infer selection around cursor by looking for a pair of &apos;[&apos; and &apos;]&apos;, &apos;{&apos; and &apos;}&apos; or &apos;(&apos; and &apos;)&apos;. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.FormatSelectionInDocumentAsync(System.String,Microsoft.FSharp.Compiler.Range.range,System.String,Fantomas.FormatConfig.FormatConfig,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpProjectOptions,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpChecker)">
+<summary>
+ Format a selected part of source string using given config; keep other parts unchanged. 
+ (Only use in testing.)
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.FormatSelectionAsync(System.String,Microsoft.FSharp.Compiler.Range.range,System.String,Fantomas.FormatConfig.FormatConfig,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpProjectOptions,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpChecker)">
+<summary>
+ Format a part of source string using given config, and return the (formatted) selected part only.
+ Beware that the range argument is inclusive. If the range has a trailing newline, it will appear in the formatted result.
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.FormatSelection(System.String,Microsoft.FSharp.Compiler.Range.range,System.String,Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format a part of source string using given config, and return the (formatted) selected part only.
+ Beware that the range argument is inclusive. If the range has a trailing newline, it will appear in the formatted result.
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.FormatDocumentAsync(System.String,System.String,Fantomas.FormatConfig.FormatConfig,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpProjectOptions,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpChecker)">
+<summary>
+ Format a source string using given config
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.FormatDocument(System.String,System.String,Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format a source string using given config
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.FormatAroundCursorAsync(System.String,Microsoft.FSharp.Compiler.Range.pos,System.String,Fantomas.FormatConfig.FormatConfig,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpProjectOptions,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpChecker)">
+<summary>
+ Format around cursor delimited by &apos;[&apos; and &apos;]&apos;, &apos;{&apos; and &apos;}&apos; or &apos;(&apos; and &apos;)&apos; using given config; keep other parts unchanged. 
+ (Only use in testing.)
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatter.FormatAST(Microsoft.FSharp.Compiler.Ast.ParsedInput,System.String,Microsoft.FSharp.Core.FSharpOption{System.String},Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format an abstract syntax tree using an optional source for looking up literals
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.formatAroundCursor(Microsoft.FSharp.Compiler.Range.pos,Fantomas.FormatConfig.FormatConfig,Fantomas.CodeFormatterImpl.FormatContext)">
+<summary>
+ Format around cursor delimited by &apos;[&apos; and &apos;]&apos;, &apos;{&apos; and &apos;}&apos; or &apos;(&apos; and &apos;)&apos; using given config; keep other parts unchanged. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.inferSelectionFromCursorPos(Microsoft.FSharp.Compiler.Range.pos,System.String,System.String)">
+<summary>
+ Infer selection around cursor by looking for a pair of &apos;[&apos; and &apos;]&apos;, &apos;{&apos; and &apos;}&apos; or &apos;(&apos; and &apos;)&apos;. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.makePos(System.Int32,System.Int32)">
+<summary>
+ Make a position at (line, col) to denote cursor position
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.formatSelectionInDocument(Microsoft.FSharp.Compiler.Range.range,Fantomas.FormatConfig.FormatConfig,Fantomas.CodeFormatterImpl.FormatContext)">
+<summary>
+ Format a selected part of source string using given config; keep other parts unchanged. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.formatSelectionExpanded(Microsoft.FSharp.Compiler.Range.range,Fantomas.FormatConfig.FormatConfig,Fantomas.CodeFormatterImpl.FormatContext)">
+<summary>
+ Format a selected part of source string using given config; expanded selected ranges to parsable ranges. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.formatSelection(Microsoft.FSharp.Compiler.Range.range,Fantomas.FormatConfig.FormatConfig,Fantomas.CodeFormatterImpl.FormatContext)">
+<summary>
+ Format a part of source string using given config, and return the (formatted) selected part only.
+ Beware that the range argument is inclusive. If the range has a trailing newline, it will appear in the formatted result.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.stringPos(Microsoft.FSharp.Compiler.Range.range,System.String)">
+<summary>
+ Convert from range to string positions
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.getPatch(System.Int32,System.String[])">
+<summary>
+ Find the first type declaration or let binding at beginnings of lines
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.getEndCol(Microsoft.FSharp.Compiler.Range.range,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpLineTokenizer,Microsoft.FSharp.Core.FSharpRef{System.Int64})">
+<summary>
+ Find out the end token
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.getStartCol(Microsoft.FSharp.Compiler.Range.range,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpLineTokenizer,Microsoft.FSharp.Core.FSharpRef{System.Int64})">
+<summary>
+ Find out the start token
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.getStartLineIndex(System.String[],System.Int32)">
+<summary>
+ Get first non-whitespace line
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.makeRange(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+<summary>
+ Make a range from (startLine, startCol) to (endLine, endCol) to select some text
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.formatAST(Microsoft.FSharp.Compiler.Ast.ParsedInput,System.String,Microsoft.FSharp.Core.FSharpOption{System.String},Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format an abstract syntax tree using given config
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.formatDocument(Fantomas.FormatConfig.FormatConfig,Fantomas.CodeFormatterImpl.FormatContext)">
+<summary>
+ Format a source string using given config
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.isValidFSharpCode(Fantomas.CodeFormatterImpl.FormatContext)">
+<summary>
+ Check whether an input string is invalid in F# by looking for erroneous nodes in ASTs
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterImpl.isValidAST(Microsoft.FSharp.Compiler.Ast.ParsedInput)">
+<summary>
+ Check whether an AST consists of parsing errors 
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.CodeFormatterImpl">
+
+</member>
+<member name="M:Fantomas.CodeFormatterModule.inferSelectionFromCursorPos(Microsoft.FSharp.Compiler.Range.pos,System.String)">
+<summary>
+ Infer selection around cursor by looking for a pair of &apos;[&apos; and &apos;]&apos;, &apos;{&apos; and &apos;}&apos; or &apos;(&apos; and &apos;)&apos;. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.formatAroundCursor(System.Boolean,Microsoft.FSharp.Compiler.Range.pos,System.String,Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format around cursor delimited by &apos;[&apos; and &apos;]&apos;, &apos;{&apos; and &apos;}&apos; or &apos;(&apos; and &apos;)&apos; using given config; keep other parts unchanged. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.formatSelectionFromString(System.Boolean,Microsoft.FSharp.Compiler.Range.range,System.String,Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format a selected part of source string using given config; keep other parts unchanged. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.formatSelectionExpanded(System.Boolean,Microsoft.FSharp.Compiler.Range.range,System.String,Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format a selected part of source string using given config; expanded selected ranges to parsable ranges. 
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.formatSelectionOnly(System.Boolean,Microsoft.FSharp.Compiler.Range.range,System.String,Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format a part of source string using given config, and return the (formatted) selected part only.
+ Beware that the range argument is inclusive. If the range has a trailing newline, it will appear in the formatted result.
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.formatAST(Microsoft.FSharp.Compiler.Ast.ParsedInput,Microsoft.FSharp.Core.FSharpOption{System.String},Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format an abstract syntax tree using given config
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.formatSourceString(System.Boolean,System.String,Fantomas.FormatConfig.FormatConfig)">
+<summary>
+ Format a source string using given config
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.isValidFSharpCode(System.Boolean,System.String)">
+<summary>
+ Check whether an input string is invalid in F# by looking for erroneous nodes in ASTs
+</summary>
+</member>
+<member name="M:Fantomas.CodeFormatterModule.isValidAST(Microsoft.FSharp.Compiler.Ast.ParsedInput)">
+<summary>
+ Check whether an AST consists of parsing errors 
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodeFormatterModule.parse(System.Boolean,System.String)">
+<summary>
+ Parse a source code string
+</summary>
+</member>
+<member name="T:Fantomas.CodeFormatterModule">
+
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.IsInsideDotGet">
+<summary>
+ Check whether the context is inside DotGet to suppress whitespaces
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.IsFirstTypeParam">
+<summary>
+ First type param might need extra spaces to avoid parsing errors on `&lt;^`, `&lt;&apos;`, etc.
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.IsUnionField">
+<summary>
+ A field is rendered as union field or not
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.HasVerticalBar">
+<summary>
+ The optional `|` in pattern matching and union type definitions
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.IsNakedRange">
+<summary>
+ Range operators are naked in &apos;for..in..do&apos; constructs
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.IsCStylePattern">
+<summary>
+ This pattern matters for formatting extern declarations
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.IsInterface">
+<summary>
+ Current node is a subnode deep down in an interface
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.IsFirstChild">
+<summary>
+ Current node is the first child of its parent
+</summary>
+</member>
+<member name="F:Fantomas.CodePrinter.ASTContext.TopLevelModuleName">
+<summary>
+ Original file name without extension of the parsed AST 
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.CodePrinter.ASTContext">
+<summary>
+ This type consists of contextual information which is important for formatting
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodePrinter.genMemberDefnList(Fantomas.CodePrinter.ASTContext,Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Compiler.Ast.SynMemberDefn})">
+<summary>
+ Each multiline member definition has a pre and post new line. 
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodePrinter.genIndexers(Fantomas.CodePrinter.ASTContext,Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Compiler.Ast.SynIndexerArg})">
+<summary>
+ Use in indexed set and get only
+</summary>
+</member>
+<member name="M:Fantomas.CodePrinter.genInfixApps(Fantomas.CodePrinter.ASTContext,System.Boolean,Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,Microsoft.FSharp.Compiler.Ast.SynExpr}})">
+<summary>
+ When &apos;hasNewLine&apos; is set, the operator is forced to be in a new line
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodePrinter.genMemberBindingList(Fantomas.CodePrinter.ASTContext,Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Compiler.Ast.SynBinding})">
+<summary>
+ Each member is separated by a new line.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodePrinter.noIndentBreakNln(Fantomas.CodePrinter.ASTContext,Microsoft.FSharp.Compiler.Ast.SynExpr,Fantomas.FormatConfig.Context)">
+<summary>
+ Break but doesn&apos;t indent the expression
+</summary>
+</member>
+<member name="M:Fantomas.CodePrinter.preserveBreakNln(Fantomas.CodePrinter.ASTContext,Microsoft.FSharp.Compiler.Ast.SynExpr,Fantomas.FormatConfig.Context)">
+<summary>
+ Preserve a break even if the expression is a one-liner
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.CodePrinter.genAttributes(Fantomas.CodePrinter.ASTContext,Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Compiler.Ast.SynAttribute})">
+<summary>
+ Try to group attributes if they are on the same line
+ Separate same-line attributes by &apos;;&apos;
+ Each bucket is printed in a different line
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.CodePrinter">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.FakeHelpers">
+
+</member>
+<member name="F:Fantomas.FormatConfig.Context.Directives">
+<summary>
+ Compiler directives attached to appropriate locations
+</summary>
+</member>
+<member name="F:Fantomas.FormatConfig.Context.Comments">
+<summary>
+ Comments attached to appropriate locations
+</summary>
+</member>
+<member name="F:Fantomas.FormatConfig.Context.Positions">
+<summary>
+ Positions of new lines in the original source string
+</summary>
+</member>
+<member name="F:Fantomas.FormatConfig.Context.Content">
+<summary>
+ The original source string to query as a last resort 
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:Fantomas.FormatConfig.Context.Default">
+<summary>
+ Initialize with a string writer and use space as delimiter
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:Fantomas.FormatConfig.ColumnIndentedTextWriter.Column(System.Int32)">
+<summary>
+ Current column of the page in an absolute manner
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:Fantomas.FormatConfig.ColumnIndentedTextWriter.Column">
+<summary>
+ Current column of the page in an absolute manner
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.FormatConfig.ColumnIndentedTextWriter">
+<summary>
+ Wrapping IndentedTextWriter with current column position
+</summary>
+</member>
+<member name="F:Fantomas.FormatConfig.FormatConfig.StrictMode">
+<summary>
+ Prettyprinting based on ASTs only
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="F:Fantomas.FormatConfig.FormatConfig.ReorderOpenDeclaration">
+<summary>
+ Reordering and deduplicating open statements
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="F:Fantomas.FormatConfig.FormatConfig.PageWidth">
+<summary>
+ The column where we break to new lines
+</summary>
+</member>
+<member name="F:Fantomas.FormatConfig.FormatConfig.IndentSpaceNum">
+<summary>
+ Number of spaces for each indentation
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="P:Fantomas.FormatConfig.NoBreakInfixOps">
+<summary>
+ Never break into newlines on these operators
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.NewLineInfixOps">
+<summary>
+ Always break into newlines on these operators
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.NoSpaceInfixOps">
+<summary>
+ Don&apos;t put space before and after these operators
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.FormatConfig.unindentOnWith(Fantomas.FormatConfig.Context)">
+<summary>
+ Conditional unindentation on with keyword
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.indentOnWith(Fantomas.FormatConfig.Context)">
+<summary>
+ Conditional indentation on with keyword
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.FormatConfig.noNln(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Fantomas.FormatConfig.Context)">
+<summary>
+ Skip all auto-breaking newlines
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.colAutoNlnSkip0``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}})">
+<summary>
+ Similar to col, skip auto newline for index 0
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.colAutoNlnSkip0i``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}}},Fantomas.FormatConfig.Context)">
+<summary>
+ Similar to col, skip auto newline for index 0
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.autoNln(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Fantomas.FormatConfig.Context)">
+<summary>
+ Set a checkpoint to break at an appropriate column
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepCloseT">
+<summary>
+ closing token of tuple
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepOpenT">
+<summary>
+ opening token of tuple
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepCloseSFixed">
+<summary>
+ closing token of sequence
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepOpenSFixed">
+<summary>
+ opening token of sequence
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.sepCloseS(Fantomas.FormatConfig.Context)">
+<summary>
+ closing token of sequence
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.sepOpenS(Fantomas.FormatConfig.Context)">
+<summary>
+ opening token of sequence
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepCloseAFixed">
+<summary>
+ closing token of list
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepOpenAFixed">
+<summary>
+ opening token of list
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.sepCloseA(Fantomas.FormatConfig.Context)">
+<summary>
+ closing token of array
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.sepOpenA(Fantomas.FormatConfig.Context)">
+<summary>
+ opening token of array
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepCloseLFixed">
+<summary>
+ closing token of list
+</summary>
+</member>
+<member name="P:Fantomas.FormatConfig.sepOpenLFixed">
+<summary>
+ opening token of list
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.sepCloseL(Fantomas.FormatConfig.Context)">
+<summary>
+ closing token of list
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.sepOpenL(Fantomas.FormatConfig.Context)">
+<summary>
+ opening token of list
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.FormatConfig.rep(System.Int32,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Fantomas.FormatConfig.Context)">
+<summary>
+ Repeat application of a function n times
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.ifElse(System.Boolean,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Fantomas.FormatConfig.Context)">
+<summary>
+ b is true, apply f1 otherwise apply f2
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.optPre``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}},Fantomas.FormatConfig.Context)">
+<summary>
+ Similar to opt, but apply f2 at the beginning if there is a value
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.opt``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}},Fantomas.FormatConfig.Context)">
+<summary>
+ If there is a value, apply f and f&apos; accordingly, otherwise do nothing
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.colPre``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}},Fantomas.FormatConfig.Context)">
+<summary>
+ Similar to col, apply one more function f2 at the beginning if the input sequence is not empty
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.colPost``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}},Fantomas.FormatConfig.Context)">
+<summary>
+ Similar to col, apply one more function f2 at the end if the input sequence is not empty
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.col``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}},Fantomas.FormatConfig.Context)">
+<summary>
+ Process collection - keeps context through the whole processing
+ calls f for every element in sequence and f&apos; between every two elements 
+ as a separator. This is a variant that works on typed collections.
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.coli``1(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context}}},Fantomas.FormatConfig.Context)">
+<summary>
+ Similar to col, and supply index as well
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.str``1(``0,Fantomas.FormatConfig.Context)">
+<summary>
+ Print object converted to string
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.FormatConfig.op_MinusMinus(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.String,Fantomas.FormatConfig.Context)">
+<summary>
+ Append specified string without line-break
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.op_PlusMinus(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.String,Fantomas.FormatConfig.Context)">
+<summary>
+ Break-line if config says so
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.op_PlusPlus(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},System.String,Fantomas.FormatConfig.Context)">
+<summary>
+ Break-line and append specified string
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.op_PlusGreater(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Fantomas.FormatConfig.Context)">
+<summary>
+ Function composition operator
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.atCurrentColumn(Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Fantomas.FormatConfig.Context)">
+<summary>
+ Write everything at current column indentation
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.atIndentLevel(System.Int32,Microsoft.FSharp.Core.FSharpFunc{Fantomas.FormatConfig.Context,Fantomas.FormatConfig.Context},Fantomas.FormatConfig.Context)">
+<summary>
+ Apply function f at an absolute indent level (use with care)
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.decrIndent(System.Int32,Fantomas.FormatConfig.Context)">
+<summary>
+ Decrease indent by i spaces
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.incrIndent(System.Int32,Fantomas.FormatConfig.Context)">
+<summary>
+ Increase indent by i spaces
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.unindent(Fantomas.FormatConfig.Context)">
+<summary>
+ Unindent one more level based on configuration
+</summary>
+</member>
+<member name="M:Fantomas.FormatConfig.indent(Fantomas.FormatConfig.Context)">
+<summary>
+ Indent one more level based on configuration
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.FormatConfig">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|Extern|_|(Microsoft.FSharp.Compiler.Ast.SynModuleDecl)">
+<summary>
+ A rudimentary recognizer for extern functions
+ Probably we should use lexing information to improve its accuracy
+</summary>
+</member>
+<member name="M:Fantomas.SourceParser.|FunType|(Microsoft.FSharp.Compiler.Ast.SynType,Microsoft.FSharp.Compiler.Ast.SynValInfo)">
+<summary>
+ Extract function arguments with their associated info
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|DesugaredLambda|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Process compiler-generated matches in an appropriate way
+</summary>
+</member>
+<member name="M:Fantomas.SourceParser.transformPatterns(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,Microsoft.FSharp.Compiler.Ast.SynPat}},Microsoft.FSharp.Compiler.Ast.SynSimplePats)">
+<summary>
+ Manipulate patterns in case the compiler generate spurious matches
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|DotGetApp|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Gather series of application for line breaking
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|LetOrUses|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Unfold a list of let bindings
+ Recursive and use properties have to be determined at this point
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|Lambda|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Gather all arguments in lambda
+</summary>
+</member>
+<member name="M:Fantomas.SourceParser.|InfixApps|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ We should return the whole triple for convenient check
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|PrefixApp|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Only process prefix operators here
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|App|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Get all application params at once
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|Var|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ This pattern is escaped by using OpName
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|ArrayOrList|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ This pattern only includes arrays and lists in computation expressions
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|SequentialSimple|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Only recognize numbers; strings are ignored
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|Quote|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ isRaw = true with &lt;@@ and @@&gt;
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|MFMember|MFStaticMember|MFConstructor|MFOverride|(Microsoft.FSharp.Compiler.Ast.MemberFlags)">
+<summary>
+ This pattern finds out which keyword to use
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|Const|(Microsoft.FSharp.Compiler.Ast.SynConst)">
+<summary>
+ Lose information about kinds of literals
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|Typar|(Microsoft.FSharp.Compiler.Ast.SynTypar)">
+<summary>
+ Use two spaces for symmetry
+</summary>
+</member>
+<member name="M:Fantomas.SourceParser.|OpNameFull|(Fantomas.SourceParser.Identifier)">
+<summary>
+ Operators in their declaration form
+</summary>
+</member>
+<member name="M:Fantomas.SourceParser.|OpName|(Fantomas.SourceParser.Identifier)">
+<summary>
+ Use infix operators in the short form
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.|IdentOrKeyword|(Microsoft.FSharp.Compiler.Ast.Ident)">
+<summary>
+ Different from (|Ident|), this pattern also accepts keywords
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceParser.lookup(Microsoft.FSharp.Compiler.Range.range,Fantomas.FormatConfig.Context)">
+<summary>
+ Get source string content based on range value
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.SourceParser">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceTransformer.|MultilineBindingL|_|(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Compiler.Ast.SynBinding})">
+<summary>
+ Gather all multiline bindings. 
+ This should be used before one-liner pattern.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceTransformer.|MultilineMemberDefnL|_|(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Compiler.Ast.SynMemberDefn})">
+<summary>
+ This pattern prevents PropertyWithGetSet to be taken separately
+ Gather all multiline member definitions. 
+ This should be used before one-liner pattern.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceTransformer.|PropertyWithGetSet|_|(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Compiler.Ast.SynBinding})">
+<summary>
+ Gather PropertyGetSet in one printing call. 
+ Assume that PropertySet comes right after PropertyGet.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceTransformer.checkBreakForExpr(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Omit a break before an expression if the expression is small 
+</summary>
+</member>
+<member name="M:Fantomas.SourceTransformer.checkPreserveBreakForExpr(Microsoft.FSharp.Compiler.Ast.SynExpr,Fantomas.FormatConfig.Context)">
+<summary>
+ Omit a break before an expression if the expression is small and it is already one line in the text
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceTransformer.startWith(System.String,Microsoft.FSharp.Compiler.Range.range,Fantomas.FormatConfig.Context)">
+<summary>
+ Check whether a range starting with a specified token
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceTransformer.hasParenthesis(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Check if the expression already has surrounding parentheses
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.SourceTransformer.multiline(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ Check whether an expression should be broken into multiple lines. 
+ Notice that order of patterns matters due to non-disjoint property.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.SourceTransformer.List">
+
+</member>
+<member name="T:Fantomas.SourceTransformer">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.String">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.TokenMatcher.integrateComments(System.String,System.String)">
+<summary>
+ Assume that originalText and newText are derived from the same AST. 
+ Pick all comments and directives from originalText to insert into newText               
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.TokenMatcher.markStickiness(System.Collections.Generic.IEnumerable{System.Tuple{Fantomas.TokenMatcher.Token,System.String}})">
+<summary>
+ Add a flag into the token stream indicating if the first token in 
+ the tokens of a line comment is sticky-to-the-left
+       text // comment
+ or sticky-to-the-right
+       // comment
+
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.TokenMatcher.|Wrapped|(Fantomas.TokenMatcher.MarkedToken)">
+<summary>
+ Decompose a marked token to a raw token
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.TokenMatcher.filterCommentsAndDirectives(System.String)">
+<summary>
+ Filter all comments and directives; assuming all constants are defined
+</summary>
+</member>
+<member name="M:Fantomas.TokenMatcher.filterDefines(System.String)">
+<summary>
+ Filter all defined constants to be used in parsing
+</summary>
+</member>
+<member name="M:Fantomas.TokenMatcher.filterConstants(System.String)">
+<summary>
+ Filter all constants to be used in lexing
+</summary>
+</member>
+<member name="M:Fantomas.TokenMatcher.collectDirectives(Microsoft.FSharp.Collections.FSharpList{System.Tuple{Fantomas.TokenMatcher.Token,System.String}})">
+<summary>
+ Filter all directives
+</summary>
+</member>
+<member name="M:Fantomas.TokenMatcher.|SkipWhiteSpaceOrComment|_|``1(Microsoft.FSharp.Collections.FSharpList{System.Tuple{Fantomas.TokenMatcher.Token,``0}})">
+<summary>
+ Skip all whitespaces or comments in an active block
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.TokenMatcher.collectComments(Microsoft.FSharp.Collections.FSharpList{System.Tuple{Fantomas.TokenMatcher.Token,System.String}})">
+<summary>
+ Given a list of tokens, attach comments to appropriate positions
+</summary>
+</member>
+<member name="M:Fantomas.TokenMatcher.|CommentChunks|_|(Microsoft.FSharp.Collections.FSharpList{System.Tuple{Fantomas.TokenMatcher.Token,System.String}})">
+<summary>
+ Get all comment chunks before a token 
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:Fantomas.TokenMatcher.|Space|_|``1(Fantomas.TokenMatcher.Token,``0)">
+<summary>
+ Whitespace token without EOL
+</summary>
+</member>
+<member name="M:Fantomas.TokenMatcher.|Token|_|(Fantomas.TokenMatcher.Token)">
+<summary>
+ Create the view as if there is no attached line number
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="T:Fantomas.TokenMatcher">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:System.AssemblyVersionInformation">
+
+</member>
+</members>
+</doc>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.UnitTesting</name>
+    </assembly>
+    <members>
+        <member name="M:MonoDevelop.UnitTesting.UnitTestService.RefreshTests(System.Threading.CancellationToken)">
+            <summary>
+            For each node already in the test tree, it checks if there is any change. If there is, it reloads the test.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.UnitTesting.UnitTestService.ReloadTests">
+            <summary>
+            Reloads the test tree, creating new test branches if necessary
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.UnitTesting.UnitTestService.TestSessionStarting">
+            <summary>
+            Occurs just before a test session is started
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.UnitTesting.UnitTest.TestSourceCodeDocumentId">
+            <summary>
+            Used for the text editor integration to identify the source code member connected to the unit test.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.UnitTesting.UnitTest.Build">
+            <summary>
+            Builds the project that contains this unit test or group of unit tests.
+            It returns when the project has been built and the tests have been updated. 
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.UnitTesting.IResultsStoreSerializer">
+            <summary>
+            Encapsulates serialization/deserialization logic
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.UnitTesting.IResultsStoreSerializer.Serialize(System.String,MonoDevelop.UnitTesting.TestRecord)">
+            <summary>
+            Serialize the record into the specified path.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.UnitTesting.IResultsStoreSerializer.Deserialize(System.String)">
+            <summary>
+            Deserialize the TestRecord from the sepcified path if possible.
+            Return null if deserialization is impossible.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.UnitTesting.BinaryResultsStore">
+            <summary>
+            ResultsStore implementation that uses binary serializer
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.UnitTesting.BinaryResultsStoreSerializer">
+            <summary>
+            Serializer implementation that uses ICSharpCode.NRefactory.Utils.FastSerializer
+            as it's main method to serialize test records. The serializer is backward compatible
+            with the old xml-based serialization and will deserialize test record from xml
+            if the binary form is not yet present.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.UnitTesting.RemoteUnhandledException">
+            <summary>
+            Exception class that can be serialized
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.UnitTesting.IUnitTestMarkers">
+            <summary>
+            Markers that can be used to identify a method as a unit test
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.UnitTesting.IUnitTestMarkers.TestMethodAttributeMarker">
+            <summary>
+            Type of attribute that a method needs to have to be considered to be a test method
+            </summary>
+            <value>The test method attribute marker.</value>
+        </member>
+        <member name="P:MonoDevelop.UnitTesting.IUnitTestMarkers.TestCaseMethodAttributeMarker">
+            <summary>
+            Type of attribute that describes a test case for a test method. It has to be applied to a test method.
+            </summary>
+            <value>The test method attribute marker.</value>
+        </member>
+        <member name="P:MonoDevelop.UnitTesting.IUnitTestMarkers.IgnoreTestMethodAttributeMarker">
+            <summary>
+            Type of attribute used to mark a test method to be ignored
+            </summary>
+            <value>The ignore test method attribute marker.</value>
+        </member>
+        <member name="P:MonoDevelop.UnitTesting.IUnitTestMarkers.IgnoreTestClassAttributeMarker">
+            <summary>
+            Type of attribute used to mark a test class to be ignored
+            </summary>
+            <value>The ignore test method attribute marker.</value>
+        </member>
+        <member name="T:MonoDevelop.UnitTesting.IUnitTestMarkers2">
+            <summary>
+            TODO: Merge with IUnitTestMarkers - possible replace it with an abstract class in next API break.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.UnitTesting.IUnitTestMarkers2.TestCaseSourceAttributeMarker">
+            <summary>
+            TestCaseSourceAttribute is used on a parameterized test method to identify the property, method or field that will provide the required arguments.  It has to be applied to a test method.
+            </summary>
+            <value>The test method attribute marker.</value>
+        </member>
+        <member name="M:MonoDevelop.UnitTesting.VsTest.VsTestDiscoveryAdapter.CreateProgressMonitor">
+            <summary>
+            Creates the progress monitor if it does not already exist. This is done
+            on the UI thread explicitly. The ProgressMonitors is a GuiSyncObject so this
+            will be called on the UI thread implicitly otherwise. The progress monitor
+            should not be created when the static Instance is created since this can
+            result in a UI thread hang if Instance is called by both the UI thread and
+            a background thread at the same time.
+            </summary>
+        </member>
+    </members>
+</doc>

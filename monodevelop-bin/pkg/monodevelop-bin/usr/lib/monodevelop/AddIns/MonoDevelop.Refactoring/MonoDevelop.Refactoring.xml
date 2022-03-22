@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.Refactoring</name>
+    </assembly>
+    <members>
+        <member name="T:MonoDevelop.AnalysisCore.IssueMarker">
+            <summary>
+            The issue marker is used to set how an issue should be marked inside the text editor.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.AnalysisCore.IssueMarker.None">
+            <summary>
+            The issue is not shown inside the text editor. (But in the task bar)
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.AnalysisCore.IssueMarker.WavedLine">
+            <summary>
+            The region is marked as underline in the severity color.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.AnalysisCore.IssueMarker.DottedLine">
+            <summary>
+            The region is marked as dotted line in the severity color.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.AnalysisCore.IssueMarker.GrayOut">
+            <summary>
+            The text is grayed out.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.Refactoring.Options.BooleanCodeStyleOptionViewModel">
+            <summary>
+            This class represents the view model for a <see cref="T:Microsoft.CodeAnalysis.CodeStyle.CodeStyleOption`1"/>
+            that binds to the codestyle options UI.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.Refactoring.Options.AbstractCodeStyleOptionViewModel">
+            <summary>
+            This class acts as a base for any view model that  binds to the codestyle options UI.
+            </summary>
+            <remarks>
+            This supports databinding of: 
+            Description
+            list of CodeStyle preferences
+            list of Notification preferences 
+            selected code style preference
+            selected notification preference
+            plus, styling for visual elements.
+            </remarks>
+        </member>
+        <member name="T:MonoDevelop.Refactoring.Options.CodeStylePreference">
+            <summary>
+            Represents a single code style choice.
+            Typically, a code style offers a list of choices to choose from.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.Refactoring.Options.EnumCodeStyleOptionViewModel`1">
+            <summary>
+            This class represents the view model for a <see cref="T:Microsoft.CodeAnalysis.CodeStyle.CodeStyleOption`1"/>
+            that binds to the codestyle options UI.  Note that the T here is expected to be an enum
+            type.  
+            
+            Important.  The order of the previews and preferences provided should match the order
+            of enum members of T.  
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.Refactoring.Options.CheckBoxWithComboOptionViewModel">
+            <summary>
+            This view model binds to a code style option UI that
+            has a checkbox for selection and a combobox for notification levels.
+            </summary>
+            <remarks>
+            At the features level, this maps to <see cref="T:Microsoft.CodeAnalysis.CodeStyle.CodeStyleOption`1"/>
+            </remarks>
+        </member>
+        <member name="T:MonoDevelop.Refactoring.Options.NotificationOptionViewModel">
+            <summary>
+            Represents a view model for <see cref="T:Microsoft.CodeAnalysis.CodeStyle.NotificationOption"/>
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.CodeActions.CodeRefactoringDescriptor">
+            <summary>
+            This class wraps a roslyn ICodeRefactoringProvider and adds required meta data to it.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CodeActions.CodeRefactoringDescriptor.IdString">
+            <summary>
+            Gets the identifier string.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CodeActions.CodeRefactoringDescriptor.Name">
+            <summary>
+            Gets the display name for this action.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CodeActions.CodeRefactoringDescriptor.Language">
+            <summary>
+            Gets the language for this action.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CodeActions.CodeRefactoringDescriptor.IsEnabled">
+            <summary>
+            Gets or sets a value indicating whether this code action is enabled by the user.
+            </summary>
+            <value><c>true</c> if this code action is enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:MonoDevelop.CodeActions.CodeRefactoringDescriptor.GetProvider">
+            <summary>
+            Gets the roslyn code action provider.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CodeIssues.CodeDiagnosticDescriptor.IdString">
+            <summary>
+            Gets the identifier string.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CodeIssues.CodeDiagnosticDescriptor.Languages">
+            <summary>
+            Gets the languages for this issue.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.CodeIssues.CodeDiagnosticDescriptor.IsEnabled">
+            <summary>
+            Gets or sets a value indicating whether this code action is enabled by the user.
+            </summary>
+            <value><c>true</c> if this code action is enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:MonoDevelop.CodeIssues.CodeDiagnosticDescriptor.GetProvider">
+            <summary>
+            Gets the roslyn code action provider.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.LanguageServices.Implementation.Utilities.AbstractNotifyPropertyChanged.SetProperty``1(``0@,``0,System.String)">
+            <returns>True if the property was updated</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1483 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.ConnectedServices</name>
+    </assembly>
+    <members>
+        <member name="T:MonoDevelop.ConnectedServices.IConnectedServicesBinding">
+            <summary>
+            Binds a DotNetProject with the IConnectedService instances that support the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServicesBinding.Project">
+            <summary>
+            Gets the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServicesBinding.HasSupportedServices">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.ConnectedServices.IConnectedServicesProject"/> has any services that support the project.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServicesBinding.SupportedServices">
+            <summary>
+            Gets the services that support the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServicesBinding.HasAddedServices">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.ConnectedServices.IConnectedServicesProject"/> has any services that have been added.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServicesBinding.ServicesNode">
+            <summary>
+            Gets or sets the services node that is shown in the solution pad.
+            </summary>
+            <remarks>
+            Only the node builder should set this.
+            </remarks>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ConnectedServices">
+            <summary>
+            Defines a set of constants for the Connected Services addin
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServices.ServiceProvidersExtensionPoint">
+            <summary>
+            The extension point for service providers
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServices.SolutionTreeNodeName">
+            <summary>
+            The name of the node to display in the solution tree
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServices.ProjectStateFolderName">
+            <summary>
+            The name of the folder that is used to store state about each connected service
+            that has been added to the project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServices.ConnectedServicesJsonFileName">
+            <summary>
+            The name of the .json file that is stored in the ProjectStateFolderName/&lt;ServiceId&gt; folder.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServices.GettingStartedSectionDisplayName">
+            <summary>
+            The name of the Getting Started section that is displayed to the user
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.GetServices(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Gets the list of IConnectedService instances that support project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.OpenServicesTab(MonoDevelop.Projects.DotNetProject,System.String)">
+            <summary>
+            Displays the service details tab for the given service in the given project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.OpenServicesTab(MonoDevelop.ConnectedServices.IConnectedService)">
+            <summary>
+            Displays the service details tab for the given service
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.OpenServicesTab(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Displays the services gallery tab for the given project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.RemoveServiceFromProject(MonoDevelop.Projects.DotNetProject,System.String)">
+            <summary>
+            Removes the given service from the given project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.EnsureServiceDetailTabIsClosed(MonoDevelop.Projects.DotNetProject,System.String)">
+            <summary>
+            Looks for open documents that are showing the detail for the service that is being removed and updates the content to show the gallery instead
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.LocateServiceView(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Searches for open documents and locates the ConnectedServicesViewContent for the given project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.LocateServiceView(MonoDevelop.Projects.DotNetProject,MonoDevelop.Ide.Gui.Document@)">
+            <summary>
+            Searches for open documents and locates the ConnectedServicesViewContent for the given project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.ConfirmServiceRemoval(MonoDevelop.ConnectedServices.IConnectedService)">
+            <summary>
+            Confirms with the user about removing the specified service
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServices.BuildRemovalInfo(MonoDevelop.ConnectedServices.IConnectedService)">
+            <summary>
+            Builds up the text describing what will happen when the service is removed. This just lists
+            package dependencies
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Commands">
+            <summary>
+            Defines the commands for Connected Services
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Commands.OpenServicesGallery">
+            <summary>
+            Opens the services gallery tab
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Commands.OpenServiceDetails">
+            <summary>
+            Opens the service details tab for the given service
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Commands.RemoveService">
+            <summary>
+            Removes the selected service from the project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Commands.AddServiceTelemetry">
+            <summary>
+            Used to send telemetry
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderNodeBuilderExtension">
+            <summary>
+            Extends the solution pad and defines the Connected Services node in the solution tree
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderNodeBuilder">
+            <summary>
+            Builds ConnectedServices folder node and adds additional nodes for each enabled service
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderNodeBuilder.ContextMenuAddinPath">
+            <summary>
+            Gets the extension point that defines the context menu commands for this node
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderNodeBuilder.ServicesChanged(System.Object,MonoDevelop.ConnectedServices.Gui.SolutionPad.ServicesChangedEventArgs)">
+            <summary>
+            Handles the services that have been added to the project by updating the services node
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderNodeBuilder.ServicesSelectRequested(System.Object,System.EventArgs)">
+            <summary>
+            Selects the tree node on request
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderNodeHiderExtension">
+            <summary>
+            Hides the folders from the solution pad that match the folder that is used to store service state
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderNodeHiderExtension.GetNodeAttributes(MonoDevelop.Ide.Gui.Components.ITreeNavigator,System.Object,MonoDevelop.Ide.Gui.Components.NodeAttributes@)">
+            <summary>
+            Gets the attributes of the given node. In this case, sets the hidden attribute if the node matches the Connected Services folder in the project root
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNodeBuilder">
+            <summary>
+            Builds the nodes that are added for each enabled connected service
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNodeBuilder.GetServiceStateFolder(MonoDevelop.Ide.Gui.Components.ITreeBuilder,System.Object)">
+            <summary>
+            Gets the folder that the service stores state in, or null if we don't need to show it
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceFolderNode">
+            <summary>
+            Defines the Connected Services folder node that is shown to the user in the solution pad
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceFolderNode.Project">
+            <summary>
+            Gets the project that this component services node is contained in
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceFolderNode.ServicesChanged">
+            <summary>
+            Occurs when services that have been added to the project have changed
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ServicesChangedEventArgs">
+            <summary>
+            Event args that are passed when the services that have been added to a project change.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNode">
+            <summary>
+            Defines a specific service shown under the Connected Services node in the solution pad
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNode.Id">
+            <summary>
+            Gets the id of the service
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNode.DisplayName">
+            <summary>
+            Gets the display name to show as the text of the node
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNode.Project">
+            <summary>
+            Gets the project for this service node
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNode.SelectRequested">
+            <summary>
+            Occurs when the node requests to be selected.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceNode.Select">
+            <summary>
+            Select this node in the parent tree.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServicesFolderCommandHandler">
+            <summary>
+            Command handler for the Connected Services node.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.ConnectedServiceCommandHandler">
+            <summary>
+            Command handler for a Connected Service node.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.SolutionPad.DotNetProjectNodeCommandHandler">
+            <summary>
+            NodeCommandHandler derived class that adds a helper for obtaining the DotNetProject that the node is attached to
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.SolutionPad.DotNetProjectNodeCommandHandler.Project">
+            <summary>
+            Gets the Project of the node
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConnectedServicesViewContent">
+            <summary>
+            ViewContent host for the services gallery and service details widgets
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConnectedServicesViewContent.IsFile">
+            <summary>
+            Gets a value indicating whether this ViewContent represents a file or not.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConnectedServicesViewContent.UpdateContent(System.String)">
+            <summary>
+            Updates the content of the view for the project. If a service id is given, opens the details view for that service
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConnectedServicesViewContent.UpdateCurrentNode">
+            <summary>
+            Tells the view content to update it's DocumentObject
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConnectedServicesWidget">
+            <summary>
+            Xwt host for the gallery and service details widgets
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConnectedServicesWidget.ShowGallery(MonoDevelop.ConnectedServices.IConnectedService[],MonoDevelop.Projects.Project)">
+            <summary>
+            Shows the services gallery and removes the details widget if it is visible
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConnectedServicesWidget.ShowServiceDetails(MonoDevelop.ConnectedServices.IConnectedService)">
+            <summary>
+            Shows the service details  and removes the gallery widget if it is visible
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.ServicesTab.ServicesGalleryWidget">
+            <summary>
+            Widget that displays the services gallery
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ServicesGalleryWidget.LoadServices(MonoDevelop.ConnectedServices.IConnectedService[])">
+            <summary>
+            Loads the given services into the gallery
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.ServicesTab.ServiceDetailsWidget">
+            <summary>
+            Widget that displays the service details
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Gui.ServicesTab.ServiceDetailsWidget.service">
+            <summary>
+            A service that can be added to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ServiceDetailsWidget.LoadService(MonoDevelop.ConnectedServices.IConnectedService)">
+            <summary>
+            Loads the service details for the given service
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConfigurationSectionWidget">
+            <summary>
+            Default widget that displays a ConfigurationSection
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConfigurationSectionWidget.Section">
+            <summary>
+            Gets the sectino that this widget represents
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConfigurationSectionWidget.OnAddSectionToProject">
+            <summary>
+            Adds the section to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConfigurationSectionWidget.GetSectionWidget">
+            <summary>
+            Gets the widget to display the content of the section
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Gui.ServicesTab.ConfigurationSectionWidget.AddBtnClicked(System.Object,System.EventArgs)">
+            <summary>
+            Handles the addBtn clicked event
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Gui.ServicesTab.DependenciesSectionWidget">
+            <summary>
+            Default widget that displays the dependencies for a service
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ConnectedServiceProjectExtension">
+            <summary>
+            Project extension that attaches to all projects and maintains state for the list of connected services that are applicable
+            to the project.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceProjectExtension.HasSupportedServices">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.ConnectedServices.IConnectedServicesProject"/> has any services that support the project.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceProjectExtension.SupportedServices">
+            <summary>
+            Gets the services that support the project
+            </summary>
+            <value>The services.</value>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceProjectExtension.HasAddedServices">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.ConnectedServices.IConnectedServicesProject"/> has any services that have been added.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceProjectExtension.ServicesNode">
+            <summary>
+            Gets or sets the services node that is shown in the solution pad.
+            </summary>
+            <remarks>
+            Only the node builder should set this.
+            </remarks>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceProjectExtension.OnInitializeFromTemplate(MonoDevelop.Projects.ProjectCreateInformation,System.Xml.XmlElement)">
+            <summary>
+            Handles when the project is initialised from a template and gathers the list of services that support this project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceProjectExtension.OnEndLoad">
+            <summary>
+            Handles the project being loaded and gathers the list of services that support this project
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.IConnectedService">
+            <summary>
+            A specific instance of a connected service for a given project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.Id">
+            <summary>
+            Gets the Id of the service
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.DisplayName">
+            <summary>
+            Gets the display name of the service to show to the user
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.SolutionPadDisplayName">
+            <summary>
+            Gets the display name of the service to show to the user in the solution pad
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.Description">
+            <summary>
+            Gets the description of the service to display to the user in the services gallery.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.DetailsDescription">
+            <summary>
+            Gets the description of the service to display to the user in the service details tab.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.SupportedPlatforms">
+            <summary>
+            Gets a description of the supported platforms. This is largely just informational as the service provider decides
+            whether a project is supported or not.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.Project">
+            <summary>
+            Gets the project that this service instance is attached to
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.GalleryIcon">
+            <summary>
+            Gets the icon to display in the services gallery.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.Dependencies">
+            <summary>
+            Gets the dependencies that will be added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.DependenciesSection">
+            <summary>
+            Gets the dependencies section to be displayed before the configuration section
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.AreDependenciesInstalled">
+            <summary>
+            Gets a value indicating whether ALL the depenencies are installed.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.Sections">
+            <summary>
+            Gets the array of sections to be displayed to the user after the dependencies section.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedService.Status">
+            <summary>
+            Gets the current status of the service.
+            This is independent of whether or not the dependencies are installed or the service has been configured or not. 
+            If the status is Added, it does imply that any code scaffolding that can be done has been done.
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.IConnectedService.StatusChanged">
+            <summary>
+            Occurs when the status of the service has changed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.IConnectedService.AddToProject">
+            <summary>
+            Adds the service to the project
+            </summary>
+            <returns> <c>true</c> if the service has been added successfully; otherwise <c>false</c> </returns>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.IConnectedService.RemoveFromProject">
+            <summary>
+            Removes the service from the project
+            </summary>
+            <returns> <c>true</c> if the service has been removed successfully; otherwise <c>false</c> </returns>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.IConnectedServiceProvider">
+            <summary>
+            Provides IConnectedService instances for a given project. 
+            </summary>
+            <remarks>
+            Implement this to be able to have your IConnectedService attached to a project
+            </remarks>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.IConnectedServiceProvider.GetConnectedService(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Gets a new instance of IConnectedService for the given project, or null if the project is not supported.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Extensions">
+            <summary>
+            Extension methods and helpers
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Extensions.GetConnectedServicesBinding(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Returns the IConnectedServicesBinding instance that is attached to the project. 
+            Use this to query state about connected services for a given project. 
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Extensions.AddPackageDependency(MonoDevelop.Projects.DotNetProject,MonoDevelop.ConnectedServices.IPackageDependency)">
+            <summary>
+            Adds the dependencies to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Extensions.AddPackageDependencies(MonoDevelop.Projects.DotNetProject,System.Collections.Generic.IList{MonoDevelop.ConnectedServices.IPackageDependency})">
+            <summary>
+            Adds the dependencies to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Extensions.RemovePackageDependency(MonoDevelop.Projects.DotNetProject,MonoDevelop.ConnectedServices.IPackageDependency)">
+            <summary>
+            Removes the dependency from the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Extensions.RemovePackageDependencies(MonoDevelop.Projects.DotNetProject,System.Collections.Generic.IList{MonoDevelop.ConnectedServices.IPackageDependency})">
+            <summary>
+            Removes the dependencies from the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.Extensions.PackageAdded(MonoDevelop.Projects.DotNetProject,MonoDevelop.ConnectedServices.IPackageDependency)">
+            <summary>
+            Determines if the given package dependency has been added to the project or not
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ConnectedService">
+            <summary>
+            Base class for implementing IConnectedService. It stores state in a .json file that is created in a sub-folder of the project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedService.Empty">
+            <summary>
+            Empty array of IConnectedService
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.#ctor(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoDevelop.ConnectedServices.ConnectedService"/> class.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.Id">
+            <summary>
+            Gets the Id of the service
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.DisplayName">
+            <summary>
+            Gets the display name of the service to show to the user in the solution pad
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.SolutionPadDisplayName">
+            <summary>
+            Gets the display name of the service to show to the user in the solution pad
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.Description">
+            <summary>
+            Gets the description of the service to display to the user in the services gallery.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.DetailsDescription">
+            <summary>
+            Gets the description of the service to display to the user in the service details tab.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.SupportedPlatforms">
+            <summary>
+            Gets a description of the supported platforms. This is largely just informational as the service provider decides
+            whether a project is supported or not.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.Project">
+            <summary>
+            Gets the project that this service instance is attached to
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.GalleryIcon">
+            <summary>
+            Gets the icon to display in the services gallery.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.Status">
+            <summary>
+            Gets the current status of the service.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.Dependencies">
+            <summary>
+            Gets the dependencies that will be added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.DependenciesSection">
+            <summary>
+            Gets the dependencies section to be displayed before the configuration section
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.AreDependenciesInstalled">
+            <summary>
+            Gets a value indicating whether ALL the depenencies are installed.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedService.Sections">
+            <summary>
+            Gets the array of sections to be displayed to the user after the dependencies section.
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.ConnectedService.StatusChanged">
+            <summary>
+            Occurs when the status of the service has changed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.AddToProject">
+            <summary>
+            Adds the service to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.RemoveFromProject">
+            <summary>
+            Removes the service from the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.GetIsAddedToProject">
+            <summary>
+            Determines if the service has been added to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.OnRemoveFromProject">
+            <summary>
+            Performs the logic of removing the service from the project. This is called after the dependencies have been removed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.OnAddToProject">
+            <summary>
+            Performs the logic of adding the service to the project. This is called after the dependencies have been added.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.AddDependencies(System.Threading.CancellationToken)">
+            <summary>
+            Adds the dependencies to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.RemoveDependencies(System.Threading.CancellationToken)">
+            <summary>
+            Removes the dependencies from the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.StoreAddedState">
+            <summary>
+            Stores some state that the service has been added to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.RemoveAddedState">
+            <summary>
+            Stores some state that the service has been added to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.ChangeStatus(MonoDevelop.ConnectedServices.Status,System.Exception)">
+            <summary>
+            Changes the status of the service and notifies subscribers
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedService.NotifyStatusChanged(MonoDevelop.ConnectedServices.Status,MonoDevelop.ConnectedServices.Status,System.Exception)">
+            <summary>
+            Notifies subscribers that the service status has changed
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ConnectedServiceState">
+            <summary>
+            Object that is used to serialize the ConnectedService.json file
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceState.ProviderId">
+            <summary>
+            Gets or sets the provider identifier.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceState.Version">
+            <summary>
+            Gets or sets the version of the provider
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceState.GettingStartedDocument">
+            <summary>
+            Gets or sets the getting started document object
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.CommandHandlers.OpenServicesGalleryCommandHandler">
+            <summary>
+            Command handler to open the services tab
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.NullConnectedServicesBinding">
+            <summary>
+            Provides a default implementation of IConnectedServicesBinding for when there is no project (shared projects)
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.IConfigurationSection">
+            <summary>
+            Represents a section to be displayed to the user in the service details page.
+            Each section has the concept of being able to be "added" to the project, that is,
+            to perform some action on the project when 'AddToProject' is invoked. It is the responsibility of
+            the section to store state appropriately and to return `IsAdded` as required. The Added event should
+            be trigered once the task has been completed.
+            
+            Sections that do not perform an action on the project can return false from CanBeAdded.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConfigurationSection.Service">
+            <summary>
+            Gets the service for this section
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConfigurationSection.DisplayName">
+            <summary>
+            Gets the name of the section to display to the user.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConfigurationSection.Description">
+            <summary>
+            Gets the description of the section to display to the user.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConfigurationSection.CanBeAdded">
+            <summary>
+            Gets a value indidating if this section represents something that can be added to the project.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConfigurationSection.IsAdded">
+            <summary>
+            Gets a value indicating that whatever changes to the project that can be added by this section have been added.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.IConfigurationSection.GetSectionWidget">
+            <summary>
+            Gets the widget to display to the user
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.IConfigurationSection.AddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Performs the tasks necessary to add the components that this section represents to the project
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.IConfigurationSection.StatusChanged">
+            <summary>
+            Occurs when the status of the section changes
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.DependenciesSection">
+            <summary>
+            Builtin section object that displays the dependencies for the service
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.DependenciesSection.#ctor(MonoDevelop.ConnectedServices.IConnectedService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoDevelop.ConnectedServices.DependenciesSection"/> class.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.DependenciesSection.Service">
+            <summary>
+            Gets the service for this section
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.DependenciesSection.DisplayName">
+            <summary>
+            Gets the name of the section to display to the user.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.DependenciesSection.Description">
+            <summary>
+            Gets the description of the section to display to the user.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.DependenciesSection.CanBeAdded">
+            <summary>
+            Gets a value indidating if this section represents something that can be added to the project.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.DependenciesSection.IsAdded">
+            <summary>
+            Gets a value indicating that whatever changes to the project that can be added by this section have been added.
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.DependenciesSection.StatusChanged">
+            <summary>
+            Occurs when the status of the section changes
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.DependenciesSection.GetSectionWidget">
+            <summary>
+            Gets the widget to display to the user
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.DependenciesSection.AddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Adds the service dependencies to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.DependenciesSection.NotifyAddingToProject">
+            <summary>
+            Invokes the Adding event on the main thread
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.DependenciesSection.NotifyAddingToProjectFailed">
+            <summary>
+            Notifies subscribers that adding the dependencies to the project has failed
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.DependenciesSection.NotifyAddedToProject">
+            <summary>
+            Notifies subscribers that all dependencies have been added to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.DependenciesSection.NotifyRemovedFromProject">
+            <summary>
+            Notifies subscribers that a dependency has been removed from the project
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ConfigurationSection">
+            <summary>
+            Abstract implementation of IConfigurationSection.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConfigurationSection.Empty">
+            <summary>
+            An empty array of IConfigurationSection
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConfigurationSection.#ctor(MonoDevelop.ConnectedServices.IConnectedService,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoDevelop.ConnectedServices.ConfigurationSection"/> class.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConfigurationSection.Service">
+            <summary>
+            Gets the service for this section
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConfigurationSection.DisplayName">
+            <summary>
+            Gets the name of the section to display to the user.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConfigurationSection.Description">
+            <summary>
+            Gets the description of the section to display to the user.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConfigurationSection.CanBeAdded">
+            <summary>
+            Gets a value indidating if this section represents something that can be added to the project.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConfigurationSection.IsAdded">
+            <summary>
+            Gets a value indicating that whatever changes to the project that can be added by this section have been added.
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.ConfigurationSection.StatusChanged">
+            <summary>
+            Occurs when the status of the section has changed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConfigurationSection.GetSectionWidget">
+            <summary>
+            Gets the widget to display to the user
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConfigurationSection.AddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Performs the tasks necessary to add the components that this section represents to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConfigurationSection.NotifyAddingToProject">
+            <summary>
+            Invokes the Adding event on the main thread
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConfigurationSection.NotifyAddingToProjectFailed">
+            <summary>
+            Invokes the AddingFailed event on the main thread
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConfigurationSection.NotifyAddedToProject">
+            <summary>
+            Invokes the Added event on the main thread
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConfigurationSection.NotifyRemovedFromProject">
+            <summary>
+            Invokes the Removed event on the main thread
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.GettingStartedConfigurationSection">
+            <summary>
+            Basic implementation of a ConfigurationSection that represents a getting started section that display code snippets to the user
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.GettingStartedConfigurationSection.GetSnippetTitle(System.Int32)">
+            <summary>
+            Gets the code snippet title to show for the given snippet index
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.GettingStartedConfigurationSection.GetSnippet(System.Int32)">
+            <summary>
+            Gets the code snippet to show for the given snippet index
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.IConnectedServiceDependency">
+            <summary>
+            Represents a dependency of a connected serviuce. All dependencies are assumed to be added to the project
+            when the service is added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServiceDependency.Category">
+            <summary>
+            Gets the category of the dependency which is used to group dependencies together
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServiceDependency.DisplayName">
+            <summary>
+            Gets the display name of the dependency to present to the user
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServiceDependency.Icon">
+            <summary>
+            Gets the icon of the dependency to present to the user
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IConnectedServiceDependency.Status">
+            <summary>
+            Gets the current status of the dependency.
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.IConnectedServiceDependency.StatusChanged">
+            <summary>
+            Occurs when the status of the dependency has changed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.IConnectedServiceDependency.AddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Adds the dependency to the project and returns true if the dependency was added to the project
+            </summary>
+            <returns> <c>true</c> if the dependency has been added successfully; otherwise <c>false</c> </returns>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.IConnectedServiceDependency.RemoveFromProject(System.Threading.CancellationToken)">
+            <summary>
+            Removes the dependency from the project
+            </summary>
+            <returns> <c>true</c> if the dependency has been removed successfully; otherwise <c>false</c> </returns>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ConnectedServiceDependency">
+            <summary>
+            Abstract implementation of IConnectedServiceDependency.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServiceDependency.Empty">
+            <summary>
+            The empty set of IConnectedServiceDependencys
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServiceDependency.PackageDependencyCategory">
+            <summary>
+            The category string for packages, this will be localised to the user
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.ConnectedServiceDependency.CodeDependencyCategory">
+            <summary>
+            The category string for code, this will be localised to the user
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.#ctor(MonoDevelop.ConnectedServices.IConnectedService,MonoDevelop.ConnectedServices.ConnectedServiceDependencyCategory,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoDevelop.ConnectedServices.ConnectedServiceDependency"/> class.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependency.Service">
+            <summary>
+            Gets the service that this dependency is for
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependency.Category">
+            <summary>
+            Gets the category of the dependency which is used to group dependencies together
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependency.DisplayName">
+            <summary>
+            Gets the display name of the dependency to present to the user
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependency.Icon">
+            <summary>
+            Gets the icon of the dependency to present to the user
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependency.IsAdded">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.ConnectedServices.IConnectedServiceDependency"/> is added to the project or not.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependency.Status">
+            <summary>
+            Gets the current status of the dependency.
+            </summary>
+        </member>
+        <member name="E:MonoDevelop.ConnectedServices.ConnectedServiceDependency.StatusChanged">
+            <summary>
+            Occurs when the status of the dependency has changed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.AddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Adds the dependency to the project and returns true if the dependency was added to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.RemoveFromProject(System.Threading.CancellationToken)">
+            <summary>
+            Removes the dependency from the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.OnAddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Performs the logic of adding the dependency to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.OnRemoveFromProject(System.Threading.CancellationToken)">
+            <summary>
+            Performs the logic of removing the dependency from the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.OnStatusChange(MonoDevelop.ConnectedServices.Status,MonoDevelop.ConnectedServices.Status,System.Exception)">
+            <summary>
+            Raises the status change event for the new status
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.ChangeStatus(MonoDevelop.ConnectedServices.Status,System.Exception)">
+            <summary>
+            Changes the status of the service and notifies subscribers
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.ConnectedServiceDependency.NotifyStatusChanged(MonoDevelop.ConnectedServices.Status,MonoDevelop.ConnectedServices.Status,System.Exception)">
+            <summary>
+            Notifies subscribers that the service status has changed
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.IPackageDependency">
+            <summary>
+            Represents a NuGet dependency of a connected serviuce. 
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IPackageDependency.PackageId">
+            <summary>
+            Gets the nuget package id of the dependency that is added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.IPackageDependency.PackageVersion">
+            <summary>
+            Gets the nuget package version of the dependency that is added to the project. Return null for the latest version
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ICodeDependency">
+            <summary>
+            Represents a change that is made to the project when the dependencies are added to the project. 
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ICodeDependency.CodeDescription">
+            <summary>
+            Gets a description of the code that will be added when the dependencies are added (or was added).
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.PackageDependency">
+            <summary>
+            A service dependency that represents a nuget package
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.PackageDependency.PackageId">
+            <summary>
+            Gets the nuget package id of the dependency that is added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.PackageDependency.PackageVersion">
+            <summary>
+            Gets the nuget package version of the dependency that is added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.PackageDependency.IsAdded">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.ConnectedServices.IConnectedServiceDependency"/> is added to the project or not.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.PackageDependency.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:MonoDevelop.ConnectedServices.PackageDependency"/>.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.PackageDependency.OnAddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Adds the package to the project and returns true if the package was added to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.PackageDependency.OnRemoveFromProject(System.Threading.CancellationToken)">
+            <summary>
+            Removes the dependency from the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.PackageDependency.OnStatusChange(MonoDevelop.ConnectedServices.Status,MonoDevelop.ConnectedServices.Status,System.Exception)">
+            <summary>
+            Raises the status change event for the new status
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.PackageDependency.HandlePackageStatusChanged">
+            <summary>
+            Handles the case when this package has been added or removed to or from the project by the packagemanagemt system externally
+            Updates the status of the dependency accordingly
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.CodeDependency">
+            <summary>
+            A service dependency that represents some code that is added to the project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.CodeDependency.DefaultCompilationTimeout">
+            <summary>
+            Sets the default timeout for obtaining the compilcation for a project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.CodeDependency.RetryCount">
+            <summary>
+            Determines how many times we should attempt to apply the code dependency if we get a version mismatch
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:MonoDevelop.ConnectedServices.CodeDependency"/>.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.CodeDependency.SourceTypes">
+            <summary>
+            Gets the types defined in source files for the compilation
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.OnAddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Adds the dependency to the project and returns true if the dependency was added to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.OnRemoveFromProject(System.Threading.CancellationToken)">
+            <summary>
+            Removes the dependency from the project and returns true if the dependency was removed
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.AddCodeToProject(System.Threading.CancellationToken)">
+            <summary>
+            Performs the task of adding the code to the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.RemoveCodeFromProject(System.Threading.CancellationToken)">
+            <summary>
+            Performs the task of removing the code from the project. By default we do not assume that code can be removed from
+            project correctly. Therefore the default implementation of this is to simply return true and to do nothing to 
+            the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.UpdateMethodWithCodeDependency(Microsoft.CodeAnalysis.Location)">
+            <summary>
+            Updates the given method region with the code required for this dependency.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.AddMethodWithCodeDependencyToClass(Microsoft.CodeAnalysis.Location,System.Func{Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax})">
+            <summary>
+            Adds a method created by newMethod to the param name="classRegion", the newMethod should contain the required code dependency
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.CreateCodeDependencyStatements">
+            <summary>
+            Create the code statements that are required for this code dependency
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.RemoveExistingCodeDependencyFromMethod(Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax)">
+            <summary>
+            Removes any existing code that was added previously for this dependency
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.IsCodeDependencyStatement(Microsoft.CodeAnalysis.CSharp.Syntax.StatementSyntax)">
+            <summary>
+            Returns true if the given statement is (or is part of) the code dependency.
+            Override this to be able to update added code.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.GetLookupType(System.String)">
+            <summary>
+            Searches the type lookup tabvle for the given type
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.IsAttributedSubclass(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.String)">
+            <summary>
+            Returns true if the given type is a derived class of 'param name="class"' and has an attribute of type 'param name="attributeType"' applied
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.IsAttributed(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String)">
+            <summary>
+            Returns true if the given type has an attribute of type 'param name="attributeType"' applied
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.GetMembersDefinedInSource(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns the list of members for a type that are defined in source.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeDependency.InitLookupTypes(Microsoft.CodeAnalysis.Compilation,System.Threading.CancellationToken,System.String[])">
+            <summary>
+            Initializes the type lookup table from the compilation.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.CodeDependency.SolutionVersionMismatchException">
+            <summary>
+            Thrown when we should attempt to generate the code dependency again
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.GroupedCodeDependency">
+            <summary>
+            Represents a set of code dependencies that are added to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.GroupedCodeDependency.#ctor(MonoDevelop.ConnectedServices.IConnectedService,System.String,MonoDevelop.ConnectedServices.GroupedDependencyKind,MonoDevelop.ConnectedServices.ConnectedServiceDependency[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoDevelop.ConnectedServices.GroupedCodeDependency"/> class.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.GroupedCodeDependency.OnAddToProject(System.Threading.CancellationToken)">
+            <summary>
+            Adds the dependency to the project and returns true if the dependency was added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.GroupedCodeDependency.IsAdded">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.ConnectedServices.IConnectedServiceDependency"/> is added to the project or not.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.GroupedCodeDependency.OnRemoveFromProject(System.Threading.CancellationToken)">
+            <summary>
+            Removes the dependency from the project
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.GroupedDependencyKind">
+            <summary>
+            Defines how a grouped dependency should handle each of the component dependencies
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.GroupedDependencyKind.All">
+            <summary>
+            All dependencies should be added.
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.GroupedDependencyKind.Any">
+            <summary>
+            Any of the dependencies are added, as soon as one of the dependecies reports being added then the remaining
+            dependencies are skipped.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.CodeExtensions">
+            <summary>
+            Extension methods for working with code and roslyn
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.HasAttribute(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns true if the given type has the given attribute applied to it
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.GetCodeAnalysisProject(MonoDevelop.Projects.Project)">
+            <summary>
+            Gets a CodeAnalysis project from a MonoDevelop project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.GetAttribute(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Gets the given attribute from the given type, returns null if the type does not have the attribute applied
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.IsDerivedFromClass(ICSharpCode.NRefactory.TypeSystem.IType,ICSharpCode.NRefactory.TypeSystem.IType)">
+            <summary>
+            Determines if the other is derived from type
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.IsDefinedInSource(ICSharpCode.NRefactory.TypeSystem.ITypeDefinition,ICSharpCode.NRefactory.TypeSystem.ICompilation)">
+            <summary>
+            Determines if the given type is defined in source code, ie is part of the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.IsDefinedInSource(ICSharpCode.NRefactory.TypeSystem.IMember,ICSharpCode.NRefactory.TypeSystem.ICompilation)">
+            <summary>
+            Determines if the given type is defined in source code, ie is part of the project
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.FormatAndSave(ICSharpCode.NRefactory.CSharp.SyntaxTree,System.String)">
+            <summary>
+            Formats the syntax tree and saves it
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.IsAttributedSubclass(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns true if the given type is a derived class of 'param name="class"' and has an attribute of type 'param name="attributeType"' applied
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.IsAttributed(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Returns true if the given type has an attribute of type 'param name="attributeType"' applied
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.FormatFile(ICSharpCode.NRefactory.CSharp.SyntaxTree)">
+            <summary>
+            Formats the file
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.CodeExtensions.SaveFile(System.String,System.String)">
+            <summary>
+            Saves the file with the given content
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.ConnectedServiceDependencyCategory">
+            <summary>
+            Category used to group connected service dependencies.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependencyCategory.Name">
+            <summary>
+            Gets the name of the category
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.ConnectedServiceDependencyCategory.Icon">
+            <summary>
+            Gets the Icon of the category.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.JsonFileConnectedService">
+            <summary>
+            ConnectedService implementation that stores state in a .Json file in a subdirectory of the project folder.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.#ctor(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoDevelop.ConnectedServices.JsonFileConnectedService"/> class.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.GetIsAddedToProject">
+            <summary>
+            Determines if the service has been added to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.CreateStateObject">
+            <summary>
+            Creates a new object for storing state about the service in.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.StoreAddedState">
+            <summary>
+            Stores some state that the service has been added to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.RemoveAddedState">
+            <summary>
+            Stores some state that the service has been added to the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.OnStoreAddedState(MonoDevelop.ConnectedServices.ConnectedServiceState)">
+            <summary>
+            Modifies the state object to set any service specific values.
+            </summary>
+            <remarks>
+            The api for this might change, we're introducing a "ProvideId" that appears to have little to do with the Id of 
+            the service as well as a Version and GettingStartedUrl that may or may not be relevant at this point. 
+            Override this method to store what you need into the state object.
+            </remarks>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.WriteConnectedServiceJsonFile(MonoDevelop.Projects.DotNetProject,System.String,MonoDevelop.ConnectedServices.ConnectedServiceState)">
+            <summary>
+            Writes a ConnectedServices.json file in the connected services folder of the project for the given service, overwriting the file if it exists already
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.RemoveConnectedServiceJsonFile(MonoDevelop.Projects.DotNetProject,System.String)">
+            <summary>
+            Removes the ConnectedServices.json file in the connected services folder of the project for the given service
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.HasConnectedServiceJsonFile(MonoDevelop.Projects.DotNetProject,System.String)">
+            <summary>
+            Gets whether or not a ConnectedService.json file exists for the given projec and service id.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.JsonFileConnectedService.GetConnectedServiceJsonFilePath(MonoDevelop.Projects.DotNetProject,System.String,System.Boolean)">
+            <summary>
+            Gets the file path for the ConnectedService.json file for the given project and optionally ensures that the folder
+            that the file should reside in exists.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.StatusChangedEventArgs">
+            <summary>
+            Event args that describe the current status of the service or dependency
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.ConnectedServices.StatusChangedEventArgs.#ctor(MonoDevelop.ConnectedServices.Status,MonoDevelop.ConnectedServices.Status,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MonoDevelop.ConnectedServices.StatusChangedEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.NewStatus">
+            <summary>
+            Gets the new status of the service or dependency at the time of the event
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.OldStatus">
+            <summary>
+            Gets the old status of the service or dependency at the time of the event
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.Error">
+            <summary>
+            Gets the exception that occurred in the event of failures
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.WasAdded">
+            <summary>
+            Gets a value indicating if the status change was a result of being added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.WasRemoved">
+            <summary>
+            Gets a value indicating if the status change was a result of being added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.IsAdding">
+            <summary>
+            Gets a value indicating if the current status is that of being added to the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.IsRemoving">
+            <summary>
+            Gets a value indicating if the current status is that of being removed from the project
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.DidAddingFail">
+            <summary>
+            Gets a value indicating if the current status is that the adding to the project failed
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.ConnectedServices.StatusChangedEventArgs.DidRemovingFail">
+            <summary>
+            Gets a value indicating if the current status is that the removing from the project failed
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.ConnectedServices.Status">
+            <summary>
+            Defines the various states that a service or dependency can be in
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Status.NotAdded">
+            <summary>
+            The service or dependency is not added to the project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Status.Added">
+            <summary>
+            The service or dependency has been added to the project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Status.Adding">
+            <summary>
+            The service or dependency is ciurrently being added to the project
+            </summary>
+        </member>
+        <member name="F:MonoDevelop.ConnectedServices.Status.Removing">
+            <summary>
+            The service or dependency is currently being removed from the project
+            </summary>
+        </member>
+    </members>
+</doc>

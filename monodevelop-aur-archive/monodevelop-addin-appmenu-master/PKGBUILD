@@ -1,0 +1,23 @@
+
+pkgname=monodevelop-addin-appmenu
+pkgver=4.0.8
+pkgrel=1
+pkgdesc="Adds support of appmenu/HUD in Monodevelop"
+arch=('i686' 'x86_64')
+url='http://habrahabr.ru/post/143861/'
+license=('GPL')
+depends=('monodevelop')
+provides=('monodevelop-addin-appmenu')
+install=${pkgname}.install
+
+
+build() {
+	git clone https://bober@abf.rosalinux.ru/bober/monodevelop-addin-appmenu.git
+	cd monodevelop-addin-appmenu
+	xbuild /p:Configuration=Release
+}
+
+package() {
+	install -D "${srcdir}"/monodevelop-addin-appmenu/obj/Release/MonoDevelop.AppMenu.dll "${pkgdir}"/usr/lib/monodevelop/AddIns/MonoDevelop.AppMenu.dll	
+}
+

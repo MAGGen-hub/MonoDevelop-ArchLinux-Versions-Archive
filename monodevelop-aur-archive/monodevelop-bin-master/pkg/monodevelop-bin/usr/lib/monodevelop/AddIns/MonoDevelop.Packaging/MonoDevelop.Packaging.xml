@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.Packaging</name>
+    </assembly>
+    <members>
+        <member name="M:MonoDevelop.Packaging.PackagingProject.GeneratedNuGetMSBuildFilesExist">
+            <summary>
+            Looks for generated .nuget.targets and .nuget.props files for the project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.Packaging.PackagingNuGetProject.ShouldRemoveExistingPackageReference(MonoDevelop.PackageManagement.ProjectPackageReference,NuGet.Packaging.Core.PackageIdentity)">
+            <summary>
+            If the package version is already installed then there is no need to install the 
+            NuGet package.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.Packaging.ProjectFileMigrator">
+            <summary>
+            Migrates all files apart from AssemblyInfo.cs from one project to another.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.Packaging.CreateNuGetPackageBuildTarget.Build(MonoDevelop.Core.ProgressMonitor,MonoDevelop.Projects.ConfigurationSelector,System.Boolean,MonoDevelop.Projects.OperationContext)">
+            <summary>
+            If the project is a NuGet packaging project then just use the normal build target.
+            This ensures that the dependent projects are built.
+            
+            Otherwise the Pack target is called.
+            </summary>
+        </member>
+    </members>
+</doc>

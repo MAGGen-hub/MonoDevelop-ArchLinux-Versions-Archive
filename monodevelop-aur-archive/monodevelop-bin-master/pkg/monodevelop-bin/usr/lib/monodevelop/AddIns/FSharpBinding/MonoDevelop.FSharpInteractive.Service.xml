@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>MonoDevelop.FSharpInteractive.Service</name></assembly>
+<members>
+<member name="T:MonoDevelop.FSharpInteractive.CompletionServer">
+<summary>
+ Wrapper for fsi with support for returning completions
+</summary>
+</member>
+</members>
+</doc>

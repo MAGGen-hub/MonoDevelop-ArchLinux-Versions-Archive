@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharpBinding</name></assembly>
+<members>
+<member name="P:Microsoft.FSharp.Compiler.SourceCodeServices.RawEntity.CleanedIdents">
+<summary>
+ Entity name parts with removed module suffixes (Ns.M1Module.M2Module.M3.entity -&gt; Ns.M1.M2.M3.entity)
+ and replaced compiled names with display names (FSharpEntity.DisplayName, FSharpValueOrFucntion.DisplayName).
+ Note: *all* parts are cleaned, not the last one. 
+</summary>
+</member>
+<member name="P:Microsoft.FSharp.Compiler.SourceCodeServices.RawEntity.FullName">
+<summary>
+ Full entity name as it&apos;s seen in compiled code (raw FSharpEntity.FullName, FSharpValueOrFunction.FullName). 
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.ParsedInput.getLongIdents(Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Compiler.Ast.ParsedInput})">
+<summary>
+ Returns all `Ident`s and `LongIdent`s found in an untyped AST.
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.ParsedInput.|Sequentials|_|(Microsoft.FSharp.Compiler.Ast.SynExpr)">
+<summary>
+ An recursive pattern that collect all sequential expressions to avoid StackOverflowException
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.Extensions.ArrayModule.endsWith``1(``0[],``0[])">
+<summary>
+ Returns true if one array has trailing elements equal to another&apos;s.
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.Extensions.ArrayModule.startsWith``1(``0[],``0[])">
+<summary>
+ Returns true if one array has another as its subset from index 0.
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.Extensions.ArrayModule.isSubArray``1(``0[],``0[],System.Int32)">
+<summary>
+ check if subArray is found in the wholeArray starting 
+ at the provided index
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.Extensions.ArrayModule.heads``1(``0[])">
+<summary>
+ Returns all heads of a given array.
+ For [|1;2;3|] it returns [|[|1; 2; 3|]; [|1; 2|]; [|1|]|]
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.Extensions.ArrayModule.areEqual``1(``0[],``0[])">
+<summary>
+ Optimized arrays equality. ~100x faster than `array1 = array2` on strings.
+ ~2x faster for floats
+ ~0.8x slower for ints
+</summary>
+</member>
+<member name="M:Microsoft.FSharp.Compiler.SourceCodeServices.Extensions.ArrayModule.replace``1(System.Int32,``0,``0[])">
+<summary>
+ Returns a new array with an element replaced with a given value.
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.FSharpCompilerVersion.LatestKnown">
+<summary>
+ The current requested language version can be overriden by the user using environment variable.
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpTargetFramework">
+<summary>
+ Target framework (used to find the right version of F# binaries)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.OrderAssemblyReferences.Order(System.String[])">
+<summary>
+Orders the passed in array of assembly references in dependency order
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpCompilerParameters">
+<summary>
+ Serializable type respresnting F# compiler parameters
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.InvalidateConfiguration(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpProjectOptions)">
+<summary>
+ This function is called when the project is know to have changed for reasons not encoded in the ProjectOptions
+ e.g. dependent references have changed
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetUsesOfSymbolInProject(System.String,System.String,System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpSymbol,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}})">
+<summary>
+ Get all the uses of the specified symbol in the current project and optionally all dependent projects
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetUsesOfSymbolAtLocationInFile(System.String,System.String,System.Int32,System.String,System.Int32,System.Int32,System.String)">
+<summary>
+ Get all the uses of a symbol in the given file (using &apos;source&apos; as the source for the file)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetTypedParseResultWithTimeout(System.String,System.String,System.Int32,System.String,MonoDevelop.FSharp.AllowStaleResults,Microsoft.FSharp.Core.FSharpOption{System.Int32},Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Boolean}})">
+<summary>
+ Parses and checks the given file in the given project under the given configuration.
+Asynchronously returns the results of checking the file.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetTypedParseResultIfAvailable(System.String,System.String,System.String,MonoDevelop.FSharp.AllowStaleResults)">
+<summary>
+ Returns a TypeParsedResults if available, otherwise None
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetScriptCheckerOptions(System.String,System.String,System.String)">
+<summary>
+ Constructs options for the interactive checker for the given script file in the project under the given configuration.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetProjectCheckerOptions(System.String,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}}},Microsoft.FSharp.Core.FSharpOption{System.Collections.Generic.List{MonoDevelop.Projects.AssemblyReference}})">
+<summary>
+ Constructs options for the interactive checker for a project under the given configuration.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetOverridesForSymbol(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpSymbol)">
+<summary>
+ Get all overloads derived from the specified symbol in the current project
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetDerivedSymbolsInProject(System.String,System.String,System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpSymbol,Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Collections.FSharpList{System.String}})">
+<summary>
+ Get all symbols derived from the specified symbol in the current project and optionally all dependent projects
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.LanguageService.GetCheckerOptions(System.String,System.String,System.String)">
+<summary>
+ Constructs options for the interactive checker for the given file in the project under the given configuration.
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.LanguageService">
+<summary>
+ Provides functionality for working with the F# interactive checker running in background
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.ParseAndCheckResults.GetToolTip(System.Int32,System.Int32,System.String)">
+<summary>
+ Get the tool-tip to be displayed at the specified offset (relatively
+ from the beginning of the current document)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.ParseAndCheckResults.GetDeclarationSymbols(System.Int32,System.Int32,System.String)">
+<summary>
+ Get the symbols for declarations at the current location in the specified document and the long ident residue
+ e.g. The incomplete ident One.Two.Th will return Th
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.ParseAndCheckResults">
+<summary>
+ Wraps the result of type-checking and provides methods for implementing
+ various IntelliSense functions (such as completion &amp; tool tips).
+ Provides default empty/negative results if information is missing.
+</summary>
+</member>
+<member name="F:MonoDevelop.FSharp.MDLanguageService.vfs">
+<summary>
+ Single instance of the language service. We don&apos;t want the VFS during tests, so set it to blank from tests
+ before Instance is evaluated
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.MDLanguageService">
+<summary>
+ Provides functionality for working with the F# interactive checker running in background
+</summary>
+</member>
+<member name="F:MonoDevelop.FSharp.FSharpParsedDocument.ParsedLine@">
+<summary>
+ The text of the line where the caret is located at the point that the document was parsed
+ Used for intellisense cache.
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.FSharpParsedDocument.ParsedLine(Microsoft.FSharp.Core.FSharpOption{System.String})">
+<summary>
+ The text of the line where the caret is located at the point that the document was parsed
+ Used for intellisense cache.
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.FSharpParsedDocument.ParsedLine">
+<summary>
+ The text of the line where the caret is located at the point that the document was parsed
+ Used for intellisense cache.
+</summary>
+</member>
+<member name="F:MonoDevelop.FSharp.FSharpProject.profileMap">
+<summary>
+keyed on TargetProfile, Value: TargetFSharpCoreVersion, netcore
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpFsiEditorCompletion">
+<summary>
+ handles keypresses for F# Interactive
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.CodeGenerationPanel">
+<summary>
+ Configuration panel with settings for the F# compiler
+ (such as generation of debug symbols, XML, tail-calls etc.)
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpFoldingParser">
+<summary>
+ The folding parser is used for generating a preliminary parsed document that does not
+ contain a full dom - only some basic lexical constructs such as comments or pre processor directives.
+ As we dont currently fold comments or compiler directives this is an empty DefaultParsedDocument
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpTextEditorCompletion.HandleParameterCompletionAsync(MonoDevelop.Ide.CodeCompletion.CodeCompletionContext,System.Char,System.Threading.CancellationToken)">
+<summary>
+ Provide parameter and method overload information when you type &apos;(&apos;, &apos;&lt;&apos; or &apos;,&apos;
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpTextEditorCompletion">
+<summary>
+ Implements text editor extension for MonoDevelop that shows F# completion
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FsiParameterHintingData.CreateTooltipInformation(MonoDevelop.Ide.Editor.TextEditor,MonoDevelop.Ide.Editor.DocumentContext,System.Int32,System.Boolean,System.Threading.CancellationToken)">
+<summary>
+ Returns the markup to use to represent the method overload in the parameter information window.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpParameterHintingData.CreateTooltipInformation(MonoDevelop.Ide.Editor.TextEditor,MonoDevelop.Ide.Editor.DocumentContext,System.Int32,System.Boolean,System.Threading.CancellationToken)">
+<summary>
+ Returns the markup to use to represent the method overload in the parameter information window.
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.FSharpMemberCompletionData.OverloadedData">
+<summary>
+ Split apart the elements into separate overloads
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.FSharpMemberCompletionData.HasOverloads">
+<summary>
+ Check if the datatip has multiple overloads
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpMemberCompletionData.IsCommitCharacter(System.Char,System.String)">
+<summary>
+ https://github.com/mono/monodevelop/issues/3798
+
+ Determined that it is too difficult to detect all the occurrences of
+ identifiers in F# code for the time being, so it is hard to determine that the
+ popup should not be displayed. Given this, we should be far less aggressive
+ about auto-committing (even when &quot;Complete with Space or Punctuation&quot; is
+ switched on. This is a good default for C#, but a bad default for F#.)
+
+ This behaviour roughly matches both VS on Windows and VS Code
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpProjectFileNodeExtension">
+<summary>
+ MD/XS extension for the F# project nodes in the solution explorer.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpProjectNodeCommandHandler.OnNodeDrop(System.Object,MonoDevelop.Ide.Gui.Components.DragOperation,MonoDevelop.Ide.Gui.Components.DropPosition)">
+<summary>
+ Implement drag and drop of nodes in F# projects in the solution explorer.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpProjectNodeCommandHandler.CanDropNode(System.Object,MonoDevelop.Ide.Gui.Components.DragOperation,MonoDevelop.Ide.Gui.Components.DropPosition)">
+<summary>
+ Implement drag and drop of nodes in F# projects in the solution explorer.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpProjectNodeCommandHandler.CanDropNode(System.Object,MonoDevelop.Ide.Gui.Components.DragOperation)">
+<summary>
+ Implement drag and drop of nodes in F# projects in the solution explorer.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpProjectNodeCommandHandler.CanDragNode">
+<summary>
+ Implement drag and drop of nodes in F# projects in the solution explorer.
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpProjectNodeCommandHandler">
+<summary>
+ The command handler type for nodes in F# projects in the solution explorer.
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpTooltipProvider">
+<summary>
+ Resolves locations to tooltip items, and orchestrates their display.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpResolverProvider.MonoDevelop-Ide-Gui-Content-ITextEditorResolverProvider-GetLanguageItem(MonoDevelop.Ide.Gui.Document,System.Int32,MonoDevelop.Ide.Editor.DocumentRegion@)">
+<summary>
+ Get tool-tip at the specified offset (from the start of the file)
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.FSharpResolverProvider">
+<summary>
+ Resolves locations to NRefactory symbols and ResolveResult objects.
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.HighlightUsagesExtension">
+<summary>
+ MD/XS extension for highlighting the usages of a symbol within the current buffer.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FrameworkExt.StringBuilder.FirstCharacterIs(System.Text.StringBuilder,Microsoft.FSharp.Core.FSharpFunc{System.Char,System.Boolean})">
+<summary>
+Apply a predicate to the first character of the StringBuilder instance
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FrameworkExt.StringBuilder.LastCharacterIs(System.Text.StringBuilder,Microsoft.FSharp.Core.FSharpFunc{System.Char,System.Boolean})">
+<summary>
+Apply a predicate to the last character of the StringBuilder instance
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.String.wrapText(System.String,System.Int32)">
+<summary>
+ Wrap text so it fits to a line width
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.String.splitLine(System.Text.StringBuilder,System.String,System.Int32)">
+<summary>
+ Split a line so it fits to a line width
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Option.orTry``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.FSharpOption{``0}},Microsoft.FSharp.Core.FSharpOption{``0})">
+<summary>
+ Gets the option if Some x, otherwise try to get another value
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Option.flatten``1(Microsoft.FSharp.Core.FSharpOption{Microsoft.FSharp.Core.FSharpOption{``0}})">
+<summary>
+ Some(Some x) -&gt; Some x | None -&gt; None
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Option.ofString(System.String)">
+<summary>
+ Convert string into Option string where null and String.Empty result in None
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.List.maxUnderThreshold(System.Int32)">
+<summary>
+Returns the greatest of all elements in the list that is less than the threshold
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpEnvironment.resolveAssembly(Microsoft.FSharp.Collections.FSharpList{System.String},System.String)">
+<summary>
+ Resolve assembly in the specified list of directories
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpEnvironment.getDefaultDirectories(Microsoft.FSharp.Core.FSharpOption{MonoDevelop.FSharp.FSharpCompilerVersion},MonoDevelop.FSharp.FSharpTargetFramework)">
+<summary>
+ Returns default directories to be used when searching for DLL files
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FSharpEnvironment.tryFsharpiScript(System.String)">
+<summary>
+ Try to find the F# compiler location by looking at the &quot;fsharpi&quot; script installed by F# packages
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.Environment.runningOnMono">
+<summary>
+ Are we running on the Mono platform?
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipFormatting.extractParamTip(System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpToolTipText{System.String})">
+<summary>
+ For elements with XML docs, the parameter descriptions are buried in the XML. Fetch it.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipFormatting.extractParamTipFromElement(System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpToolTipElement{System.String})">
+<summary>
+ For elements with XML docs, the parameter descriptions are buried in the XML. Fetch it.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipFormatting.extractParamTipFromComment(System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpXmlDoc)">
+<summary>
+ For elements with XML docs, the parameter descriptions are buried in the XML. Fetch it.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipFormatting.formatTip(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpToolTipText{System.String})">
+<summary>
+ Format tool-tip that we get from the language service as string
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipFormatting.buildFormatElement(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpToolTipElement{System.String})">
+<summary>
+ Format some of the data returned by the F# compiler
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipFormatting.buildFormatComment(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpXmlDoc)">
+<summary>
+ Format some of the data returned by the F# compiler
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.TooltipFormatting">
+<summary>
+ Formatting of TooltipElement information displayed in tooltips and autocompletion
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipXmlDoc.findDocForEntity(System.String,System.String)">
+<summary>
+ Find the documentation for a file/key pair representing an entity with documentation
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipXmlDoc.findMonoDocProviderForEntity``1(``0,System.String)">
+<summary>
+ Try to find the MonoDoc documentation for a file/key pair representing an entity with documentation
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipXmlDoc.tryGetDoc(System.String)">
+<summary>
+check helpxml exist
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipXmlDoc.findXmlDocProviderForAssembly(System.String)">
+<summary>
+ Return the XmlDocumentationProvider for an assembly
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.TooltipXmlDoc.xmlDocProvider">
+<summary>
+ Memoize the objects that manage access to XML files, keeping only 20 most used
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.TooltipXmlDoc.memoize``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},System.UInt32)">
+<summary>
+lru based memoize
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.FileService.supportedFileName(System.String)">
+<summary>
+ Is the specified extension supported F# file?
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerArguments.getEnvironmentToolPath(MonoDevelop.Core.Assemblies.TargetRuntime,MonoDevelop.Core.Assemblies.TargetFramework,System.Collections.Generic.IEnumerable{System.String},System.String)">
+<summary>
+ Get full path to tool
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerArguments.generateOtherItems(MonoDevelop.Projects.ProjectItemCollection)">
+<summary>
+ Generate inputs for the compiler (excluding source code!); returns list of items
+ containing resources (prefixed with the --resource parameter)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerArguments.getSourceFiles(MonoDevelop.Projects.ProjectItemCollection)">
+<summary>
+ Get source files of the current project (returns files that have
+ build action set to &apos;Compile&apos;, but not e.g. scripts or resources)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerArguments.generateCompilerOptions(MonoDevelop.Projects.DotNetProject,System.Collections.Generic.IEnumerable{MonoDevelop.Projects.AssemblyReference},MonoDevelop.FSharp.FSharpCompilerParameters,Microsoft.FSharp.Core.FSharpOption{MonoDevelop.FSharp.FSharpCompilerVersion},MonoDevelop.FSharp.FSharpTargetFramework,MonoDevelop.Projects.ConfigurationSelector,System.Boolean)">
+<summary>
+ Generates command line options for the compiler specified by the
+ F# compiler options (debugging, tail-calls etc.), custom command line
+ parameters and assemblies referenced by the project (&quot;-r&quot; options)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerArguments.generateReferences(MonoDevelop.Projects.DotNetProject,System.Collections.Generic.IEnumerable{MonoDevelop.Projects.AssemblyReference},Microsoft.FSharp.Core.FSharpOption{MonoDevelop.FSharp.FSharpCompilerVersion},MonoDevelop.FSharp.FSharpTargetFramework,System.Boolean)">
+<summary>
+ Generates references for the current project &amp; configuration as a
+ list of strings of the form [ &quot;-r:&lt;full-path&gt;&quot;; ... ]
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerArguments.wrapFile(System.String)">
+<summary>
+ Wraps the given string between double quotes
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerArguments.Project.getCurrentConfigurationOrDefault(MonoDevelop.Projects.Project)">
+<summary>
+Use the IdeApp.Workspace active configuration failing back to proj.DefaultConfiguration then ConfigurationSelector.Default
+</summary>
+</member>
+<member name="P:MonoDevelop.FSharp.ServiceSettings.blockingTimeout">
+<summary>
+ When making blocking calls from the GUI, we specify this value as the timeout, so that the GUI is not blocked forever
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.ServiceSettings">
+<summary>
+ Contains settings of the F# language service
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Symbol.trimSymbolRegion(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpSymbolUse,System.String)">
+<summary>
+ We always know the text of the identifier that resolved to symbol.
+ Trim the range of the referring text to only include this identifier.
+ This means references like A.B.C are trimmed to &quot;C&quot;.  This allows renaming to just rename &quot;C&quot;.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.ServiceUtils.getIcon(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpNavigationDeclarationItem)">
+<summary>
+ Translates icon code that we get from F# language service into a MonoDevelop icon
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.ServiceUtils">
+<summary>
+ Various utilities for working with F# language service
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerService.Compile(MonoDevelop.Projects.ProjectItemCollection,MonoDevelop.Projects.DotNetProjectConfiguration,System.Collections.Generic.IEnumerable{MonoDevelop.Projects.AssemblyReference},MonoDevelop.Projects.ConfigurationSelector,MonoDevelop.Core.ProgressMonitor)">
+<summary>
+ Compiles the specified F# project using the current configuration
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerService.compile(MonoDevelop.Core.Assemblies.TargetRuntime,MonoDevelop.Core.Assemblies.TargetFramework,MonoDevelop.Core.ProgressMonitor,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Run the F# compiler with the specified arguments (passed as a list)
+ and print the arguments to progress monitor (Output in MonoDevelop)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerService.processMsg(System.String)">
+<summary>
+ Process a single message emitted by the F# compiler
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.CompilerService.generateCmdArgs(MonoDevelop.Projects.DotNetProjectConfiguration,System.Collections.Generic.IEnumerable{MonoDevelop.Projects.AssemblyReference},Microsoft.FSharp.Core.FSharpOption{MonoDevelop.FSharp.FSharpCompilerVersion},MonoDevelop.Projects.ConfigurationSelector)">
+<summary>
+ Generate various command line arguments for the project
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.CompilerService">
+<summary>
+ Functions that implement compilation, parsing, etc..
+</summary>
+</member>
+<member name="T:MonoDevelop.FSharp.RoslynHelpers.FsharpSymbol">
+<summary>
+Barebones symbol
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.SymbolTooltips.op_PlusPlus(System.String,System.String)">
+<summary>
+ Concat two strings with a space between if both a and b are not IsNullOrWhiteSpace
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Symbols.getTextSegment(MonoDevelop.Ide.Editor.TextEditor,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpSymbolUse,System.Int32,System.String)">
+<summary>
+Returns a TextSegment that is trimmed to only include the identifier
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Symbols.lastIdent(System.Int32,System.String)">
+<summary>
+Given a column and line string returns the identifier portion of the string
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Search.correctDisplayName(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpSymbolUse)">
+<summary>
+ constructors have a display name of ( .ctor ) use the enclosing entities display name
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.ParsedDocument.formatError(Microsoft.FSharp.Compiler.SourceCodeServices.FSharpErrorInfo)">
+<summary>
+ Format errors for the given line (if there are multiple, we collapse them into a single one)
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Pervasive.Async.cache``1(Microsoft.FSharp.Control.FSharpAsync{``0})">
+<summary>
+ Creates an asynchronous workflow that runs the asynchronous workflow given as an argument at most once. 
+ When the returned workflow is started for the second time, it reuses the result of the previous execution.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.InsertContextModule.insertOpenDeclarationWithEditor(MonoDevelop.Ide.Editor.TextEditor,Microsoft.FSharp.Compiler.SourceCodeServices.InsertContext,System.String)">
+ <summary>
+ Creates a TextReplaceChange with open declaration at an appropriate offset
+ </summary>
+ <param name="sourceText">SourceText.</param>
+ <param name="ctx">Insertion context. Typically returned from tryGetInsertionContext</param>
+ <param name="ns">Namespace to open.</param>
+</member>
+<member name="M:MonoDevelop.FSharp.InsertContextModule.adjustInsertionPoint(MonoDevelop.Ide.Editor.TextEditor,System.String,Microsoft.FSharp.Compiler.SourceCodeServices.InsertContext)">
+<summary>
+ Corrects insertion line number based on kind of scope and text surrounding the insertion point.
+</summary>
+</member>
+<member name="M:MonoDevelop.FSharp.Refactoring.renameSymbol(MonoDevelop.Ide.Editor.TextEditor,MonoDevelop.Ide.Editor.DocumentContext,System.String,Microsoft.FSharp.Compiler.SourceCodeServices.FSharpSymbolUse)">
+<summary>
+ Perform the renaming of a symbol
+</summary>
+</member>
+</members>
+</doc>

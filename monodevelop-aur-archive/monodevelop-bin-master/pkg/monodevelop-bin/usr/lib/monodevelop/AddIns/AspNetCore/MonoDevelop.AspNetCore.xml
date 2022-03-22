@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="M:MonoDevelop.AspNetCore.AspNetCoreCertificateManager.CheckDevelopmentCertificateIsTrusted(MonoDevelop.Projects.DotNetProject,MonoDevelop.Projects.SolutionItemRunConfiguration)">
+            <summary>
+            Only supported projects should be checked. If the development certificate
+            was found to be trusted then do not check again for the current IDE session.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.AspNetCore.AspNetCoreCertificateManager.IsProjectSupported(MonoDevelop.Projects.DotNetProject,MonoDevelop.Projects.SolutionItemRunConfiguration)">
+            <summary>
+            Only .NET Core 2.1 projects are supported.
+            Also need .NET Core SDK 2.1 to be installed.
+            Also check if the project is using https.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.AspNetCore.AspNetCoreCertificateManager.IsNetCoreSdk21(MonoDevelop.DotNetCore.DotNetCoreVersion)">
+            <summary>
+            This checks for .NET Core SDK 2.1 to be installed. Note that the
+            .NET Core SDK versions is confusing. Here we want the .NET Core 2.1
+            SDK that supports .NET Core App 2.1. Not the .NET Core 2.1 SDK that
+            supports .NET Core App 2.0 only.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.AspNetCore.DotNetCoreDevCertsTool.TrustCertificate(System.Threading.CancellationToken)">
+             <summary>
+             To install and/or trust the certificate the following is done:
+            
+             1. Run the DevCertInstaller console app included with the IDE.
+            
+             2. DevCertInstaller will use the AuthorizationExecuteWithPrivileges
+             Mac API provided by Xamarin.Mac to run the DevCertWrapper console app
+             as root. The DevCertInstaller app cannot run dotnet as root here since
+             it requires the user id to be set to 0, the same as running 'sudo dotnet'
+             DevCertInstaller is needed since we want to wait until dotnet has
+             finished trusting the certificate. To do that the DevCertInstaller
+             uses the Posix wait APIs to detect when the child process started by
+             AuthorizationExecuteWithPrivileges has finished. Since the IDE itself
+             has other child processes a separate DevCertInstaller app is used.
+            
+             3. DevCertWrapper calls setuid to set the current id to be 0.
+            
+             4. DevCertWrapper then runs 'dotnet dev-certs https --trust' which
+             will install the HTTPS development certificate if it is missing and
+             ensure it is trusted.
+             </summary>
+        </member>
+    </members>
+</doc>

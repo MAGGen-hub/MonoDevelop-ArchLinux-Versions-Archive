@@ -1,0 +1,690 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.PackageManagement</name>
+    </assembly>
+    <members>
+        <member name="M:MonoDevelop.PackageManagement.DotNetProjectExtensions.DotNetCoreNotifyReferencesChanged(MonoDevelop.Projects.DotNetProject,System.Boolean)">
+            <summary>
+            If a NuGet package is installed into a .NET Core project then all .NET Core projects that
+            reference this project need to have their reference information updated. This allows the
+            assemblies from the NuGet package to be made available to the other projects since .NET
+            Core projects support transitive references. This method calls NotifyModified for each
+            project that references it, as well as for the project itself, passing the hint 'References'
+            which will cause the type system to refresh its reference information, which will be taken
+            from MSBuild.
+            
+            All projects that reference .NET Core projects will have their references refreshed. If a
+            .NET Framework project (non SDK), has PackageReferences and references a .NET Standard project
+            (SDK project) then NuGet dependencies from the .NET Standard project are available to the
+            .NET Framework project transitively without needing the NuGet package to be installed into
+            the .NET Framework project. So refreshing the references of any project that references a
+            .NET Core project will ensure assemblies from NuGet packages are available after installing
+            a new NuGet package into the referenced project.
+            </summary>
+            <param name="project">.NET Core project</param>
+            <param name="transitiveOnly">If false then the project passed will also have its
+            references refreshed. Otherwise only the projects that reference the project will
+            have their references refreshed.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.DotNetProjectExtensions.GetReferencingProjects(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Returns all projects that directly or indirectly referencing the specified project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.MonoDevelopCredentialProvider.GetExistingCredential(System.Uri,System.Net.IWebProxy,NuGet.Configuration.CredentialRequestType)">
+            <summary>
+            Gets an existing credential without prompting the user.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.MSBuildProjectExtensions.GetImportedPackageReferences(MonoDevelop.Projects.MSBuild.MSBuildProject,MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Returns package references (e.g. NETStandard.Library) that are not directly defined
+            in the project file but included due to the sdk and target framework being used.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.Gui.PackageSourcesOptionsPanel.ValidateChanges">
+            <summary>
+            Check that mono can encrypt package source passwords. This can fail if the
+            "~/.config/.mono/keypairs" directory has incorrect permissions.
+            
+            The keypairs directory will be created by the HttpWebRequest when a 
+            request is made to url using https. The keypairs directory created has the
+            wrong permissions so NuGet will fail to encrypt any passwords.
+            
+            Use the following to fix the permissions:
+            
+            chmod u=rwx,go= keypairs
+            
+            This check is done here instead of in ApplyChanges so the user is presented
+            with a slightly better error message and the user can try to fix the problem
+            without losing their changes.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.Gui.PackageSourcesOptionsPanel.CheckPasswordEncryptionIsWorking">
+            <summary>
+            Try encrypting some data the same way NuGet does when it 
+            encrypts passwords in the NuGet.config file.
+            
+            If the ~/.config/.mono/keypairs directory 
+            has incorrect permissions or has a corrupt key value pair then
+            ProtectedData.Protect (...) will throw an exception.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.Gui.PackageSourcesOptionsPanel.GetSaveNuGetConfigFileErrorMessage">
+            <summary>
+            Returns a non-Windows specific error message instead of the one NuGet returns.
+            
+            NuGet returns a Windows specific error:
+            
+            "DeleteSection" cannot be called on a NullSettings. This may be caused on account of 
+            insufficient permissions to read or write to "%AppData%\NuGet\NuGet.config".
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.Gui.SolutionClosingDialog.OnCommandActivated(Xwt.Command)">
+            <summary>
+            Do not immediately close the dialog if the Yes button is clicked.
+            The dialog will wait until the NuGet package action has stopped.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.ProjectTemplateNuGetPackageInstaller.GetSecondaryRepositories(System.Collections.Generic.IEnumerable{NuGet.Protocol.Core.Types.SourceRepository},MonoDevelop.Ide.Templates.ProjectTemplatePackageReference)">
+            <summary>
+            If the package is a local package then we prevent NuGet from using online package sources
+            defined in the NuGet.Config file by using the returning the primaryRepositories. 
+            Returning null allows all enabled package sources to be used when resolving dependencies.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.BackgroundPackageActionRunner.RemoveCancellationTokenSource">
+            <summary>
+            This queue can be cleared in the Cancel method so check if any items are queued
+            before removing anything.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.BackgroundPackageActionRunner.Cancel">
+            <summary>
+            Cancels the current action being run and also removes any pending actions.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.BackgroundPackageActionRunner.GetPendingActionsInfo">
+            <summary>
+            Returns information about the actions being run or queued to run.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.BackgroundPackageActionRunner.ClearDispatcher">
+            <summary>
+            This will only remove queued actions not the action currently being run.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.DotNetProjectProxy.GetPackageReferences">
+            <summary>
+            Returns imported package references (e.g. NETStandard.Library) from the
+            evaluated items and package references defined directly in the project file.
+            Only imported package references are taken from the evaluated items to
+            avoid duplicate package references and also to avoid old versions being
+            returned since the evaluated items may still have old values if the
+            package references have just been updated. This avoids the wrong value being
+            added to the project.assets.json file. Returns the project's PackageReferences
+            first since these should override any implicit PackageReferences. The first
+            PackageReference returned will be used and any duplicate ones that are returned
+            afterwards are ignored.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.PackageManagement.FileRemovingEventArgs.IsCancelled">
+            <summary>
+             Stops the file from being removed.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.PackageManagement.PreventPackagesConfigFileBeingRemovedOnUpdateMonitor">
+            <summary>
+            When updating a package the packages.config file may be removed, if all packages are 
+            uninstalled during the update, which causes the version control system to mark the file as
+            deleted. During an update the packages.config file will be recreated so the version control
+            system should not mark it as deleted. This monitor class looks for the packages.config file
+            being removed, cancels the standard file deletion call to FileService.RemoveFile, and
+            removes the file itself.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.PackageManagement.IPackageManagementProjectOperations">
+            <summary>
+            Provides a simplified interface for working with NuGet packages in a project.
+            
+            Used by the ComponentReferencingProjectAdaptor in Xamarin.Ide so keep the NuGet 
+            package management logic in the NuGet addin.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.InstallPackages(System.String,MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference})">
+            <summary>
+            Installs NuGet packages into the selected project. If a NuGet package requires a license to be
+            accepted then a dialog will be displayed.
+            </summary>
+            <param name="packageSourceUrl">Package source URL.</param>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.InstallPackages(System.String,MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference},System.Boolean)">
+            <summary>
+            Installs NuGet packages into the selected project.
+            </summary>
+            <param name="packageSourceUrl">Package source URL.</param>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+            <param name="licensesAccepted">True if NuGet package licenses have already been accepted. If false then the 
+            license acceptance dialog will be displayed for any licences that require a license to be accepted.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.InstallPackages(MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference})">
+            <summary>
+            Installs NuGet packages into the selected project using the enabled package sources.
+            </summary>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.InstallPackagesAsync(MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference})">
+            <summary>
+            Installs NuGet packages into the selected project using the enabled package sources.
+            </summary>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.InstallPackagesAsync(MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference},System.Boolean)">
+            <summary>
+            Installs NuGet packages into the selected project using the enabled package sources.
+            </summary>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+            <param name="licensesAccepted">True if NuGet package licenses have already been accepted. If false then the 
+            license acceptance dialog will be displayed for any licences that require a license to be accepted.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.InstallPackagesAsync(System.String,MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference})">
+            <summary>
+            Installs NuGet packages into the selected project. If a NuGet package requires a license to be
+            accepted then a dialog will be displayed.
+            </summary>
+            <returns>A task that can be used to determine when all the packages have been installed.</returns>
+            <param name="packageSourceUrl">Package source URL.</param>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.UninstallPackages(MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Removes the NuGet packages from the selected project and optionally removes any
+            dependencies for the NuGet packages.
+            </summary>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+            <param name="removeDependencies">If set to <c>true</c> remove dependencies.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IPackageManagementProjectOperations.UninstallPackagesAsync(MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Removes the NuGet packages from the selected project and optionally removes any
+            dependencies for the NuGet packages.
+            </summary>
+            <returns>A task that can be used to determine when all the packages have been uninstalled.</returns>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+            <param name="removeDependencies">If set to <c>true</c> remove dependencies.</param>
+        </member>
+        <member name="P:MonoDevelop.PackageManagement.PackageManagementPackageReference.InstallPath">
+            <summary>
+            Returns the directory where the NuGet package is installed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PackageManagementProjectOperations.InstallPackagesAsync(MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference})">
+            <summary>
+            Installs NuGet packages into the selected project using the enabled package sources.
+            </summary>
+            <param name="project">Project.</param>
+            <param name="packages">Packages.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PackageManagementProjectOperations.InstallPackagesAsync(MonoDevelop.Projects.Project,System.Collections.Generic.IEnumerable{MonoDevelop.PackageManagement.PackageManagementPackageReference},System.Boolean)">
+            <summary>
+            Installs NuGet packages into the selected project using the enabled package sources.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PackageManagementMSBuildExtension.OnRunDotNetCoreProjectTarget(MonoDevelop.Core.ProgressMonitor,System.String,MonoDevelop.Projects.ConfigurationSelector,MonoDevelop.Projects.TargetEvaluationContext)">
+            <summary>
+            Ensures any NuGet package content files are included when CoreCompileDependsOn is evaluated.
+            Visual Studio 2017 does not run the RunProductContentAssets target directly but runs a set of
+            targets which indirectly run RunProductContentAssets. 
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PackageManagementMSBuildExtension.OnRunPackageReferenceProjectTarget(MonoDevelop.Core.ProgressMonitor,System.String,MonoDevelop.Projects.ConfigurationSelector,MonoDevelop.Projects.TargetEvaluationContext)">
+            <summary>
+            Ensures any NuGet package content files are included when CoreCompileDependsOn is evaluated.
+            Visual Studio 2017 does not run the ResolveNuGetPackageAssets target directly but seems to
+            run the Compile target for the project which indirectly runs ResolveNuGetPackageAssets.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.PackageManagement.EnsureNuGetPackageBuildImportsTargetUpdater">
+            <summary>
+            Visual Studio adds an extra EnsureNuGetPackageBuildImports target to the project when
+            a NuGet package uses a custom MSBuild target.
+            
+            This EnsureNuGetPackageBuildImports target has a set of Error tasks which will cause
+            build errors if the MSBuild target file does not exist.
+            
+            This class updates that target so to prevent build errors occurring. When a NuGet
+            package is uninstalled the MSBuild import is removed from the 
+            EnsureNuGetPackageBuildImports target. If there are Error items left inside the
+            EnsureNuGetPackageBuildImports target element then the 
+            EnsureNuGetPackageBuildImports is removed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.MonoDevelopSolutionManager.GetAllDotNetProjectsUsingReverseTopologicalSort(MonoDevelop.Projects.Solution,MonoDevelop.Projects.ConfigurationSelector)">
+            <summary>
+            Returning the projects in a reverse topological sort means that better caching of the
+            PackageSpecs for each project can occur if PackageReference projects depend on other
+            PackageReference projects since getting the PackageSpec for the root project will result in
+            all dependencies being retrieved at the same time and add to the cache.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.MonoDevelopMSBuildNuGetProjectSystem.GetFullPaths(System.String)">
+            <summary>
+            This method is only used when adding/removing binding redirects which are not
+            currently supported.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.UpdateAllNuGetPackagesInProjectAction.CreateResolutionContext">
+            <summary>
+            With NuGet v3 the IncludePrerelease flag does not need to be set to true on the
+            resolution context in order to update pre-release NuGet packages. NuGet v3 will
+            update pre-release NuGet packages to the latest pre-release version or latest
+            stable version if that is a higher version. The IncludePrerelease flag is only
+            required to allow a stable version to be updated to a pre-release version which
+            is not what we want to do when updating all NuGet packages in a project.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.RestoreNuGetPackagesInNuGetIntegratedProject.IncludeTransitiveProjectReferences">
+            <summary>
+            Execute will restore packages for all projects that transitively reference the project
+            passed to the constructor of this restore action if this method is passed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.NuGetProjectExtensions.RunPostProcessAsync(NuGet.ProjectManagement.NuGetProject,NuGet.ProjectManagement.INuGetProjectContext,System.Threading.CancellationToken)">
+            <summary>
+            PostProcessAsync is not run for BuildIntegratedNuGetProjects so we run it directly after
+            running a NuGet action.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.AnalyzerPackageMonitor.PackageUninstalling(System.Object,MonoDevelop.PackageManagement.PackageManagementEventArgs)">
+            <summary>
+            TODO: Need to handle when an uninstall fails.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PackageManagementCredentialService.Reset">
+            <summary>
+            The credential service puts itself in a retry mode if a credential provider
+            is checked. This results in credentials stored in the key chain being ignored
+            and a dialog asking for credentials will be shown. This method will clear
+            the retry cache so credentials stored in the key chain will be re-used and a
+            dialog prompt will not be displayed unless the credentials are invalid. This
+            should be called before a user triggered action such as opening the Add
+            Packages dialog, restoring a project's packages, or updating a package.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.IBuildIntegratedNuGetProject.NotifyProjectReferencesChanged(System.Boolean)">
+            <summary>
+            Notifies the project references changed.
+            </summary>
+            <param name="includeTransitiveProjectReferences">If set to <c>true</c> also notify references
+            have changed in all projects that transitively reference this project.</param>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.DotNetCoreNuGetProject.ProjectRequiresReloadAfterRestore">
+            <summary>
+            Always returns true so the project is re-evaluated after a restore.
+            This ensures any imports in the generated .nuget.g.targets are
+            re-evaluated. Without this custom MSBuild targets used by a NuGet package
+            that was restored into the local NuGet package cache would not be available
+            until the solution is closed and re-opened. Also handles the project file
+            being edited by hand and a new package reference being added that has a
+            custom MSBuild target.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.PackageManagement.PackageReferenceNuGetProject">
+            <summary>
+            Supports projects that use PackageReference MSBuild items but do not use a SDK style
+            project used by .NET Core projects.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PackageReferenceNuGetProject.ProjectRequiresReloadAfterRestore">
+            <summary>
+            Always returns true so the project is re-evaluated after a restore.
+            This ensures any imports in the generated .nuget.g.targets are
+            re-evaluated. Without this custom MSBuild targets used by a NuGet package
+            that was restored into the local NuGet package cache would not be available
+            until the solution is closed and re-opened. Also handles the project file
+            being edited by hand and a new package reference being added that has a
+            custom MSBuild target.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.PackageManagement.HasNuGetPackageOrReferenceFileTemplateCondition">
+            <summary>
+            Allows a file template to be enabled if a project has a particular assembly reference
+            or has a NuGet package reference. Using a NuGet package id is required for projects
+            that do not use a packages.config file, but instead use a project.json file or
+            PackageReference MSBuild items, since these projects do not have explicit references
+            to assemblies in the NuGet packages being used.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PendingPackageActionsHandler.OnSolutionClosing">
+            <summary>
+            Returns true if the solution can be closed.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.ISolutionManagerExtensions.GetInstalledVersions(NuGet.PackageManagement.ISolutionManager,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Returns all the versions of the NuGet package used in all projects in the solution
+            ordered by latest version first.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.PackageManagementPathResolver.#ctor">
+            <summary>
+            No solution manager provided so only global packages cache will be considered.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.ProjectSystemReferencesReader.GetExcludedReferences(MonoDevelop.Projects.DotNetProject)">
+            <summary>
+            Get the unique names of all references which have ReferenceOutputAssembly set to false.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.PackageManagement.ItemTemplateNuGetPackageInstaller.ShouldInstallPackage(System.String,NuGet.Versioning.NuGetVersion,System.Collections.Generic.List{NuGet.Packaging.PackageReference})">
+            <summary>
+            Package should be installed if it is not installed or if an older version is installed.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.PackageManagement.ProjectReferenceMaintainer">
+             <summary>
+             Keeps a record of references added and removed from a project without applying the changes until the
+             ApplyChanges is called. This allows the conversion of a reference being removed and then a new reference
+             being added for the same reference but with a different hint path to be converted into an update of the
+             original reference. This prevents references from being moved around the project file.
+            
+             On an error NuGet will rollback the changes by applying the opposite actions (e.g. install => uninstall).
+             There is no logic in the ProjectReferenceMaintainer class to handle a rollback
+             since on a rollback an exception will be thrown by NuGet so any changes recorded in the
+             ProjectReferenceMaintainer will not be applied since ApplyChanges will not be called.
+             </summary>
+        </member>
+        <member name="F:MonoDevelop.PackageManagement.MonoDevelopDependencyGraphRestoreUtility.MaxSupportedProjectsForMSBuildHost">
+            <summary>
+            Ten PackageReference projects is about when it starts to take the same time to run the
+            GenerateRestoreGraphFile MSBuild target ten times, using the MSBuild host, as it does to use the
+            MSBuildUtility to run MSBuild out of process. The assumption is that if there are a lot of projects
+            then a complicated dependency graph is likely (such as with OrchardCore) and it is faster to use
+            MSBuildUtility to get the package dependency graph for the entire solution instead of for each project
+            with the MSBuild host.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.ContinuationToken">
+            <summary>
+            Feed specific data describing current position to continue search from.
+            It's opaque to external consumer.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.RefreshToken">
+            <summary>
+            Feed specific state of current search operation to retrieve search results.
+            Used for polling results of prolonged search. Opaque to external consumer.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.SearchResult`1">
+            <summary>
+            Generic search result as returned by a feed including actual items and current search
+            state including but not limited to continuation token and refresh token.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.SearchResult">
+            <summary>
+            Helper class providing shortcuts to create new result instance
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.DisplayVersion">
+            <summary>
+            Represents a version that will be displayed on the UI.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.IItemLoader`1">
+            <summary>
+            Represents stateful item loader contract that supports pagination and background loading
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.LoadingStatus">
+            <summary>
+            List of possible statuses of items loading operation (search).
+            Utilized by item loader and UI for progress tracking.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.IPackageFeed">
+            <summary>
+            Package feed abstraction providing services of package enumeration with search criteria.
+            Supports pagination and background processing.
+            </summary>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.IPackageFeed.SearchAsync(System.String,NuGet.Protocol.Core.Types.SearchFilter,System.Threading.CancellationToken)">
+            <summary>
+            Starts new search.
+            </summary>
+            <param name="searchText">Optional text to search</param>
+            <param name="filter">Combined search filter</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>Search result. Possible outcome</returns>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.IPackageFeed.ContinueSearchAsync(NuGet.PackageManagement.UI.ContinuationToken,System.Threading.CancellationToken)">
+            <summary>
+            Proceeds with loading of next page using the same search criteria.
+            </summary>
+            <param name="continuationToken">Search state as returned with previous search result</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>Search result</returns>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.IPackageFeed.RefreshSearchAsync(NuGet.PackageManagement.UI.RefreshToken,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a search result of a background search operation.
+            </summary>
+            <param name="refreshToken">Search state as returned with previous search result</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>Refreshed search result</returns>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.MultiSourcePackageFeed">
+            <summary>
+            Consolidated live sources package feed enumerating packages and aggregating search results.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.TaskCombinators">
+            <summary>
+            Contains task execution strategies, such as parallel throttled execution.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.SourceRepositoryExtensions">
+            <summary>
+            Helper class encapsulating common scenarios of source repository operations.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.FeedSearchContinuationToken">
+            <summary>
+            Most commonly used continuation token for plain package feeds.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.MultiSourcePackageMetadataProvider">
+            <summary>
+            Implements a consolidated metadata provider for multiple package sources 
+            with optional local repository as a fallback metadata source.
+            </summary>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.MultiSourcePackageMetadataProvider.GetLocalPackageMetadataAsync(NuGet.Packaging.Core.PackageIdentity,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Get package metadata from the package folders.
+            </summary>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.IPackageMetadataProvider">
+            <summary>
+            Contract for a generalized package metadata provider associated with a package source(s).
+            </summary>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.IPackageMetadataProvider.GetPackageMetadataAsync(NuGet.Packaging.Core.PackageIdentity,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a package metadata of a specific version along with list of all available versions
+            </summary>
+            <param name="identity">Desired package id with version</param>
+            <param name="includePrerelease">Filters pre-release versions</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Package metadata</returns>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.IPackageMetadataProvider.GetLatestPackageMetadataAsync(NuGet.Packaging.Core.PackageIdentity,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a package metadata of a highest available version along with list of all available versions
+            </summary>
+            <param name="identity">Desired package identity</param>
+            <param name="includePrerelease">Filters pre-release versions</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>Package metadata</returns>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.IPackageMetadataProvider.GetPackageMetadataListAsync(System.String,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a list of metadata objects of all available versions for given package id.
+            </summary>
+            <param name="packageId">Desired package Id</param>
+            <param name="includePrerelease">Filters pre-release versions</param>
+            <param name="includeUnlisted">Filters unlisted versions</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>Collection of packages matching query parameters</returns>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.IPackageMetadataProvider.GetLocalPackageMetadataAsync(NuGet.Packaging.Core.PackageIdentity,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a package metadata of a specific version along with list of all available versions
+            </summary>
+            <param name="identity">Desired package id with version</param>
+            <param name="includePrerelease">Filters pre-release versions</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>Package metadata</returns>
+        </member>
+        <member name="T:NuGet.PackageManagement.UI.DetailControlModel">
+            <summary>
+            The base class of PackageDetailControlModel and PackageSolutionDetailControlModel.
+            When user selects an action, this triggers version list update.
+            </summary>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.DetailControlModel.CleanUp">
+            <summary>
+            The method is called when the associated DocumentWindow is closed.
+            </summary>
+        </member>
+        <member name="M:NuGet.PackageManagement.UI.DetailControlModel.SetCurrentPackage(NuGet.PackageManagement.UI.PackageItemListViewModel)">
+            <summary>
+            Sets the package to be displayed in the detail control.
+            </summary>
+            <param name="searchResultPackage">The package to be displayed.</param>
+        </member>
+        <member name="T:NuGet.Credentials.CustomCredentialService">
+            <summary>
+            This service manages orchestrates credential providers and supplies credentials
+            for use in http requests
+            </summary>
+        </member>
+        <member name="F:NuGet.Credentials.CustomCredentialService.ProviderSemaphore">
+            <summary>
+            This semaphore ensures only one provider active per process, in order
+            to prevent multiple concurrent interactive login dialogues.
+            Unnamed semaphores are local to the current process.
+            </summary>
+        </member>
+        <member name="M:NuGet.Credentials.CustomCredentialService.#ctor(System.Collections.Generic.IEnumerable{NuGet.Credentials.ICredentialProvider},System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="providers">All available credential providers.</param>
+            <param name="nonInteractive">If true, the nonInteractive flag will be passed to providers.
+            NonInteractive requests must not promt the user for credentials.</param>
+        </member>
+        <member name="M:NuGet.Credentials.CustomCredentialService.GetCredentialsAsync(System.Uri,System.Net.IWebProxy,NuGet.Configuration.CredentialRequestType,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Provides credentials for http requests.
+            </summary>
+            <param name="uri">
+            The URI of a web resource for which credentials are needed.
+            </param>
+            <param name="proxy">
+            The currently configured proxy. It may be necessary for CredentialProviders
+            to use this proxy in order to acquire credentials from their authentication source.
+            </param>
+            <param name="type">
+            The type of credential request that is being made.
+            </param>
+            <param name="message">
+            A default, user-readable message explaining why they are being prompted for credentials.
+            The credential provider can choose to ignore this value and write their own message.
+            </param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A credential object, or null if no credentials could be acquired.</returns>
+        </member>
+        <member name="M:NuGet.Credentials.CustomCredentialService.TryGetLastKnownGoodCredentialsFromCache(System.Uri,System.Boolean,System.Net.ICredentials@)">
+            <summary>
+            Attempts to retrieve last known good credentials for a URI from a credentials cache.
+            </summary>
+            <remarks>
+            When the return value is <c>true</c>, <paramref name="credentials" /> will have last known
+            good credentials from the credentials cache.  These credentials may have become invalid
+            since their last use, so there is no guarantee that the credentials are currently valid.
+            </remarks>
+            <param name="uri">The URI for which cached credentials should be retrieved.</param>
+            <param name="isProxy"><c>true</c> for proxy credentials; otherwise, <c>false</c>.</param>
+            <param name="credentials">Cached credentials or <c>null</c>.</param>
+            <returns><c>true</c> if a result is returned from the cache; otherwise, false.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="P:NuGet.Credentials.CustomCredentialService.Providers">
+            <summary>
+            Gets the currently configured providers.
+            </summary>
+        </member>
+        <member name="M:NuGet.Credentials.CustomCredentialService.Reset">
+            <summary>
+            Clears the retry cache so credentials will be tried again from the key chain
+            instead of defaulting to showing the credential dialog.
+            </summary>
+        </member>
+        <member name="T:NuGet.Commands.MSBuildRestoreResult">
+            <summary>
+            TODO: Look at removing this class and instead just using the existing PackageReference support.
+            </summary>
+        </member>
+        <member name="F:NuGet.Commands.MSBuildRestoreResult.MacroCandidates">
+            <summary>
+            The macros that we may use in MSBuild to replace path roots.
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.Success">
+            <summary>
+            Gets a boolean indicating if the necessary MSBuild file could be generated
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.RepositoryRoot">
+            <summary>
+            Gets the root of the repository containing packages with MSBuild files
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.Props">
+            <summary>
+            Gets a list of MSBuild props files provided by packages during this restore
+            </summary>
+        </member>
+        <member name="P:NuGet.Commands.MSBuildRestoreResult.Targets">
+            <summary>
+            Gets a list of MSBuild targets files provided by packages during this restore
+            </summary>
+        </member>
+        <member name="M:NuGet.CommandLine.SettingsCredentialProvider.UriEquals(System.Uri,System.Uri)">
+            <summary>
+            Determines if the scheme, server and path of two Uris are identical.
+            </summary>
+        </member>
+        <member name="M:NuGet.ProjectManagement.TempFile.#ctor(System.String)">
+            <summary>
+            Constructor. It creates an empty temp file under the temp directory / NuGet, with
+            extension <paramref name="extension" />.
+            </summary>
+            <param name="extension">The extension of the temp file.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.MSBuildBuilder</name>
+    </assembly>
+    <members>
+        <member name="M:MonoDevelop.Projects.MSBuild.ProjectBuilder.Build(Microsoft.Build.Execution.ProjectInstance,System.String[],System.Collections.Generic.IEnumerable{Microsoft.Build.Framework.ILogger})">
+            <summary>
+            Builds a list of targets with the specified loggers.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.MSBuildLoggerAdapter.Loggers">
+            <summary>
+            MSBuild loggers bound to the MD loggers
+            </summary>
+            <value>The loggers.</value>
+        </member>
+        <member name="T:MonoDevelop.Projects.MSBuild.MainClass.AssemblyResolver">
+            <summary>
+            Since BuildEngine class directly access MSBuild types it tries to load Microsoft.Build.dll assembly when
+            constructor is called so before Initialize is called which specifies msbuildBinDir and installs MSBuildAssemblyResolver.
+            To solve this problem we use AssemblyResolver class which we install as listener to RemoteProcessServer(implicitly in Connect call).
+            and after installing MSBuildAssemblyResolver we create BuildEngine and add it as Listener and remove AssemblyResolver
+            as if it was never there. 
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.Projects.MSBuild.LoggerAdapter">
+            <summary>
+            This class is used to bridge msbuild loggers to MD loggers
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.Projects.MSBuild.LoggerAdapter.#ctor(MonoDevelop.Projects.MSBuild.IEngineLogWriter)">
+            <summary>
+            Prepares the logging infrastructure
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.Projects.MSBuild.LoggerAdapter.Dispose">
+            <summary>
+            Flushes the log that has not yet been sent and disposes the logging infrastructure
+            </summary>
+        </member>
+    </members>
+</doc>

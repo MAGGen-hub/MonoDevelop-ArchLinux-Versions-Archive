@@ -1,0 +1,2024 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RefactoringEssentials</name>
+    </assembly>
+    <members>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ConvertDoWhileToWhileLoopCodeRefactoringProvider">
+            <summary>
+            Convert do...while to while. For instance, { do x++; while (Foo(x)); } becomes { while(Foo(x)) x++; }.
+            Note that this action will often change the semantics of the code.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ConvertWhileToDoWhileLoopCodeRefactoringProvider">
+            <summary>
+            Converts a while loop to a do...while loop.
+            For instance: while (foo) {} becomes do { } while (foo);
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.AddAnotherAccessorCodeRefactoringProvider">
+            <summary>
+            Add another accessor to a property declaration that has only one.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.AddNameToArgumentCodeRefactoringProvider">
+            <summary>
+             Add name for argument
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.AddNewFormatItemCodeRefactoringProvider">
+            <summary>
+            Introduce format item. Works on strings that contain selections.
+            "this is &lt;some> string" => string.Format ("this is {0} string", &lt;some>)
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ContractEnsuresNotNullReturnCodeRefactoringProvider">
+            <summary>
+            Creates a 'Contract.Ensures(return != null);' contract for a method return value.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ContractRequiresNotNullCodeRefactoringProvider">
+            <summary>
+            Creates a 'Contract.Requires(param != null);' contract for a parameter.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ContractRequiresStringNotNullOrEmptyCodeRefactoringProvider">
+            <summary>
+            Creates a 'Contract.Requires(param != null);' contract for a parameter.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ConvertEqualityOperatorToEqualsCodeRefactoringProvider">
+            <summary>
+            Convert do...while to while. For instance, { do x++; while (Foo(x)); } becomes { while(Foo(x)) x++; }.
+            Note that this action will often change the semantics of the code.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ConvertForeachToForCodeRefactoringProvider">
+            <summary>
+            Converts a foreach loop to for.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ReplaceDirectCastWithSafeCastCodeRefactoringProvider">
+            <summary>
+            Converts a cast expression to an 'as' expression
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ReplaceSafeCastWithDirectCastCodeRefactoringProvider">
+            <summary>
+            Converts an 'as' expression to a cast expression
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.ChangeAccessModifierAction">
+            <summary>
+            Changes the access level of an entity declaration
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.CreateDelegateAction">
+            <summary>
+            Create a delegate from an anonymous event declaration.
+            </summary>
+            <remarks>
+            Language assumptions based on the C# 5.0 Language Specification.
+            https://msdn.microsoft.com/en-us/library/ms228593.aspx
+            </remarks>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.CodeRefactorings.UseStringFormatAction">
+            <summary>
+            Refactors string and expression concatenation to use <see cref="M:System.String.Format(System.String,System.Object[])"/>.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.CodeRefactorings.UseStringFormatAction.ReplaceNode(Microsoft.CodeAnalysis.CSharp.Syntax.BinaryExpressionSyntax)">
+            <summary>
+            Replace concatenation node with <see cref="M:System.String.Format(System.String,System.Object[])"/>.
+            </summary>
+            <param name="node">A <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.BinaryExpressionSyntax"/> with string and expression concatenation.</param>
+            <returns>
+            The new node.
+            </returns>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.CodeRefactorings.UseStringFormatAction.GetParts(Microsoft.CodeAnalysis.CSharp.Syntax.BinaryExpressionSyntax)">
+            <summary>
+            Get parts in order from a binary expression.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.CodeRefactorings.UseStringFormatAction.IsStringExpression(Microsoft.CodeAnalysis.SyntaxNode)">
+            <summary>
+            Is the expression a string type?
+            </summary>
+            <param name="expr">An expression.</param>
+            <returns>
+            True if the expression is of kind <see cref="F:Microsoft.CodeAnalysis.CSharp.SyntaxKind.StringLiteralExpression"/>.
+            </returns>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.AddNullCheckCodeRefactoringProvider">
+            <summary>
+            Surround usage of a variable with a null check or add a null check to surrounding if block.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.ConvertInstanceToStaticMethodCodeRefactoringProvider">
+            <summary>
+            Converts an instance method to a static method adding an additional parameter as "this" replacement.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.Diagnostics.NotImplementedExceptionAnalyzer">
+            <summary>
+            This inspector just shows that there is a not implemented exception. It doesn't offer a fix.
+            Should only be shown in overview bar, no underlining.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.Diagnostics.DiagnosticAnalyzerMarker">
+            <summary>
+            The issue marker is used to set how an issue should be marked inside the text editor.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.DiagnosticAnalyzerMarker.None">
+            <summary>
+            The issue is not shown inside the text editor. (But in the task bar)
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.DiagnosticAnalyzerMarker.WavedLine">
+            <summary>
+            The region is marked as underline in the severity color.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.DiagnosticAnalyzerMarker.DottedLine">
+            <summary>
+            The region is marked as dotted line in the severity color.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.DiagnosticAnalyzerMarker.GrayOut">
+            <summary>
+            The text is grayed out.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.Diagnostics.EmptyGeneralCatchClauseAnalyzer">
+            <summary>
+            A catch clause that catches System.Exception and has an empty body
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.Modifiers.Any">
+            <summary>
+            Special value used to match any modifiers during pattern matching.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.RequiredPrefixes">
+            <summary>
+            If set, identifiers are required to be prefixed with one of these values.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.AllowedPrefixes">
+            <summary>
+            If set, identifiers are allowed to be prefixed with one of these values.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.RequiredSuffixes">
+            <summary>
+            If set, identifiers are required to be suffixed with one of these values.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.ForbiddenPrefixes">
+            <summary>
+            If set, identifiers cannot be prefixed by any of these values.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.ForbiddenSuffixes">
+            <summary>
+            If set, identifiers cannot be suffixed by with any of these values.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.AffectedEntity">
+            <summary>
+            Gets or sets the affected entity.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.VisibilityMask">
+            <summary>
+            Gets or sets the modifiers mask
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.NamingRule.NamingStyle">
+            <summary>
+            The way that the identifier is cased and that words are separated.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.NamingRule.ApplySuffix(System.String,System.String)">
+            <summary>
+            Applies a suffix to a name and tries to reuse the suffix of the suffix.
+            MyArgs + EventArgs -> MyEventArgs instead of MyArgsEventArgs
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.NamingRule.GetPreview">
+            <summary>
+            Gets an identifier (or comma separated list of identifiers) which apply to this naming rule.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.PascalCase">
+            <summary>
+            PascalCase
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.CamelCase">
+            <summary>
+            camelCase
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.AllUpper">
+            <summary>
+            ALLUPPER
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.AllLower">
+            <summary>
+            alllower
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.FirstUpper">
+            <summary>
+            Firstupper
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.PascalCaseWithLowerLetterUnderscore">
+            <summary>
+            PascalCaseWithLowerLetterUnderscore
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.PascalCaseWithUpperLetterUnderscore">
+            <summary>
+            PascalCaseWithUpperLetterUnderscore
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.CamelCaseWithLowerLetterUnderscore">
+            <summary>
+            CamelCaseWithLowerLetterUnderscore
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.NamingStyle.CamelCaseWithUpperLetterUnderscore">
+            <summary>
+            CamelCaseWithUpperLetterUnderscore
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer">
+            <summary>
+            Checks for str == null &amp;&amp; str == " "
+            Converts to: string.IsNullOrEmpty (str)
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ReplacementPropertyName">
+            <summary>
+            The name of the property referred to by the <see cref="T:Microsoft.CodeAnalysis.Diagnostic"/> for the replacement code.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceResult">
+            <summary>
+            Indicates whether a binary expression is suitable for replacement and info about it.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceResult.ShouldReplace">
+            <summary>
+            Is the expression suitable for replacement.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceResult.IsNullTest">
+            <summary>
+            Is the expression a test for null?
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceResult.IsEmptyTest">
+            <summary>
+            Is the expression a test for empty?
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceResult.IsNegative">
+            <summary>
+            Is the expression negated?
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceResult.IdentifierNode">
+            <summary>
+            What string symbol is being tested for null or empty?
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplace(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.CSharp.Syntax.BinaryExpressionSyntax)">
+            <summary>
+            Test whether a binary expression is suitable for replacement. 
+            </summary>
+            <returns>
+            A <see cref="T:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceResult"/> indicating whether the node is suitable for replacement.
+            </returns>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceString(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.SyntaxToken)">
+            <summary>
+            Determine whether a binary expression with a string expression is suitable for replacement.
+            </summary>
+            <param name="nodeContext">Context for the expressions.</param>
+            <param name="left">A node representing a string expression.</param>
+            <param name="right">A node to be tested.</param>
+            <param name="operatorToken">The operator separating the nodes.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.ShouldReplaceStringLength(Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.SyntaxToken)">
+            <summary>
+            Determines whether a binary expression with a string length expression is suitable for replacement.
+            </summary>
+            <param name="left">A node representing a string length expression.</param>
+            <param name="right">A node to be tested.</param>
+            <param name="operatorToken">The operator separating the nodes.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.IsStringSyntax(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Does the expression look like a string type?
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.IsStringLengthSyntax(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Does the expression look like a string length call?
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.IsNullSyntax(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Does the expression look like a null?
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.IsEmptySyntax(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Does the expression look like a test for empty string ("" or string.Empty)?
+            </summary>
+            <param name="nodeContext">Context for the expressions.</param>
+            <param name="node"></param>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.IsStringType(Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext,Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Test if expression is a string type.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharp.Diagnostics.ReplaceWithStringIsNullOrEmptyAnalyzer.SimplifySyntax(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Simplify an <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/> by removing unecessary parenthesis.
+            </summary>
+            <returns>
+            A simplified <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax"/>.
+            </returns>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.Diagnostics.RedundantBaseQualifierAnalyzer">
+            <summary>
+            Finds redundant base qualifier 
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.CSharp.Diagnostics.RedundantCheckBeforeAssignmentAnalyzer">
+            <summary>
+            The analyzer checks patterns like the following:
+            <code>
+            if (var != value)
+            	var = value;
+            </code>
+            In addition to that, it works with if-statements using block-syntax (containing a single statement),
+            and empty else-blocks or empty-statement else-blocks.
+            
+            The Fix removes the redundant check. This works on locals, parameters, fields and properties.
+            If a property setter does something expensive, it is recommended to do such a check *inside*
+            the property setter, *not* in the calling code. Hence, the check is redundant anyway.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.NotPortedYetAttribute">
+            <summary>
+            Marker attribute for not yet ported analyzers or refactorings.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.RoslynReflectionAllowedContext">
+            <summary>
+            Defines contexts where usage of reflection is allowed.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.RoslynReflectionUsageAttribute">
+            <summary>
+            Marker attribute for types or members providing access to internal Roslyn functionality.
+            </summary>
+            <remarks>
+            This marker is mainly intended for automatic checking of reflection calls to Roslyn,
+            warnings about wrong usage etc.
+            </remarks>
+        </member>
+        <member name="T:RefactoringEssentials.SpecializedCodeRefactoringProvider`1">
+            <summary>
+            A specialized code action creates a code action assoziated with one special type of ast nodes.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SpecializedCodeRefactoringProvider`1.GetActions(Microsoft.CodeAnalysis.Document,Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.Text.TextSpan,`0,System.Threading.CancellationToken)">
+            <summary>
+            Gets the action for the specified ast node.
+            </summary>
+            <returns>
+            The code action. May return <c>null</c>, if no action can be provided.
+            </returns>
+            <param name='document'>
+            The document.
+            </param>
+            <param name='semanticModel'>
+            The semantic model.
+            </param>
+            <param name='span'>
+            The span.
+            </param>
+            <param name = "root">The root node.</param>
+            <param name = "cancellationToken"></param>
+            <param name='node'>
+            The AstNode it's ensured that the node is always != null, if called.
+            </param>
+        </member>
+        <member name="P:RefactoringEssentials.InsertionResult.Context">
+            <summary>
+            Gets the context the insertion is invoked at.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.InsertionResult.Node">
+            <summary>
+            Gets the node that should be inserted.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.InsertionResult.Type">
+            <summary>
+            Gets the type the node should be inserted to.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.InsertionResult.Location">
+            <summary>
+            Gets the location of the type part the node should be inserted to.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.NRefactoryCodeAction.Severity">
+            <summary>
+            Gets the severity of the code action. 
+            Actions are sorted according to their Severity.
+            </summary>
+            <value>The severity.</value>
+        </member>
+        <member name="T:RefactoringEssentials.Util.Analysis.ControlFlowNode">
+            <summary>
+            Represents a node in the control flow graph of a C# method.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowNodeType.None">
+            <summary>
+            Unknown node type
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowNodeType.StartNode">
+            <summary>
+            Node in front of a statement
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowNodeType.BetweenStatements">
+            <summary>
+            Node between two statements
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowNodeType.EndNode">
+            <summary>
+            Node at the end of a statement list
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowNodeType.LoopCondition">
+            <summary>
+            Node representing the position before evaluating the condition of a loop.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Util.Analysis.ControlFlowEdge.IsLeavingTryFinally">
+            <summary>
+            Gets whether this control flow edge is leaving any try-finally statements.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Util.Analysis.ControlFlowEdge.TryFinallyStatements">
+            <summary>
+            Gets the try-finally statements that this control flow edge is leaving.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowEdgeType.Normal">
+            <summary>
+            Regular control flow.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowEdgeType.ConditionTrue">
+            <summary>
+            Conditional control flow (edge taken if condition is true)
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowEdgeType.ConditionFalse">
+            <summary>
+            Conditional control flow (edge taken if condition is false)
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Util.Analysis.ControlFlowEdgeType.Jump">
+            <summary>
+            A jump statement (goto, goto case, break or continue)
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Util.Analysis.ControlFlowGraphBuilder">
+            <summary>
+            Constructs the control flow graph for C# statements.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Util.Analysis.ControlFlowGraphBuilder.EvaluateOnlyPrimitiveConstants">
+            <summary>
+            Gets/Sets whether to handle only primitive expressions as constants (no complex expressions like "a + b").
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Util.Analysis.ControlFlowGraphBuilder.EvaluateConstant(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Evaluates an expression.
+            </summary>
+            <returns>The constant value of the expression; or null if the expression is not a constant.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Util.Analysis.ControlFlowGraphBuilder.EvaluateCondition(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Evaluates an expression.
+            </summary>
+            <returns>The value of the constant boolean expression; or null if the value is not a constant boolean expression.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Util.Analysis.ControlFlowGraphBuilder.NodeCreationVisitor.CreateConnectedEndNode(Microsoft.CodeAnalysis.CSharp.Syntax.StatementSyntax)">
+            <summary>
+            Creates an end node for <c>stmt</c> and connects <c>from</c> with the new node.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Util.Analysis.ReachabilityAnalysis">
+            <summary>
+            Statement reachability analysis.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Util.CompositieFormatStringParser.CompositeFormatStringParser">
+            <summary>
+            Composite format string parser.
+            </summary>
+            <remarks>
+            Implements a complete parser for valid strings as well as
+            error reporting and best-effort parsing for invalid strings.
+            </remarks>		
+        </member>
+        <member name="M:RefactoringEssentials.Util.CompositieFormatStringParser.CompositeFormatStringParser.Parse(System.String)">
+            <summary>
+            Parse the specified format string.
+            </summary>
+            <param name='format'>
+            The format string.
+            </param>
+        </member>
+        <member name="T:RefactoringEssentials.Util.CompositieFormatStringParser.FormatStringSegmentBase">
+            <summary>
+            Composite format string parser.
+            </summary>
+            <remarks>
+            Implements a complete parser for valid strings as well as
+            error reporting and best-effort parsing for invalid strings.
+            </remarks>		
+        </member>
+        <member name="T:RefactoringEssentials.Util.CompositieFormatStringParser.IFormatStringSegment">
+            <summary>
+            Composite format string parser.
+            </summary>
+            <remarks>
+            Implements a complete parser for valid strings as well as
+            error reporting and best-effort parsing for invalid strings.
+            </remarks>		
+        </member>
+        <member name="T:RefactoringEssentials.AnnotationTable`1">
+            <summary>
+            An AnnotationTable helps you attach your own annotation types/instances to syntax.  
+            
+            It maintains a map between your instances and actual SyntaxAnnotation's used to annotate the nodes
+            and offers an API that matches the true annotation API on SyntaxNode.
+            
+            The table controls the lifetime of when you can find and retrieve your annotations. You won't be able to 
+            find your annotations via HasAnnotations/GetAnnotations unless you use the same annotation table for these operations
+            that you used for the WithAdditionalAnnotations operation.  
+            
+            Your custom annotations are not serialized with the syntax tree, so they won't move across boundaries unless the 
+            same AnnotationTable is available on both ends.
+            
+            also, note that this table is not thread safe.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CodeFixContextExtensions.RegisterFixes(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.CodeActions.CodeAction},Microsoft.CodeAnalysis.Diagnostic)">
+            <summary>
+            Use this helper to register multiple fixes (<paramref name="actions"/>) each of which addresses / fixes the same supplied <paramref name="diagnostic"/>.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CodeFixContextExtensions.RegisterFixes(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.CodeActions.CodeAction},System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.Diagnostic})">
+            <summary>
+            Use this helper to register multiple fixes (<paramref name="actions"/>) each of which addresses / fixes the same set of supplied <paramref name="diagnostics"/>.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharpUtil.InvertCondition(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Inverts a boolean condition. Note: The condition object can be frozen (from AST) it's cloned internally.
+            </summary>
+            <param name="condition">The condition to invert.</param>
+        </member>
+        <member name="M:RefactoringEssentials.CSharpUtil.AddParensIfRequired(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,System.Boolean)">
+            <summary>
+            When negating an expression this is required, otherwise you would end up with
+            a or b -> !a or b
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharpUtil.NegateRelationalOperator(Microsoft.CodeAnalysis.CSharp.SyntaxKind)">
+            <summary>
+            Get negation of the specified relational operator
+            </summary>
+            <returns>
+            negation of the specified relational operator, or BinaryOperatorType.Any if it's not a relational operator
+            </returns>
+        </member>
+        <member name="M:RefactoringEssentials.CSharpUtil.IsRelationalOperator(Microsoft.CodeAnalysis.CSharp.SyntaxKind)">
+            <summary>
+            Returns true, if the specified operator is a relational operator
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.CSharpUtil.NegateConditionOperator(Microsoft.CodeAnalysis.CSharp.SyntaxKind)">
+            <summary>
+            Get negation of the condition operator
+            </summary>
+            <returns>
+            negation of the specified condition operator, or BinaryOperatorType.Any if it's not a condition operator
+            </returns>
+        </member>
+        <member name="M:RefactoringEssentials.EnumerableExtensions.IsEmpty``1(``0[])">
+            <remarks>
+            This method is necessary to avoid an ambiguity between <see cref="M:RefactoringEssentials.EnumerableExtensions.IsEmpty``1(System.Collections.Generic.IReadOnlyCollection{``0})"/> and <see cref="M:RefactoringEssentials.EnumerableExtensions.IsEmpty``1(System.Collections.Generic.ICollection{``0})"/>.
+            </remarks>
+        </member>
+        <member name="M:RefactoringEssentials.EnumerableExtensions.IsEmpty``1(System.Collections.Generic.List{``0})">
+            <remarks>
+            This method is necessary to avoid an ambiguity between <see cref="M:RefactoringEssentials.EnumerableExtensions.IsEmpty``1(System.Collections.Generic.IReadOnlyCollection{``0})"/> and <see cref="M:RefactoringEssentials.EnumerableExtensions.IsEmpty``1(System.Collections.Generic.ICollection{``0})"/>.
+            </remarks>
+        </member>
+        <member name="M:RefactoringEssentials.ExpressionSyntaxExtensions.CastIfPossible(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax,Microsoft.CodeAnalysis.ITypeSymbol,System.Int32,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Adds to <paramref name="targetType"/> if it does not contain an anonymous
+            type and binds to the same type at the given <paramref name="position"/>.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.ExpressionSyntaxExtensions.IsMemberAccessADynamicInvocation(Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Tells if the Member access is the starting part of a Dynamic Invocation
+            </summary>
+            <param name="memberAccess"></param>
+            <param name="semanticModel"></param>
+            <returns>Return true, if the member access is the starting point of a Dynamic Invocation</returns>
+        </member>
+        <member name="M:RefactoringEssentials.ExpressionSyntaxExtensions.GetPredefinedKeywordKind(Microsoft.CodeAnalysis.SpecialType)">
+            <summary>
+            Returns the predefined keyword kind for a given specialtype.
+            </summary>
+            <param name="specialType">The specialtype of this type.</param>
+            <returns>The keyword kind for a given special type, or SyntaxKind.None if the type name is not a predefined type.</returns>
+        </member>
+        <member name="T:RefactoringEssentials.OperatorPrecedence">
+            <summary>
+            Operator precedence classes from section 7.3.1 of the C# language specification.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.FindTokenHelper.FindTokenOnRightOfPosition``1(Microsoft.CodeAnalysis.SyntaxNode,System.Int32,System.Func{Microsoft.CodeAnalysis.SyntaxTriviaList,System.Int32,Microsoft.CodeAnalysis.SyntaxToken},System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            If the position is inside of token, return that token; otherwise, return the token to the right.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.FindTokenHelper.FindTokenOnLeftOfPosition``1(Microsoft.CodeAnalysis.SyntaxNode,System.Int32,System.Func{Microsoft.CodeAnalysis.SyntaxTriviaList,System.Int32,Microsoft.CodeAnalysis.SyntaxToken},System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            If the position is inside of token, return that token; otherwise, return the token to the left.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.FindTokenHelper.FindSkippedTokenBackward(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.SyntaxToken},System.Int32)">
+            <summary>
+            Look inside a trivia list for a skipped token that contains the given position.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.FindTokenHelper.FindSkippedTokenForward(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.SyntaxToken},System.Int32)">
+            <summary>
+            Look inside a trivia list for a skipped token that contains the given position.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.ISymbolExtensions.IsAccessibleWithin(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Checks if 'symbol' is accessible from within 'within'.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.ISymbolExtensions.IsAccessibleWithin(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.IAssemblySymbol,Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Checks if 'symbol' is accessible from within assembly 'within'.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.ISymbolExtensions.IsAccessibleWithin(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Checks if 'symbol' is accessible from within name type 'within', with an optional
+            qualifier of type "throughTypeOpt".
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.ISymbolExtensions.IsSymbolAccessible(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.ITypeSymbol,System.Boolean@)">
+            <summary>
+            Checks if 'symbol' is accessible from within assembly 'within', with an qualifier of
+            type "throughTypeOpt". Sets "failedThroughTypeCheck" to true if it failed the "through
+            type" check.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.ISymbolExtensions.IsSymbolAccessibleCore(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.ITypeSymbol,System.Boolean@)">
+            <summary>
+            Checks if 'symbol' is accessible from within 'within', which must be a INamedTypeSymbol
+            or an IAssemblySymbol.  If 'symbol' is accessed off of an expression then
+            'throughTypeOpt' is the type of that expression. This is needed to properly do protected
+            access checks. Sets "failedThroughTypeCheck" to true if this protected check failed.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Matcher.Repeat``1(RefactoringEssentials.Matcher{``0})">
+            <summary>
+            Matcher equivalent to (m*)
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Matcher.OneOrMore``1(RefactoringEssentials.Matcher{``0})">
+            <summary>
+            Matcher equivalent to (m+)
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Matcher.Choice``1(RefactoringEssentials.Matcher{``0},RefactoringEssentials.Matcher{``0})">
+            <summary>
+            Matcher equivalent to (m_1|m_2)
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Matcher.Sequence``1(RefactoringEssentials.Matcher{``0}[])">
+            <summary>
+            Matcher equivalent to (m_1 ... m_n)
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Matcher.Single``1(System.Func{``0,System.Boolean},System.String)">
+            <summary>
+            Matcher that matches an element if the provide predicate returns true.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.NameGenerator.EnsureUniqueness(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.Boolean},System.Func{System.String,System.Boolean},System.Boolean)">
+            <summary>
+            Ensures that any 'names' is unique and does not collide with any other name.  Names that
+            are marked as IsFixed can not be touched.  This does mean that if there are two names
+            that are the same, and both are fixed that you will end up with non-unique names at the
+            end.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.NameGenerator.EnsureUniqueness(System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Transforms baseName into a name that does not conflict with any name in 'reservedNames'
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.NRefactory6Host">
+            <summary>
+            Needs to be implemented from IDE/host side.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.RoslynReflection">
+            <summary>
+            Builds a lazy-loaded cache of Roslyn's internal types and members used through reflection.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.StringExtensions.IsValidClrNamespaceName(System.String)">
+            <summary>
+            Checks if the given name is a sequence of valid CLR names separated by a dot.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.StringExtensions.Unquote(System.String)">
+            <summary>
+            Remove one set of leading and trailing double quote characters, if both are present.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.GetEditorBrowsableState(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Gets the EditorBrowsableState of an entity.
+            </summary>
+            <returns>
+            The editor browsable state.
+            </returns>
+            <param name='symbol'>
+            Entity.
+            </param>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.IsEditorBrowsable(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Determines if an entity should be shown in the code completion window. This is the same as:
+            <c>GetEditorBrowsableState (entity) != System.ComponentModel.EditorBrowsableState.Never</c>
+            </summary>
+            <returns>
+            <c>true</c> if the entity should be shown; otherwise, <c>false</c>.
+            </returns>
+            <param name='symbol'>
+            The entity.
+            </param>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.IsDesignerBrowsable(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Returns true if the symbol wasn't tagged with
+            [System.ComponentModel.BrowsableAttribute (false)]
+            </summary>
+            <returns><c>true</c> if is designer browsable the specified symbol; otherwise, <c>false</c>.</returns>
+            <param name="symbol">Symbol.</param>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.GetComponentCategory(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Returns the component category.
+            [System.ComponentModel.CategoryAttribute (CATEGORY)]
+            </summary>
+            <param name="symbol">Symbol.</param>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.IsUnsafe(Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Returns true if this symbol contains anything unsafe within it.  for example
+            List&lt;int*[]&gt; is unsafe, as it "int* Foo { get; }"
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.IsInaccessibleLocal(Microsoft.CodeAnalysis.ISymbol,System.Int32)">
+            <returns>
+            Returns true if symbol is a local variable and its declaring syntax node is 
+            after the current position, false otherwise (including for non-local symbols)
+            </returns>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.IsAwaitable(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.SemanticModel,System.Int32)">
+            <summary>
+            If the <paramref name="symbol"/> is a method symbol, returns True if the method's return type is "awaitable".
+            If the <paramref name="symbol"/> is a type symbol, returns True if that type is "awaitable".
+            An "awaitable" is any type that exposes a GetAwaiter method which returns a valid "awaiter". This GetAwaiter method may be an instance method or an extension method.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SymbolExtensions.RemoveOverriddenSymbolsWithinSet``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            First, remove symbols from the set if they are overridden by other symbols in the set.
+            If a symbol is overridden only by symbols outside of the set, then it is not removed. 
+            This is useful for filtering out symbols that cannot be accessed in a given context due
+            to the existence of overriding members. Second, remove remaining symbols that are
+            unsupported (e.g. pointer types in VB) or not editor browsable based on the EditorBrowsable
+            attribute.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.SyntaxExtensions.s_findSkippedTokenBackward">
+            <summary>
+            Look inside a trivia list for a skipped token that contains the given position.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxExtensions.GetSkippedTokens(Microsoft.CodeAnalysis.SyntaxTriviaList)">
+            <summary>
+            return only skipped tokens
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxExtensions.FindTokenOnLeftOfPosition(Microsoft.CodeAnalysis.SyntaxNode,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            If the position is inside of token, return that token; otherwise, return the token to the left.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.IsChildNode``1(Microsoft.CodeAnalysis.SyntaxNode,System.Func{``0,Microsoft.CodeAnalysis.SyntaxNode})">
+            <summary>
+            Returns true if is a given token is a child token of of a certain type of parent node.
+            </summary>
+            <typeparam name="TParent">The type of the parent node.</typeparam>
+            <param name="node">The node that we are testing.</param>
+            <param name="childGetter">A function that, when given the parent node, returns the child token we are interested in.</param>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.IsFoundUnder``1(Microsoft.CodeAnalysis.SyntaxNode,System.Func{``0,Microsoft.CodeAnalysis.SyntaxNode})">
+            <summary>
+            Returns true if this node is found underneath the specified child in the given parent.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.AddAnnotations(Microsoft.CodeAnalysis.SyntaxNode,System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.CodeAnalysis.SyntaxToken,Microsoft.CodeAnalysis.SyntaxAnnotation}})">
+            <summary>
+            create a new root node from the given root after adding annotations to the tokens
+            
+            tokens should belong to the given root
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.AddAnnotations(Microsoft.CodeAnalysis.SyntaxNode,System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxAnnotation}})">
+            <summary>
+            create a new root node from the given root after adding annotations to the nodes
+            
+            nodes should belong to the given root
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.ReplaceNodesAsync``1(``0,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.SyntaxNode},System.Func{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Threading.Tasks.Task{Microsoft.CodeAnalysis.SyntaxNode}},System.Threading.CancellationToken)">
+            <summary>
+            Creates a new tree of nodes from the existing tree with the specified old nodes replaced with a newly computed nodes.
+            </summary>
+            <param name="root">The root of the tree that contains all the specified nodes.</param>
+            <param name="nodes">The nodes from the tree to be replaced.</param>
+            <param name="computeReplacementAsync">A function that computes a replacement node for
+            the argument nodes. The first argument is one of the original specified nodes. The second argument is
+            the same node possibly rewritten with replaced descendants.</param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.GetEnclosingUsingDirectives(Microsoft.CodeAnalysis.SyntaxNode)">
+            <summary>
+            Returns the list of using directives that affect <paramref name="node"/>. The list will be returned in
+            top down order.  
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.GetAllPrecedingTriviaToPreviousToken(Microsoft.CodeAnalysis.SyntaxToken)">
+            <summary>
+            Returns all of the trivia to the left of this token up to the previous token (concatenates
+            the previous token's trailing trivia and this token's leading trivia).
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.ContainsInterleavedDirective(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <summary>
+            Returns true if the passed in node contains an interleaved pp directive.
+            
+            i.e. The following returns false:
+            
+              void Foo() {
+            #if true
+            #endif
+              }
+            
+            #if true
+              void Foo() {
+              }
+            #endif
+            
+            but these return true:
+            
+            #if true
+              void Foo() {
+            #endif
+              }
+            
+              void Foo() {
+            #if true
+              }
+            #endif
+            
+            #if true
+              void Foo() {
+            #else
+              }
+            #endif
+            
+            i.e. the method returns true if it contains a PP directive that belongs to a grouping
+            constructs (like #if/#endif or #region/#endregion), but the grouping construct isn't
+            entirely contained within the span of the node.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.SyntaxNodeExtensions.s_findSkippedTokenForward">
+            <summary>
+            Look inside a trivia list for a skipped token that contains the given position.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.SyntaxNodeExtensions.s_findSkippedTokenBackward">
+            <summary>
+            Look inside a trivia list for a skipped token that contains the given position.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.GetSkippedTokens(Microsoft.CodeAnalysis.SyntaxTriviaList)">
+            <summary>
+            return only skipped tokens
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.FindTokenOnRightOfPosition(Microsoft.CodeAnalysis.SyntaxNode,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            If the position is inside of token, return that token; otherwise, return the token to the right.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxNodeExtensions.ChildThatContainsPosition(Microsoft.CodeAnalysis.SyntaxNode,System.Int32,System.Int32@)">
+            <summary>
+            Returns child node or token that contains given position.
+            </summary>
+            <remarks>
+            This is a copy of <see cref="M:Microsoft.CodeAnalysis.SyntaxNode.ChildThatContainsPosition(System.Int32)"/> that also returns the index of the child node.
+            </remarks>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxTokenExtensions.IsFirstTokenOnLine(Microsoft.CodeAnalysis.SyntaxToken,Microsoft.CodeAnalysis.Text.SourceText)">
+            <summary>
+            Determines whether the given SyntaxToken is the first token on a line in the specified SourceText.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxTokenExtensions.GetAllTrailingTrivia(Microsoft.CodeAnalysis.SyntaxToken)">
+            <summary>
+            Retrieves all trivia after this token, including it's trailing trivia and
+            the leading trivia of the next token.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.SyntaxTokenExtensions.FindLastTokenOfPartialGenericName(Microsoft.CodeAnalysis.SyntaxToken)">
+            <summary>
+            Lexically, find the last token that looks like it's part of this generic name.
+            </summary>
+            <param name="genericIdentifier">The "name" of the generic identifier, last token before
+            the "&amp;"</param>
+            <returns>The last token in the name</returns>
+            <remarks>This is related to the code in SyntaxTreeExtensions.IsInPartiallyWrittenGeneric(SyntaxTree, int, CancellationToken)</remarks>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.GetDelegateInvokeMethod(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Gets the invoke method for a delegate type.
+            </summary>
+            <remarks>
+            Returns null if the type is not a delegate type; or if the invoke method could not be found.
+            </remarks>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.GetFullName(Microsoft.CodeAnalysis.INamespaceSymbol)">
+            <summary>
+            Gets the full name of the namespace.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.GetFullName(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Gets the full name. The full name is no 1:1 representation of a type it's missing generics and it has a poor
+            representation for inner types (just dot separated).
+            DO NOT use this method unless you're know what you do. It's only implemented for legacy code.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.IsToolboxItem(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Returns true if the type is public and was tagged with
+            [System.ComponentModel.ToolboxItem (true)]
+            </summary>
+            <returns><c>true</c> if is designer browsable the specified symbol; otherwise, <c>false</c>.</returns>
+            <param name="symbol">Symbol.</param>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.GetAllBaseClasses(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Gets all base classes.
+            </summary>
+            <returns>The all base classes.</returns>
+            <param name="type">Type.</param>
+            <param name="includeSuperType">Whether to include the type as well as its base types.</param>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.GetAllBaseClassesAndInterfaces(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
+            <summary>
+            Gets all base classes and interfaces.
+            </summary>
+            <returns>All classes and interfaces.</returns>
+            <param name="type">Type.</param>
+            <param name="includeSuperType">Whether to include the type as well as its base types.</param>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.IsDerivedFromClass(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determines if derived from baseType. Includes itself and all base classes, but does not include interfaces.
+            </summary>
+            <returns><c>true</c> if is derived from class the specified type baseType; otherwise, <c>false</c>.</returns>
+            <param name="type">Type.</param>
+            <param name="baseType">Base type.</param>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.IsDerivedFromClassOrInterface(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determines if derived from baseType. Includes itself, all base classes and all interfaces.
+            </summary>
+            <returns><c>true</c> if is derived from the specified type baseType; otherwise, <c>false</c>.</returns>
+            <param name="type">Type.</param>
+            <param name="baseType">Base type.</param>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.GetFullMetadataName(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Gets the full name of the metadata.
+            In case symbol is not INamedTypeSymbol it returns raw MetadataName
+            Example: Generic type returns T1, T2...
+            </summary>
+            <returns>The full metadata name.</returns>
+            <param name="symbol">Symbol.</param>
+        </member>
+        <member name="M:RefactoringEssentials.TypeExtensions.GetFullMetadataName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Gets the full MetadataName(ReflectionName in NR5).
+            Example: Namespace1.Namespace2.Classs1+NestedClassWithTwoGenericTypes`2+NestedClassWithoutGenerics
+            </summary>
+            <returns>The full metadata name.</returns>
+            <param name="symbol">Symbol.</param>
+        </member>
+        <member name="F:RefactoringEssentials.UnicodeNewline.LF">
+            <summary>
+            Line Feed, U+000A
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.UnicodeNewline.CR">
+            <summary>
+            Carriage Return, U+000D
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.UnicodeNewline.NEL">
+            <summary>
+            Next Line, U+0085
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.UnicodeNewline.VT">
+            <summary>
+            Vertical Tab, U+000B
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.UnicodeNewline.FF">
+            <summary>
+            Form Feed, U+000C
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.UnicodeNewline.LS">
+            <summary>
+            Line Separator, U+2028
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.UnicodeNewline.PS">
+            <summary>
+            Paragraph Separator, U+2029
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.NewLine">
+            <summary>
+            Defines unicode new lines according to  Unicode Technical Report #13
+            http://www.unicode.org/standard/reports/tr13/tr13-5.html
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.NewLine.CR">
+            <summary>
+            Carriage Return, U+000D
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.NewLine.LF">
+            <summary>
+            Line Feed, U+000A
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.NewLine.NEL">
+            <summary>
+            Next Line, U+0085
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.NewLine.VT">
+            <summary>
+            Vertical Tab, U+000B
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.NewLine.FF">
+            <summary>
+            Form Feed, U+000C
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.NewLine.LS">
+            <summary>
+            Line Separator, U+2028
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.NewLine.PS">
+            <summary>
+            Paragraph Separator, U+2029
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.GetDelimiterLength(System.Char,System.Func{System.Char})">
+            <summary>
+            Determines if a char is a new line delimiter.
+            </summary>
+            <returns>0 == no new line, otherwise it returns either 1 or 2 depending of the length of the delimiter.</returns>
+            <param name="curChar">The current character.</param>
+            <param name="nextChar">A callback getting the next character (may be null).</param>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.GetDelimiterLength(System.Char,System.Char)">
+            <summary>
+            Determines if a char is a new line delimiter.
+            </summary>
+            <returns>0 == no new line, otherwise it returns either 1 or 2 depending of the length of the delimiter.</returns>
+            <param name="curChar">The current character.</param>
+            <param name="nextChar">The next character (if != LF then length will always be 0 or 1).</param>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.TryGetDelimiterLengthAndType(System.Char,System.Int32@,RefactoringEssentials.UnicodeNewline@,System.Func{System.Char})">
+            <summary>
+            Determines if a char is a new line delimiter.
+            </summary>
+            <returns>0 == no new line, otherwise it returns either 1 or 2 depending of the length of the delimiter.</returns>
+            <param name="curChar">The current character.</param>
+            <param name = "length">The length of the delimiter</param>
+            <param name = "type">The type of the delimiter</param>
+            <param name="nextChar">A callback getting the next character (may be null).</param>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.TryGetDelimiterLengthAndType(System.Char,System.Int32@,RefactoringEssentials.UnicodeNewline@,System.Char)">
+            <summary>
+            Determines if a char is a new line delimiter.
+            </summary>
+            <returns>0 == no new line, otherwise it returns either 1 or 2 depending of the length of the delimiter.</returns>
+            <param name="curChar">The current character.</param>
+            <param name = "length">The length of the delimiter</param>
+            <param name = "type">The type of the delimiter</param>
+            <param name="nextChar">The next character (if != LF then length will always be 0 or 1).</param>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.GetDelimiterType(System.Char,System.Func{System.Char})">
+            <summary>
+            Gets the new line type of a given char/next char.
+            </summary>
+            <returns>0 == no new line, otherwise it returns either 1 or 2 depending of the length of the delimiter.</returns>
+            <param name="curChar">The current character.</param>
+            <param name="nextChar">A callback getting the next character (may be null).</param>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.GetDelimiterType(System.Char,System.Char)">
+            <summary>
+            Gets the new line type of a given char/next char.
+            </summary>
+            <returns>0 == no new line, otherwise it returns either 1 or 2 depending of the length of the delimiter.</returns>
+            <param name="curChar">The current character.</param>
+            <param name="nextChar">The next character (if != LF then length will always be 0 or 1).</param>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.IsNewLine(System.Char)">
+            <summary>
+            Determines if a char is a new line delimiter. 
+            
+            Note that the only 2 char wide new line is CR LF and both chars are new line
+            chars on their own. For most cases GetDelimiterLength is the better choice.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.NewLine.GetString(RefactoringEssentials.UnicodeNewline)">
+            <summary>
+            Gets the new line as a string.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.VBUtil.InvertCondition(Microsoft.CodeAnalysis.VisualBasic.Syntax.ExpressionSyntax)">
+            <summary>
+            Inverts a boolean condition. Note: The condition object can be frozen (from AST) it's cloned internally.
+            </summary>
+            <param name="condition">The condition to invert.</param>
+        </member>
+        <member name="M:RefactoringEssentials.VBUtil.AddParensForUnaryExpressionIfRequired(Microsoft.CodeAnalysis.VisualBasic.Syntax.ExpressionSyntax)">
+            <summary>
+            When negating an expression this is required, otherwise you would end up with
+            a or b -> !a or b
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.VBUtil.NegateRelationalOperator(Microsoft.CodeAnalysis.VisualBasic.SyntaxKind)">
+            <summary>
+            Get negation of the specified relational operator
+            </summary>
+            <returns>
+            negation of the specified relational operator, or BinaryOperatorType.Any if it's not a relational operator
+            </returns>
+        </member>
+        <member name="M:RefactoringEssentials.VBUtil.NegateConditionOperator(Microsoft.CodeAnalysis.VisualBasic.SyntaxKind)">
+            <summary>
+            Get negation of the condition operator
+            </summary>
+            <returns>
+            negation of the specified condition operator, or BinaryOperatorType.Any if it's not a condition operator
+            </returns>
+        </member>
+        <member name="M:RefactoringEssentials.VBUtil.IsRelationalOperator(Microsoft.CodeAnalysis.VisualBasic.SyntaxKind)">
+            <summary>
+            Returns true, if the specified operator is a relational operator
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.AddAnotherAccessorCodeRefactoringProvider">
+            <summary>
+            Add another accessor to a property declaration that has only one.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.CheckIfParameterIsNothingCodeRefactoringProvider">
+            <summary>
+            Creates a 'If param Is Nothing Then Throw New System.ArgumentNullException();' contruct for a parameter.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.ConvertDecToHexCodeRefactoringProvider">
+            <summary>
+            Convert a dec numer to hex. For example: 16 -> &amp;H10
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.ConvertDoLoopWhileToDoWhileLoopCodeRefactoringProvider">
+            <summary>
+            Convert Do...Loop While/Until to Do While/Until...Loop.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.ConvertDoWhileLoopToDoLoopWhileCodeRefactoringProvider">
+            <summary>
+            Convert Do While/Until...Loop to Do...Loop While/Until.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.ConvertHexToDecCodeRefactoringProvider">
+            <summary>
+            Convert a hex numer to dec. For example: &amp;H10 -> 16
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.ReplaceDirectCastWithSafeCastCodeRefactoringProvider">
+            <summary>
+            Converts a cast expression to a 'TryCast' expression
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.CodeRefactorings.ReplaceSafeCastWithDirectCastCodeRefactoringProvider">
+            <summary>
+            Converts an 'TryCast' expression to a CType cast expression
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.VB.AddCheckForNothingCodeRefactoringProvider">
+            <summary>
+            Surround usage of a variable with an "IsNot Nothing" check or adds it to surrounding If block.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlAttribute">
+            <summary>
+            Name-value pair in a tag
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.Name">
+            <summary> Name with namespace prefix - exactly as in source file </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.Value">
+            <summary> Unquoted and dereferenced value of the attribute </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.NameSegment">
+            <summary>Gets the segment for the attribute name</summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.ValueSegment">
+            <summary>Gets the segment for the attribute value, including the quotes</summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.ParentElement">
+            <summary> The element containing this attribute </summary>
+            <returns> Null if orphaned </returns>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.Prefix">
+            <summary> The part of name before ":"</summary>
+            <returns> Empty string if not found </returns>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.LocalName">
+            <summary> The part of name after ":" </summary>
+            <returns> Whole name if ":" not found </returns>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.Namespace">
+            <summary>
+            Resolved namespace of the name.  Empty string if not found
+            From the specification: "The namespace name for an unprefixed attribute name always has no value."
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlAttribute.IsNamespaceDeclaration">
+            <summary> Attribute is declaring namespace ("xmlns" or "xmlns:*") </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlAttribute.AcceptVisitor(RefactoringEssentials.Xml.AXmlVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlAttribute.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlDocument">
+            <summary>
+            The root object of the XML document
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlDocument.AcceptVisitor(RefactoringEssentials.Xml.AXmlVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlDocument.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.AXmlDocument.Empty">
+            <summary>
+            Represents an empty document.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlElement">
+            <summary>
+            XML element.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.IsProperlyNested">
+            <summary> No tags are missing anywhere within this element (recursive) </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.StartTag">
+            <summary>The start or empty-element tag for this element.</summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.Name">
+            <summary>Name with namespace prefix - exactly as in source</summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.HasEndTag">
+            <summary>Gets whether an end tag exists for this node.</summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.EndTag">
+            <summary> The end tag, if there is any. Returns null for empty elements "&lt;Element/>" and missing end tags in malformed XML.</summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.Attributes">
+            <summary>
+            Gets the attributes.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.Content">
+            <summary>
+            Gets the content (all children except for the start and end tags)
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.Prefix">
+            <summary> The part of name before ":" </summary>
+            <returns> Empty string if not found </returns>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.LocalName">
+            <summary> The part of name after ":" </summary>
+            <returns> Empty string if not found </returns>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlElement.Namespace">
+            <summary> Resolved namespace of the name </summary>
+            <returns> Empty string if prefix is not found </returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.FindDefaultNamespace">
+            <summary> Find the default namespace for this context </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.ResolvePrefix(System.String)">
+            <summary>
+            Recursively resolve given prefix in this context.  Prefix must have some value.
+            </summary>
+            <returns> Empty string if prefix is not found </returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.LookupNamespace(System.String)">
+            <summary>
+            Recursively resolve given prefix in this context.
+            </summary>
+            <returns><c>null</c> if prefix is not found</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.LookupPrefix(System.String)">
+            <summary>
+            Gets the prefix that is mapped to the specified namespace URI.
+            </summary>
+            <returns>The prefix that is mapped to the namespace URI; null if the namespace URI is not mapped to a prefix.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.GetNamespacesInScope(System.Xml.XmlNamespaceScope)">
+            <summary>
+            Gets a collection of defined prefix-namespace mappings that are currently in scope.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.GetAttributeValue(System.String)">
+            <summary>
+            Get unquoted value of attribute.
+            It looks in the no namespace (empty string).
+            </summary>
+            <returns>Null if not found</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.GetAttributeValue(System.String,System.String)">
+            <summary>
+            Get unquoted value of attribute
+            </summary>
+            <param name="namespace">Namespace.  Can be no namepace (empty string), which is the default for attributes.</param>
+            <param name="localName">Local name - text after ":"</param>
+            <returns>Null if not found</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.AcceptVisitor(RefactoringEssentials.Xml.AXmlVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlElement.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlObject">
+            <summary>
+            XML object. Base class for all nodes in the XML document.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.AXmlObject.NoNamespace">
+            <summary> Empty string.  The namespace used if there is no "xmlns" specified </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.AXmlObject.XmlNamespace">
+            <summary> Namespace for "xml:" prefix: "http://www.w3.org/XML/1998/namespace" </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.AXmlObject.XmlnsNamespace">
+            <summary> Namesapce for "xmlns:" prefix: "http://www.w3.org/2000/xmlns/" </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlObject.CreateReader">
+            <summary>
+            Creates an XML reader that reads from this document.
+            </summary>
+            <remarks>
+            The reader will ignore comments and processing instructions; and will not have line information.
+            </remarks>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlObject.CreateReader(System.Xml.XmlReaderSettings)">
+            <summary>
+            Creates an XML reader that reads from this document.
+            </summary>
+            <param name="settings">Reader settings.
+            Currently, only <c>IgnoreComments</c> is supported.</param>
+            <remarks>
+            The reader will not have line information.
+            </remarks>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlObject.CreateReader(System.Xml.XmlReaderSettings,Microsoft.CodeAnalysis.Text.SourceText)">
+            <summary>
+            Creates an XML reader that reads from this document.
+            </summary>
+            <param name="settings">Reader settings.
+            Currently, only <c>IgnoreComments</c> is supported.</param>
+            <param name="document">
+            The document that was used to parse the XML. It is used to convert offsets to line information.
+            </param>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.Parent">
+            <summary>
+            Gets the parent node.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.Children">
+            <summary>
+            Gets the list of child objects.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlObject.GetChildAtOffset(System.Int32)">
+            <summary>
+            Gets a child fully containg the given offset.
+            Goes recursively down the tree.
+            Special case if at the end of attribute or text
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.MySyntaxErrors">
+            <summary>
+            The error that occured in the context of this node (excluding nested nodes)
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.SyntaxErrors">
+            <summary>
+            The error that occured in the context of this node and all nested nodes.
+            It has O(n) cost.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.Ancestors">
+            <summary> Get all ancestors of this node </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlObject.GetNamespacePrefix(System.String)">
+            <summary> The part of name before ":" </summary>
+            <returns> Empty string if not found </returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlObject.GetLocalName(System.String)">
+            <summary> The part of name after ":" </summary>
+            <returns> Whole name if ":" not found </returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlObject.AcceptVisitor(RefactoringEssentials.Xml.AXmlVisitor)">
+            <summary> Call appropriate visit method on the given visitor </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.StartOffset">
+            <summary>
+            Gets the start offset of the segment.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlObject.EndOffset">
+            <inheritdoc/>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlParser">
+            <summary>
+            XML parser that is error tolerant.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlParser.UnknownEntityReferenceIsError">
+            <summary>
+            Generate syntax error when seeing entity reference other then the built-in ones
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlParser.ParseTagSoup(Microsoft.CodeAnalysis.Text.SourceText,System.Threading.CancellationToken)">
+            <summary>
+            Parses a document into a flat list of tags.
+            </summary>
+            <returns>Parsed tag soup.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlParser.ParseTagSoupIncremental(RefactoringEssentials.Xml.IncrementalParserState,Microsoft.CodeAnalysis.Text.SourceText,RefactoringEssentials.Xml.IncrementalParserState@,System.Threading.CancellationToken)">
+            <summary>
+            Parses a document incrementally into a flat list of tags.
+            </summary>
+            <param name="oldParserState">The parser state from a previous call to ParseIncremental(). Use null for the first call.</param>
+            <param name="newTextSource">The text source for the new document version.</param>
+            <param name="newParserState">Out: the new parser state, pass this to the next ParseIncremental() call.</param>
+            <param name="cancellationToken">Optional: cancellation token.</param>
+            <returns>Parsed tag soup.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlParser.Parse(Microsoft.CodeAnalysis.Text.SourceText,System.Threading.CancellationToken)">
+            <summary>
+            Parses a document.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlParser.ParseIncremental(RefactoringEssentials.Xml.IncrementalParserState,Microsoft.CodeAnalysis.Text.SourceText,RefactoringEssentials.Xml.IncrementalParserState@,System.Threading.CancellationToken)">
+            <summary>
+            Parses a document incrementally into a flat list of tags.
+            </summary>
+            <param name="oldParserState">The parser state from a previous call to ParseIncremental(). Use null for the first call.</param>
+            <param name="newTextSource">The text source for the new document version.</param>
+            <param name="newParserState">Out: the new parser state, pass this to the next ParseIncremental() call.</param>
+            <param name="cancellationToken">Optional: cancellation token.</param>
+            <returns>Parsed tag soup.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlParser.IsValidXmlName(System.String)">
+            <summary>
+            Checks whether the given name is a valid XML name.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlReader">
+            <summary>
+            XmlReader implementation that reads from an <see cref="T:RefactoringEssentials.Xml.AXmlDocument"/>.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlTag">
+            <summary>
+            Represents any markup starting with "&lt;" and (hopefully) ending with ">"
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.AXmlTag.DtdNames">
+            <summary> These identify the start of DTD elements </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.OpeningBracket">
+            <summary> Opening bracket - usually "&lt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.Name">
+            <summary> Name following the opening bracket </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.NameSegment">
+            <summary> Gets the segment containing the tag name </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.ClosingBracket">
+            <summary> Closing bracket - usually "&gt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsStartOrEmptyTag">
+            <summary> True if tag starts with "&lt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsStartTag">
+            <summary> True if tag starts with "&lt;" and ends with "&gt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsEmptyTag">
+            <summary> True if tag starts with "&lt;" and does not end with "&gt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsEndTag">
+            <summary> True if tag starts with "&lt;/" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsProcessingInstruction">
+            <summary> True if tag starts with "&lt;?" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsComment">
+            <summary> True if tag starts with "&lt;!--" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsCData">
+            <summary> True if tag starts with "&lt;![CDATA[" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsDocumentType">
+            <summary> True if tag starts with one of the DTD starts </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlTag.IsUnknownBang">
+            <summary> True if tag starts with "&lt;!" </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlTag.AcceptVisitor(RefactoringEssentials.Xml.AXmlVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlTag.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlText">
+            <summary>
+            Whitespace or character data
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlText.Value">
+            <summary> The text with all entity references resloved </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.AXmlText.ContainsOnlyWhitespace">
+            <summary> True if the text contains only whitespace characters </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlText.AcceptVisitor(RefactoringEssentials.Xml.AXmlVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlText.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.AXmlVisitor">
+            <summary>
+            Derive from this class to create visitor for the XML tree
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlVisitor.VisitDocument(RefactoringEssentials.Xml.AXmlDocument)">
+            <summary> Visit AXmlDocument </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlVisitor.VisitElement(RefactoringEssentials.Xml.AXmlElement)">
+            <summary> Visit AXmlElement </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlVisitor.VisitTag(RefactoringEssentials.Xml.AXmlTag)">
+            <summary> Visit AXmlTag </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlVisitor.VisitAttribute(RefactoringEssentials.Xml.AXmlAttribute)">
+            <summary> Visit AXmlAttribute </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.AXmlVisitor.VisitText(RefactoringEssentials.Xml.AXmlText)">
+            <summary> Visit AXmlText </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.XmlDocumentationElement">
+            <summary>
+            Represents an element in the XML documentation.
+            Any occurrences of "&lt;inheritdoc/>" are replaced with the inherited documentation.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.XmlDocumentationElement.Get(Microsoft.CodeAnalysis.ISymbol,System.Boolean)">
+            <summary>
+            Gets the XML documentation element for the specified entity.
+            Returns null if no documentation is found.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.XmlDocumentationElement.nestingLevel">
+            <summary>
+            Inheritance level; used to prevent cyclic doc inheritance.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.XmlDocumentationElement.#ctor(RefactoringEssentials.Xml.AXmlElement,Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Creates a new documentation element.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.XmlDocumentationElement.#ctor(RefactoringEssentials.Xml.AXmlDocument,Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Creates a new documentation element.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.XmlDocumentationElement.#ctor(System.String,Microsoft.CodeAnalysis.ISymbol)">
+            <summary>
+            Creates a new documentation element.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.XmlDocumentationElement.DeclaringEntity">
+            <summary>
+            Gets the entity on which this documentation was originally declared.
+            May return null.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.XmlDocumentationElement.Name">
+            <summary>
+            Gets the element name.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.XmlDocumentationElement.GetAttribute(System.String)">
+            <summary>
+            Gets the attribute value.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.XmlDocumentationElement.IsTextNode">
+            <summary>
+            Gets whether this is a pure text node.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.XmlDocumentationElement.TextContent">
+            <summary>
+            Gets the text content.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.XmlDocumentationElement.Children">
+            <summary>
+            Gets the child elements.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.XmlDocumentationElement.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.IncrementalParserState">
+            <summary>
+            Encapsulates the state of the incremental tag soup parser.
+            </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.InternalObject.LengthTouched">
+            <summary>Length that was touched to parsed this object.</summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsStartOrEmptyTag">
+            <summary> True if tag starts with "&lt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsStartTag">
+            <summary> True if tag starts with "&lt;" and ends with "&gt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsEmptyTag">
+            <summary> True if tag starts with "&lt;" and does not end with "&gt;" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsEndTag">
+            <summary> True if tag starts with "&lt;/" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsProcessingInstruction">
+            <summary> True if tag starts with "&lt;?" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsComment">
+            <summary> True if tag starts with "&lt;!--" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsCData">
+            <summary> True if tag starts with "&lt;![CDATA[" </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsDocumentType">
+            <summary> True if tag starts with one of the DTD starts </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.InternalTag.IsUnknownBang">
+            <summary> True if tag starts with "&lt;!" </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.LazyInit.GetOrSet``1(``0@,``0)">
+            <summary>
+            Atomically performs the following operation:
+            - If target is null: stores newValue in target and returns newValue.
+            - If target is not null: returns target.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.Log.Assert(System.Boolean,System.String)">
+            <summary> Throws exception if condition is false </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.Log.DebugAssert(System.Boolean,System.String)">
+            <summary> Throws exception if condition is false </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.InternalException">
+            <summary>
+            Exception used for internal errors in XML parser.
+            This exception indicates a bug in NRefactory.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.InternalException.#ctor">
+            <summary>
+            Creates a new InternalException instance.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.InternalException.#ctor(System.String)">
+            <summary>
+            Creates a new InternalException instance.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.InternalException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new InternalException instance.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.ObjectIterator">
+            <summary>
+            Iterates through an internal object tree.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.ObjectIterator.SkipTo(System.Int32)">
+            <summary>
+            Skips all nodes in front of 'position'
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.ReuseEqualityComparer">
+            <summary>
+            Determines whether two objects are identical (one is a reused version of the other).
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.ReuseEqualityComparer.Equals(RefactoringEssentials.Xml.AXmlObject,RefactoringEssentials.Xml.AXmlObject)">
+            <summary>
+            Determines whether two objects are identical (one is a reused version of the other).
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.ReuseEqualityComparer.GetHashCode(RefactoringEssentials.Xml.AXmlObject)">
+            <summary>
+            Gets the object's hash code so that reused versions of an object have the same hash code.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.SyntaxError">
+            <summary>
+            A syntax error.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.SyntaxError.#ctor(System.Int32,System.Int32,System.String)">
+            <summary>
+            Creates a new syntax error.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.SyntaxError.Description">
+            <summary>
+            Gets a description of the syntax error.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.SyntaxError.StartOffset">
+            <summary>
+            Gets the start offset of the segment.
+            </summary>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.SyntaxError.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:RefactoringEssentials.Xml.SyntaxError.EndOffset">
+            <inheritdoc/>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.ReadObject">
+            <summary>
+            Reads one or more objects.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.ReadTag">
+            <summary>
+            Context: "&lt;"
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.ReadOpeningBracket">
+            <summary>
+            Reads any of the know opening brackets.  (only full bracket)
+            Context: "&lt;"
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.TryReadClosingBracket(System.String@)">
+            <summary>
+            Reads any of the know closing brackets.  (only full bracket)
+            Context: any
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.ReadAttribute">
+            <summary>
+            Context: name or "=\'\""
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.ReadAttributeValue(System.Nullable{System.Char})">
+            <summary>
+            Read everything up to quote (excluding), opening/closing tag or attribute signature
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.Unquote(System.String)">
+            <summary> Remove quoting from the given string </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TagReader.ReadText(RefactoringEssentials.Xml.TextType)">
+            <summary>
+            Reads text.
+            </summary>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.TextType">
+            <summary> Identifies the context in which the text occured </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.TextType.WhiteSpace">
+            <summary> Ends with non-whitespace </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.TextType.CharacterData">
+            <summary> Ends with "&lt;";  "]]&gt;" is error </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.TextType.Comment">
+            <summary> Ends with "-->";  "--" is error </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.TextType.CData">
+            <summary> Ends with "]]&gt;" </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.TextType.ProcessingInstruction">
+            <summary> Ends with "?>" </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.TextType.UnknownBang">
+            <summary> Ends with "&lt;" or ">" </summary>
+        </member>
+        <member name="F:RefactoringEssentials.Xml.TextType.Other">
+            <summary> Unknown </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TokenReader.TryReadName">
+            <summary>
+            Read a name token.
+            The following characters are not allowed:
+              ""         End of file
+              " \n\r\t"  Whitesapce
+              "=\'\""    Attribute value
+              "&lt;>/?"  Tags
+            </summary>
+            <returns>Returns the length of the name</returns>
+        </member>
+        <member name="T:RefactoringEssentials.Xml.TreeTraversal">
+            <summary>
+            Static helper methods for traversing trees.
+            </summary>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TreeTraversal.PreOrder``1(``0,System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Converts a tree data structure into a flat list by traversing it in pre-order.
+            </summary>
+            <param name="root">The root element of the tree.</param>
+            <param name="recursion">The function that gets the children of an element.</param>
+            <returns>Iterator that enumerates the tree structure in pre-order.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TreeTraversal.PreOrder``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Converts a tree data structure into a flat list by traversing it in pre-order.
+            </summary>
+            <param name="input">The root elements of the forest.</param>
+            <param name="recursion">The function that gets the children of an element.</param>
+            <returns>Iterator that enumerates the tree structure in pre-order.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TreeTraversal.PostOrder``1(``0,System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Converts a tree data structure into a flat list by traversing it in post-order.
+            </summary>
+            <param name="root">The root element of the tree.</param>
+            <param name="recursion">The function that gets the children of an element.</param>
+            <returns>Iterator that enumerates the tree structure in post-order.</returns>
+        </member>
+        <member name="M:RefactoringEssentials.Xml.TreeTraversal.PostOrder``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Converts a tree data structure into a flat list by traversing it in post-order.
+            </summary>
+            <param name="input">The root elements of the forest.</param>
+            <param name="recursion">The function that gets the children of an element.</param>
+            <returns>Iterator that enumerates the tree structure in post-order.</returns>
+        </member>
+        <member name="T:Nullaby.FlowAnalyzer`1">
+            <summary>
+            Analyzises a block of code for state transitions across code flow
+            </summary>
+        </member>
+        <member name="M:Nullaby.FlowState.Equals(Nullaby.FlowState)">
+            <summary>
+            Returns true if the two states are the same.
+            </summary>
+        </member>
+        <member name="M:Nullaby.FlowState.Join(Nullaby.FlowState)">
+            <summary>
+            Joins two states together.
+            </summary>
+        </member>
+        <member name="M:Nullaby.FlowState.After(Microsoft.CodeAnalysis.SyntaxNode)">
+            <summary>
+            Returns the state after the node has executed.
+            </summary>
+        </member>
+        <member name="M:Nullaby.FlowState.IsConditional(Microsoft.CodeAnalysis.SyntaxNode)">
+            <summary>
+            Returns true if the node contributes to branching states.
+            </summary>
+        </member>
+        <member name="M:Nullaby.FlowState.AfterConditional(Microsoft.CodeAnalysis.SyntaxNode,Nullaby.FlowState@,Nullaby.FlowState@)">
+            <summary>
+            Return the states after the conditional node has executed.
+            </summary>
+        </member>
+        <member name="M:Nullaby.NullFlowState.GetVariableExpression(Microsoft.CodeAnalysis.CSharp.Syntax.ExpressionSyntax)">
+            <summary>
+            Returns the portion of the expression that represents the variable
+            that can be tracked, or null if the expression is not trackable.
+            </summary>
+        </member>
+    </members>
+</doc>

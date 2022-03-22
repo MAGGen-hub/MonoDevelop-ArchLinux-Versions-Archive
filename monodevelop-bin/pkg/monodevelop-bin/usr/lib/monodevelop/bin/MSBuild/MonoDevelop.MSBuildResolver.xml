@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.MSBuildResolver</name>
+    </assembly>
+    <members>
+        <member name="T:MonoDevelop.Projects.MSBuild.SdkVersion">
+            <summary>
+            The representation of a version, with the format: major.minor.patch-releaseLabel+buildLabel
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.SdkVersion.Version">
+            <summary>
+            Gets the major, minor and patch components as a System.Version instance
+            </summary>
+            <value>The version.</value>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.SdkVersion.Major">
+            <summary>
+            Gets the major component of the version
+            </summary>
+            <value>The major.</value>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.SdkVersion.Minor">
+            <summary>
+            Gets the minor component of the version
+            </summary>
+            <value>The minor.</value>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.SdkVersion.Patch">
+            <summary>
+            Gets the patch component of the version
+            </summary>
+            <value>The patch.</value>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.SdkVersion.IsPrerelease">
+            <summary>
+            Gets a value indicating whether this <see cref="T:MonoDevelop.Projects.MSBuild.SdkVersion"/> is a pre-release version.
+            </summary>
+            <value><c>true</c> if is prerelease; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.SdkVersion.ReleaseLabel">
+            <summary>
+            Gets the release label.
+            </summary>
+            <value>The release label.</value>
+        </member>
+        <member name="P:MonoDevelop.Projects.MSBuild.SdkVersion.BuildLabel">
+            <summary>
+            Gets the build label.
+            </summary>
+            <value>The build label.</value>
+        </member>
+        <member name="M:MonoDevelop.Projects.MSBuild.SdkVersion.Parse(System.String)">
+            <summary>
+            Parses a version from a string
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.Projects.MSBuild.SdkVersion.TryParse(System.String,MonoDevelop.Projects.MSBuild.SdkVersion@)">
+            <summary>
+            Tries to parse a version from a string
+            </summary>
+            <returns><c>true</c>, if version could be parsed, <c>false</c> otherwise.</returns>
+            <param name="input">Input string</param>
+            <param name="result">Parsed version</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1644 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MonoDevelop.SourceEditor</name>
+    </assembly>
+    <members>
+        <member name="P:Mono.TextEditor.MdTextViewLineCollection.MdTextViewLine.LineNumber">
+            <summary>
+            1-based
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.Initialize(Microsoft.VisualStudio.Text.Editor.ITextViewModel,Microsoft.VisualStudio.Text.Editor.ITextViewRoleSet,Microsoft.VisualStudio.Text.Editor.IEditorOptions,Microsoft.VisualStudio.Text.Editor.Implementation.TextEditorFactoryService,System.Boolean)">
+            <summary>
+            Text View constructor.
+            </summary>
+            <param name="textViewModel">The text view model that provides the text to visualize.</param>
+            <param name="roles">Roles for this view.</param>
+            <param name="parentOptions">Parent options for this view.</param>
+            <param name="factoryService">Our handy text editor factory service.</param>
+        </member>
+        <member name="P:Mono.TextEditor.MonoTextEditor.TextBuffer">
+            <summary>
+            Gets the text buffer whose text, this text editor renders
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.SubscribeToEvents">
+            <remarks>
+            If you add an event subscription to this method, be sure to add the corresponding unsubscription to
+            UnsubscribeFromEvents()
+            </remarks>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.OnClassificationChanged(System.Object,Microsoft.VisualStudio.Text.Classification.ClassificationChangedEventArgs)">
+            <summary>
+            Handles the Classification changed event that comes from the Classifier aggregator
+            </summary>
+        </member>
+        <member name="E:Mono.TextEditor.MonoTextEditor.MouseHover">
+            <summary>
+            Event raised whenever the mouse has hovered over the same character
+            for 150 ms.
+            </summary>
+            <remarks>No hover events will be generated when the mouse is not over text in the buffer.</remarks>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.GetTopLevelWidgetPosition(Gtk.Widget,System.Int32@,System.Int32@)">
+            <summary>
+            Returns the position of an embedded widget
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MonoTextEditor.TabsToSpaces">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Mono.TextEditor.MonoTextEditor"/> converts tabs to spaces.
+            It is possible to overwrite the default options value for certain languages (like F#).
+            </summary>
+            <value>
+            <c>true</c> if tabs to spaces should be converted; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.GetTextEditorData">
+            <summary>
+            Use with care.
+            </summary>
+            <returns>
+            A <see cref="T:Mono.TextEditor.TextEditorData"/>
+            </returns>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.OnIMProcessedKeyPressEvent(Gdk.Key,System.UInt32,Gdk.ModifierType)">
+            <remarks>
+            The Key may be null if it has been handled by the IMContext. In such cases, the char is the value.
+            </remarks>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.PulseCharacter(MonoDevelop.Ide.Editor.DocumentLocation)">
+            <summary>
+            Initiate a pulse at the specified document location
+            </summary>
+            <param name="pulseStart">
+            A <see cref="T:MonoDevelop.Ide.Editor.DocumentLocation"/>
+            </param>
+        </member>
+        <member name="M:Mono.TextEditor.MonoTextEditor.YToLine(System.Double)">
+            <summary>
+            Calculates the line number at line start (in one visual line could be several logical lines be displayed).
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.LayoutCache">
+            <summary>
+            Caches native pango layout objects.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginMouseEventArgs.RawEvent">
+            <summary>
+            The raw GDK event. May be null if the event was synthesized.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.TextArea.TabsToSpaces">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Mono.TextEditor.MonoTextEditor"/> converts tabs to spaces.
+            It is possible to overwrite the default options value for certain languages (like F#).
+            </summary>
+            <value>
+            <c>true</c> if tabs to spaces should be converted; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.SimulateKeyPress(Gdk.Key,System.UInt32,Gdk.ModifierType)">
+            <summary>Handles key input after key mapping and input methods.</summary>
+            <param name="key">The mapped keycode.</param>
+            <param name="unicodeChar">A UCS4 character. If this is nonzero, it overrides the keycode.</param>
+            <param name="modifier">Keyboard modifier, excluding any consumed by key mapping or IM.</param>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.SetCursor(Gdk.Cursor)">
+            <summary>
+            Sets the mouse cursor of the gdk window and avoids unnecessary native calls.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.ResetMouseState">
+            <summary>
+            Use this method with care.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.ScrollTo(Gdk.Rectangle)">
+            <summary>
+            Scrolls the editor as required for making the specified area visible 
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.GetTextEditorData">
+            <summary>
+            Use with care.
+            </summary>
+            <returns>
+            A <see cref="T:Mono.TextEditor.TextEditorData"/>
+            </returns>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.PulseCharacter(MonoDevelop.Ide.Editor.DocumentLocation)">
+            <summary>
+            Initiate a pulse at the specified document location
+            </summary>
+            <param name="pulseStart">
+            A <see cref="T:MonoDevelop.Ide.Editor.DocumentLocation"/>
+            </param>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.YToLine(System.Double)">
+            <summary>
+            Calculates the line number at line start (in one visual line could be several logical lines be displayed).
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.InsertMargin(System.Int32,Mono.TextEditor.Margin)">
+            <summary>
+            Inserts a margin at the specified list position
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.HasMargin(System.Type)">
+            <summary>
+            Checks whether the editor has a margin of a given type
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.GetMargin(System.Type)">
+            <summary>
+            Gets the first margin of a given type
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextArea.GetTopLevelWidgetPosition(Gtk.Widget,System.Int32@,System.Int32@)">
+            <summary>
+            Returns the position of an embedded widget
+            </summary>
+        </member>
+        <member name="F:Mono.TextEditor.TextViewMargin.highlightCaretLine">
+            <summary>
+            Set to true to highlight the caret line temporarly. It's
+            the same as the option, but is unset when the caret moves.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextViewMargin.StripAlphaValue(Cairo.Color)">
+            <summary>
+            Strips the alpha value. Gtk doesn't support alpha colors.
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.Theatrics.BounceFadePopupWindow">
+            <summary>
+            Tooltip that "bounces", then fades away.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWindow.Duration">
+            <summary>Duration of the animation, in milliseconds.</summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWindow.ExpandWidth">
+            <summary>The number of pixels by which the window's width will expand</summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWindow.ExpandHeight">
+            <summary>The number of pixels by which the window's height will expand</summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWindow.BounceEasing">
+            <summary>The easing used for the bounce part of the animation.</summary>
+        </member>
+        <member name="T:Mono.TextEditor.Theatrics.BounceFadePopupWidget">
+            <summary>
+            Tooltip that "bounces", then fades away.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWidget.Duration">
+            <summary>Duration of the animation, in milliseconds.</summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWidget.ExpandWidth">
+            <summary>The number of pixels by which the window's width will expand</summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWidget.ExpandHeight">
+            <summary>The number of pixels by which the window's height will expand</summary>
+        </member>
+        <member name="P:Mono.TextEditor.Theatrics.BounceFadePopupWidget.BounceEasing">
+            <summary>The easing used for the bounce part of the animation.</summary>
+        </member>
+        <member name="T:Mono.TextEditor.Theatrics.SmartScrolledWindow">
+            <summary>
+            A scrolled window with the ability to put widgets beside the scrollbars.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextEditorKeyPressTimings.EndTimer(System.Boolean)">
+             <summary>
+             Overhead to a key press of using StartTimer and EndTimer is normally about 0.0017ms
+            
+             Note that the first ever key press in the text editor this can add up to
+             ~0.1ms but this is small compared with the text editor key press itself
+             which can take ~800ms for the first ever key press in the text editor for
+             the current IDE session.
+             </summary>
+        </member>
+        <member name="P:Mono.TextEditor.CodePreviewWindow.MaximumLineCount">
+            <summary>
+            The maximum number of lines that will fit in this dialog
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.DocumentLine">
+            <summary>
+            A line inside a <see cref="T:Mono.TextEditor.TextDocument"/>.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.Length">
+            <summary>
+            Gets the length of the line.
+            </summary>
+            <remarks>The length does not include the line delimeter.</remarks>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.UnicodeNewline">
+            <summary>
+            Gets the unicode newline for this line. Returns UnicodeNewline.Unknown for no new line (in the last line of the document)
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.DelimiterLength">
+            <summary>
+            Gets the length of the line terminator.
+            Returns 1 or 2; or 0 at the end of the document.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.Offset">
+            <summary>
+            Gets the start offset of the line.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.LengthIncludingDelimiter">
+            <summary>
+            Gets the length of the line including the line delimiter.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.Segment">
+            <summary>
+            Gets the text segment of the line.
+            </summary>
+            <remarks>The text segment does not include the line delimeter.</remarks>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.SegmentIncludingDelimiter">
+            <summary>
+            Gets the text segment of the line including the line delimiter.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.EndOffset">
+            <summary>
+            Gets the end offset of the line.
+            </summary>
+            <remarks>The end offset does not include the line delimeter.</remarks>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.EndOffsetIncludingDelimiter">
+            <summary>
+            Gets the end offset of the line including the line delimiter.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.LineNumber">
+            <summary>
+            Gets the number of this line.
+            The first line has the number 1.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.NextLine">
+            <summary>
+            Gets the next line. Returns null if this is the last line in the document.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.DocumentLine.PreviousLine">
+            <summary>
+            Gets the previous line. Returns null if this is the first line in the document.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.DocumentLine.GetIndentation(Mono.TextEditor.TextDocument)">
+            <summary>
+            This method gets the line indentation.
+            </summary>
+            <param name="doc">
+            The <see cref="T:Mono.TextEditor.TextDocument"/> the line belongs to.
+            </param>
+            <returns>
+            The indentation of the line (all whitespace chars up to the first non ws char).
+            </returns>
+        </member>
+        <member name="M:Mono.TextEditor.DocumentLine.Contains(System.Int32)">
+            <summary>
+            Determines whether this line contains the specified offset. 
+            </summary>
+            <returns>
+            <c>true</c> if this line contains the specified offset (upper bound exclusive); otherwise, <c>false</c>.
+            </returns>
+            <param name='offset'>
+            The offset.
+            </param>
+        </member>
+        <member name="M:Mono.TextEditor.DocumentLine.Contains(MonoDevelop.Core.Text.TextSegment)">
+            <summary>
+            Determines whether this line contains the specified segment. 
+            </summary>
+            <returns>
+            <c>true</c> if this line contains the specified segment (upper bound inclusive); otherwise, <c>false</c>.
+            </returns>
+            <param name='segment'>
+            The segment.
+            </param>
+        </member>
+        <member name="T:Mono.TextEditor.DocumentRegion">
+            <summary>
+            An (Begin, End) pair representing a document span. It's a TextSegment working with lines &amp; columns instead of offsets.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.ILineSplitter.LineEndingMismatch">
+            <summary>
+            True if during initialization a line ending mismatch was encountered.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.ILineSplitter.Initalize(System.String,Mono.TextEditor.DocumentLine@)">
+            <summary>
+            Initializes the splitter with a new text. No events are fired during this process.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="T:Mono.TextEditor.PrimitiveLineSplitter">
+            <summary>
+            A very fast line splitter for read-only documents that generates lines only on demand.
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.SegmentTree`1">
+            <summary>
+            A segment tree contains overlapping segments and get all segments overlapping a segment. It's implemented as a augmented interval tree
+            described in Cormen et al. (2001, Section 14.3: Interval trees, pp. 311–317).
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.GetLineText(System.Int32)">
+            <summary>
+            Gets the line text without the delimiter.
+            </summary>
+            <returns>
+            The line text.
+            </returns>
+            <param name='line'>
+            The line number.
+            </param>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.IndexOf(System.Char,System.Int32,System.Int32)">
+            <summary>
+            Gets the index of the first occurrence of the character in the specified array.
+            </summary>
+            <param name="c">Character to search for</param>
+            <param name="startIndex">Start index of the area to search.</param>
+            <param name="count">Length of the area to search.</param>
+            <returns>The first index where the character was found; or -1 if no occurrence was found.</returns>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.IndexOf(System.String,System.Int32,System.Int32,System.StringComparison)">
+            <summary>
+            Gets the index of the first occurrence of the specified search text in this text source.
+            </summary>
+            <param name="searchText">The search text</param>
+            <param name="startIndex">Start index of the area to search.</param>
+            <param name="count">Length of the area to search.</param>
+            <param name="comparisonType">String comparison to use.</param>
+            <returns>The first index where the search term was found; or -1 if no occurrence was found.</returns>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SetNotDirtyState">
+            <summary>
+            Marks the document not dirty at this point (should be called after save).
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.UpdateFoldSegmentWorker(System.Collections.Generic.IEnumerable{MonoDevelop.Ide.Editor.IFoldSegment},System.Boolean@,System.Threading.CancellationToken)">
+            <summary>
+            Updates the fold segments in a background worker thread. Don't call this method outside of a background worker.
+            Use UpdateFoldSegments instead.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.RemoveMarker(Mono.TextEditor.TextSegmentMarker)">
+            <summary>
+            Removes a marker from the document.
+            </summary>
+            <returns><c>true</c>, if marker was removed, <c>false</c> otherwise.</returns>
+            <param name="marker">Marker.</param>
+        </member>
+        <member name="P:Mono.TextEditor.TextDocument.IsLoaded">
+            <summary>
+            Gets a value indicating whether this instance is loaded.
+            </summary>
+            <value>
+            <c>true</c> if this instance is loaded; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.InformLoadComplete">
+            <summary>
+            Informs the document when the content is loaded. All outstanding actions are executed.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.RunWhenLoaded(System.Action)">
+            <summary>
+            Performs an action when the content is loaded.
+            </summary>
+            <param name='action'>
+            The action to run.
+            </param>
+        </member>
+        <member name="P:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.Encoding">
+            <summary>
+            Encoding of the text that was read from or is going to be saved to.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.Length">
+            <summary>
+            Gets the total text length.
+            </summary>
+            <returns>The length of the text, in characters.</returns>
+            <remarks>This is the same as Text.Length, but is more efficient because
+             it doesn't require creating a String object.</remarks>
+        </member>
+        <member name="P:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.Text">
+            <summary>
+            Gets the whole text as string.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.Item(System.Int32)">
+            <summary>
+            Gets a character at the specified position in the document.
+            </summary>
+            <paramref name="offset">The index of the character to get.</paramref>
+            <exception cref="T:System.ArgumentOutOfRangeException">Offset is outside the valid range (0 to TextLength-1).</exception>
+            <returns>The character at the specified position.</returns>
+            <remarks>This is the same as Text[offset], but is more efficient because
+             it doesn't require creating a String object.</remarks>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.GetCharAt(System.Int32)">
+            <summary>
+            Gets a character at the specified position in the document.
+            </summary>
+            <paramref name="offset">The index of the character to get.</paramref>
+            <exception cref="T:System.ArgumentOutOfRangeException">Offset is outside the valid range (0 to TextLength-1).</exception>
+            <returns>The character at the specified position.</returns>
+            <remarks>This is the same as Text[offset], but is more efficient because
+             it doesn't require creating a String object.</remarks>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.GetTextAt(System.Int32,System.Int32)">
+            <summary>
+            Retrieves the text for a portion of the document.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">offset or length is outside the valid range.</exception>
+            <remarks>This is the same as Text.Substring, but is more efficient because
+             it doesn't require creating a String object for the whole document.</remarks>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.CreateReader">
+            <summary>
+            Creates a new TextReader to read from this text source.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.CreateReader(System.Int32,System.Int32)">
+            <summary>
+            Creates a new TextReader to read from this text source.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.WriteTextTo(System.IO.TextWriter)">
+            <summary>
+            Writes the text from this document into the TextWriter.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.WriteTextTo(System.IO.TextWriter,System.Int32,System.Int32)">
+            <summary>
+            Writes the text from this document into the TextWriter.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.CopyTo(System.Int32,System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Copies text from the source index to a destination array at destinationIndex.
+            </summary>
+            <param name="sourceIndex">The start offset copied from.</param>
+            <param name="destination">The destination array copied to.</param>
+            <param name="destinationIndex">The destination index copied to.</param>
+            <param name="count">The number of characters to be copied.</param>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.CreateSnapshot">
+            <summary>
+            Creates an immutable snapshot of this text source.
+            Unlike all other methods in this interface, this method is thread-safe.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.SnapshotSpanToTextSource.CreateSnapshot(System.Int32,System.Int32)">
+            <summary>
+            Creates an immutable snapshot of a part of this text source.
+            Unlike all other methods in this interface, this method is thread-safe.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.TextVersionToTextSourceVersion.GetChangesTo(MonoDevelop.Core.Text.ITextSourceVersion)">
+            <summary>
+            Gets the changes from this checkpoint to the other checkpoint.
+            If 'other' is older than this checkpoint, reverse changes are calculated.
+            </summary>
+            <remarks>This method is thread-safe.</remarks>
+            <exception cref="T:System.ArgumentException">Raised if 'other' belongs to a different document than this checkpoint.</exception>
+        </member>
+        <member name="M:Mono.TextEditor.TextDocument.TextVersionToTextSourceVersion.MoveOffsetTo(MonoDevelop.Core.Text.ITextSourceVersion,System.Int32)">
+            <summary>
+            Calculates where the offset has moved in the other buffer version.
+            </summary>
+            <exception cref="T:System.ArgumentException">Raised if 'other' belongs to a different document than this checkpoint.</exception>
+        </member>
+        <member name="T:Mono.TextEditor.Highlighting.CloneableStack`1">
+            <summary>
+            A fast stack used by spans in highlighting that is:
+            * cloneable in constant time
+            * equatable in constant time
+            * when enumerating the items go from top to bottom (the .NET stack implementation does the opposite)
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.FoldActions">
+            <summary>
+            Actions for manipulating folds in a document
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.GetOutermostClosedFold(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Gets the outermost closed fold pertaining to the current caret position
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.GetInnermostOpenedFold(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Gets the innermost opened fold containing the current caret position
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.OpenFold(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Opens the current fold
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.CloseFold(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Closes the current fold
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.ToggleFold(Mono.TextEditor.TextEditorData)">
+            <summary>
+            If the caret is on a closed fold, opens it; 
+            else closes the current fold.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.OpenFoldRecursive(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Opens the current fold and all its children
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.CloseFoldRecursive(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Closes the current fold and all its parents
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.ToggleFoldRecursive(Mono.TextEditor.TextEditorData)">
+            <summary>
+            If the caret is on a closed fold, opens it and all its children; 
+            else closes the current fold and all its parents.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.ToggleAllFolds(Mono.TextEditor.TextEditorData)">
+            <summary>
+            If one fold is closed call OpenAllFolds, otherwise CloseAllFolds
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.OpenAllFolds(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Opens all folds in the current document.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.FoldActions.CloseAllFolds(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Closes all folds in the current document.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MiscActions.TransposeCharacters(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Transpose characters (Emacs C-t)
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MiscActions.RecenterEditor(Mono.TextEditor.TextEditorData)">
+            <summary>
+            Emacs c-l recenter editor command.
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.NullSelectionSurroundingProvider">
+            <summary>
+            Null selection surrounding provider. Basically turns off that feature.
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.DefaultSelectionSurroundingProvider">
+            <summary>
+            Default selection surrounding provider.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.CompressingTreeList`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Creates a new CompressingTreeList instance.
+            </summary>
+            <param name="equalityComparer">The equality comparer used for comparing consequtive values.
+            A single node may be used to store the multiple values that are considered equal.</param>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.CompressingTreeList`1.#ctor(System.Func{`0,`0,System.Boolean})">
+            <summary>
+            Creates a new CompressingTreeList instance.
+            </summary>
+            <param name="comparisonFunc">A function that checks two values for equality. If this
+            function returns true, a single node may be used to store the two values.</param>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.CompressingTreeList`1.InsertRange(System.Int32,System.Int32,`0)">
+            <summary>
+            Inserts <paramref name="item"/> <paramref name="count"/> times at position
+            <paramref name="index"/>.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.CompressingTreeList`1.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes <paramref name="count"/> items starting at position
+            <paramref name="index"/>.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.CompressingTreeList`1.SetRange(System.Int32,System.Int32,`0)">
+            <summary>
+            Sets <paramref name="count"/> indices starting at <paramref name="index"/> to
+            <paramref name="item"/>
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.Utils.Diff.SMSRD">
+            <summary>
+            Shortest Middle Snake Return Data
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.Diff.CreateDiffs``1(Mono.TextEditor.Utils.DiffData{``0},Mono.TextEditor.Utils.DiffData{``0})">
+            <summary>Scan the tables of which lines are inserted and deleted,
+            producing an edit script in forward order.
+            </summary>
+            dynamic array
+        </member>
+        <member name="M:Mono.TextEditor.Utils.Diff.SMS``1(Mono.TextEditor.Utils.DiffData{``0},System.Int32,System.Int32,Mono.TextEditor.Utils.DiffData{``0},System.Int32,System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+            This is the algorithm to find the Shortest Middle Snake (SMS).
+            </summary>
+            <param name="dataA">sequence A</param>
+            <param name="lowerA">lower bound of the actual range in DataA</param>
+            <param name="upperA">upper bound of the actual range in DataA (exclusive)</param>
+            <param name="dataB">sequence B</param>
+            <param name="lowerB">lower bound of the actual range in DataB</param>
+            <param name="upperB">upper bound of the actual range in DataB (exclusive)</param>
+            <param name="downVector">a vector for the (0,0) to (x,y) search. Passed as a parameter for speed reasons.</param>
+            <param name="upVector">a vector for the (u,v) to (N,M) search. Passed as a parameter for speed reasons.</param>
+            <returns>a MiddleSnakeData record containing x,y and u,v</returns>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.Diff.LCS``1(Mono.TextEditor.Utils.DiffData{``0},System.Int32,System.Int32,Mono.TextEditor.Utils.DiffData{``0},System.Int32,System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+            This is the divide-and-conquer implementation of the longest common-subsequence (LCS)
+            algorithm.
+            The published algorithm passes recursively parts of the A and B sequences.
+            To avoid copying these arrays the lower and upper bounds are passed while the sequences stay constant.
+            </summary>
+            <param name="dataA">sequence A</param>
+            <param name="lowerA">lower bound of the actual range in DataA</param>
+            <param name="upperA">upper bound of the actual range in DataA (exclusive)</param>
+            <param name="dataB">sequence B</param>
+            <param name="lowerB">lower bound of the actual range in DataB</param>
+            <param name="upperB">upper bound of the actual range in DataB (exclusive)</param>
+            <param name="downVector">a vector for the (0,0) to (x,y) search. Passed as a parameter for speed reasons.</param>
+            <param name="upVector">a vector for the (u,v) to (N,M) search. Passed as a parameter for speed reasons.</param>
+        </member>
+        <member name="T:Mono.TextEditor.Utils.DiffData`1">
+            <summary>Data on one input file being compared.
+            </summary>
+        </member>
+        <member name="F:Mono.TextEditor.Utils.DiffData`1.Length">
+            <summary>Number of elements (lines).</summary>
+        </member>
+        <member name="F:Mono.TextEditor.Utils.DiffData`1.Data">
+            <summary>Buffer of numbers that will be compared.</summary>
+        </member>
+        <member name="F:Mono.TextEditor.Utils.DiffData`1.Modified">
+            <summary>
+            Array of booleans that flag for modified data.
+            This is the result of the diff.
+            This means deletedA in the first Data or inserted in the second Data.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.DiffData`1.#ctor(`0[])">
+            <summary>
+            Initialize the Diff-Data buffer.
+            </summary>
+            <param name="initData">reference to the buffer</param>
+        </member>
+        <member name="T:Mono.TextEditor.Utils.HtmlWriter">
+            <summary>
+            This class is used for converting a highlighted document to html.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.HtmlWriter.GenerateCFHtmlHeader(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Generates a CF_HTML clipboard format header.
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.Utils.ImmutableText">
+            <summary>
+            <p> This class represents an immutable character sequence with 
+            fast {@link #concat concatenation}, {@link #insert insertion} and 
+            {@link #delete deletion} capabilities (O[Log(n)]) instead of 
+            O[n] for StringBuffer/StringBuilder).</p>
+            
+            <p><i> Implementation Note: To avoid expensive copy operations , 
+            {@link ImmutableText} instances are broken down into smaller immutable 
+            sequences, they form a minimal-depth binary tree.
+            The tree is maintained balanced automatically through <a 
+            href="http://en.wikipedia.org/wiki/Tree_rotation">tree rotations</a>. 
+            Insertion/deletions are performed in <code>O[Log(n)]</code>
+            instead of <code>O[n]</code> for 
+            <code>StringBuffer/StringBuilder</code>.</i></p>
+            </summary>
+        </member>
+        <member name="F:Mono.TextEditor.Utils.ImmutableText.BLOCK_SIZE">
+            <summary>Holds the default size for primitive blocks of characters.</summary>
+        </member>
+        <member name="F:Mono.TextEditor.Utils.ImmutableText.BLOCK_MASK">
+            <summary>Holds the mask used to ensure a block boundary cesures.</summary>
+        </member>
+        <member name="P:Mono.TextEditor.Utils.ImmutableText.Length">
+            <summary>
+            Returns the length of this text.
+            </summary>
+            <value>the number of characters (16-bits Unicode) composing this text.</value>
+        </member>
+        <member name="P:Mono.TextEditor.Utils.ImmutableText.Item(System.Int32)">
+            <summary>
+            Gets/Sets a single character.
+            Runs in O(lg N) for random access. Sequential read-only access benefits from a special optimization and runs in amortized O(1).
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.Concat(Mono.TextEditor.Utils.ImmutableText)">
+            <summary>
+            Concatenates the specified text to the end of this text. 
+            This method is very fast (faster even than 
+            <code>StringBuffer.append(String)</code>) and still returns
+            a text instance with an internal binary tree of minimal depth!
+            </summary>
+            <param name="that">that the text that is concatenated.</param>
+            <returns><code>this + that</code></returns>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.InsertText(System.Int32,Mono.TextEditor.Utils.ImmutableText)">
+            <summary>
+            Returns the text having the specified text inserted at 
+            the specified location.
+            </summary>
+            <param name="index">index the insertion position.</param>
+            <param name="txt">txt the text being inserted.</param>
+            <returns>subtext(0, index).concat(txt).concat(subtext(index))</returns>
+            <exception cref="T:System.IndexOutOfRangeException">if <code>(index &lt; 0) || (index &gt; this.Length)</code></exception>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.RemoveText(System.Int32,System.Int32)">
+            <summary>
+            Returns the text without the characters between the specified indexes.
+            </summary>
+            <returns><code>subtext(0, start).concat(subtext(end))</code></returns>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.GetText(System.Int32,System.Int32)">
+            <summary>
+            Returns a portion of this text.
+            </summary>
+            <returns>the sub-text starting at the specified start position and ending just before the specified end position.</returns>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.CopyTo(System.Char[],System.Int32)">
+            <summary>
+            Copies the whole content of the immutable text into the specified array.
+            Runs in O(N).
+            </summary>
+            <remarks>
+            This method counts as a read access and may be called concurrently to other read accesses.
+            </remarks>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.CopyTo(System.Int32,System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Copies the a part of the immutable text into the specified array.
+            Runs in O(lg N + M).
+            </summary>
+            <remarks>
+            This method counts as a read access and may be called concurrently to other read accesses.
+            </remarks>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.ToArray">
+            <summary>
+            Creates an array and copies the contents of the rope into it.
+            Runs in O(N).
+            </summary>
+            <remarks>
+            This method counts as a read access and may be called concurrently to other read accesses.
+            </remarks>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.ToArray(System.Int32,System.Int32)">
+            <summary>
+            Creates an array and copies the contents of the rope into it.
+            Runs in O(N).
+            </summary>
+            <remarks>
+            This method counts as a read access and may be called concurrently to other read accesses.
+            </remarks>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.ImmutableText.EnsureChunked">
+            <summary>
+            When first loaded, ImmutableText contents are stored as a single large array. This saves memory but isn't
+            modification-friendly as it disallows slightly changed texts to retain most of the internal structure of the
+            original document. Whoever retains old non-chunked version will use more memory than really needed.
+            </summary>
+            <returns>A copy of this text better prepared for small modifications to fully enable structure-sharing capabilities</returns>
+        </member>
+        <member name="T:Mono.TextEditor.Utils.TextBreaker">
+            <summary>
+            A utility class for breaking up the text in TextEditors
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.TextBreaker.BreakLinesIntoWords(Mono.TextEditor.MonoTextEditor,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Breaks the lines into words in the form of a list of <see cref="T:MonoDevelop.Core.Text.TextSegment">TextSegments</see>. A 'word' is defined as an identifier (a series of letters, digits or underscores)
+            or a single non-identifier character (including white space characters)
+            </summary>
+            <returns>
+            The list of segments representing the 'words' in the lines
+            </returns>
+            <param name='editor'>
+            The text editor to get the words from
+            </param>
+            <param name='startLine'>
+            The first line in the editor's documents to get the words from
+            </param>
+            <param name='lineCount'>
+            The number of lines to get words from
+            </param>
+        </member>
+        <member name="M:Mono.TextEditor.Utils.TextBreaker.BreakLinesIntoWords(Mono.TextEditor.TextDocument,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Breaks the lines into words in the form of a list of <see cref="T:MonoDevelop.Core.Text.TextSegment">TextSegments</see>. A 'word' is defined as an identifier (a series of letters, digits or underscores)
+            or a single non-identifier character (including white space characters)
+            </summary>
+            <returns>
+            The list of segments representing the 'words' in the lines
+            </returns>
+            <param name='document'>
+            The document to get the words from
+            </param>
+            <param name='startLine'>
+            The first line in the documents to get the words from
+            </param>
+            <param name='lineCount'>
+            The number of lines to get words from
+            </param>
+        </member>
+        <member name="P:Mono.TextEditor.CaretImpl.Mode">
+            <summary>
+            The current mode of the caret
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.CaretImpl.AutoUpdatePosition">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Mono.TextEditor.Caret"/> will listen to text chagne events to update the caret position.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.CaretImpl.ActivateAutoScrollWithoutMove">
+            <summary>
+            Activates auto scroll to caret on next caret move.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.CaretImpl.MoveCaretBeforeFoldings">
+            <summary>
+            This method should be called after a fold segment is folded, to ensure
+            that the caret is in a valid state.
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.CaretMode">
+            <summary>
+            Possible visual modes for the caret
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.HeightTree">
+            <summary>
+            The height tree stores the heights of lines and provides a performant conversion between y and lineNumber.
+            It takes care of message bubble heights and the height of folded sections.
+            </summary>
+        </member>
+        <member name="F:Mono.TextEditor.IndentStyle.None">
+            <summary>
+            No indentation occurs
+            </summary>
+        </member>
+        <member name="F:Mono.TextEditor.IndentStyle.Auto">
+            <summary>
+            The indentation from the line above will be
+            taken to indent the current line
+            </summary>
+        </member>
+        <member name="F:Mono.TextEditor.IndentStyle.Smart">
+            <summary>
+            Intelligent, context sensitive indentation will occur
+            </summary>
+        </member>
+        <member name="F:Mono.TextEditor.IndentStyle.Virtual">
+            <summary>
+            Intelligent, context sensitive indentation that minimizes whitespaces will occur
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.MarginDrawMetrics">
+            <summary>
+            Contains all information about a margin draw event. This class is used inside <see cref="T:Mono.TextEditor.MarginMarker"/>.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.Margin">
+            <summary>
+            The margin that should be drawn.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.Area">
+            <summary>
+            The area that needs to be redrawn.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.LineSegment">
+            <summary>
+            The line segment the margin should draw (can be null).
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.LineNumber">
+            <summary>
+            The line number of the line segment (can be negative, if the line segment is null).
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.X">
+            <summary>
+            The X position of the margin.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.Y">
+            <summary>
+            The Y postion of the margin draw event.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.Width">
+            <summary>
+            The Width of the margin.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.Height">
+            <summary>
+            The height of the current line.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.Right">
+            <summary>
+            X + Width
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.MarginDrawMetrics.Bottom">
+            <summary>
+            Y + Height
+            </summary>
+        </member>
+        <member name="T:Mono.TextEditor.MarginMarker">
+            <summary>
+            The margin marker is a specialized text line marker used to change how a margins of a line are drawn.
+            (If the margin supports custom drawing plugins)
+            Note: This is not used for the text view margin, which is handled by the basic TextLineMarker class.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MarginMarker.CanDrawBackground(Mono.TextEditor.Margin)">
+            <summary>
+            Determines whether this margin marker can draw the background of the specified margin.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MarginMarker.CanDrawForeground(Mono.TextEditor.Margin)">
+            <summary>
+            Determines whether this margin marker can draw the foreground of the specified margin.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MarginMarker.DrawForeground(Mono.TextEditor.MonoTextEditor,Cairo.Context,Mono.TextEditor.MarginDrawMetrics)">
+            <summary>
+            Draws the foreground of the specified margin.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.MarginMarker.DrawBackground(Mono.TextEditor.MonoTextEditor,Cairo.Context,Mono.TextEditor.MarginDrawMetrics)">
+            <summary>
+            Draws the background of the specified margin.
+            </summary>
+            <returns>true, if the background is drawn. false if the margin should fallback to the default background renderer. </returns>
+        </member>
+        <member name="M:Mono.TextEditor.MarginMarker.InformMousePress(Mono.TextEditor.MonoTextEditor,Mono.TextEditor.Margin,Mono.TextEditor.MarginMouseEventArgs)">
+            <summary>
+            Informs the margin marker of a mouse press event.
+            </summary>
+            <param name="editor">The text editor in which the event press occurred.</param>
+            <param name="margin">The margin in which the event occurred.</param>
+            <param name="args">The event arguments.</param>
+        </member>
+        <member name="M:Mono.TextEditor.MarginMarker.InformMouseRelease(Mono.TextEditor.MonoTextEditor,Mono.TextEditor.Margin,Mono.TextEditor.MarginMouseEventArgs)">
+            <summary>
+            Informs the margin marker of a mouse release event.
+            </summary>
+            <param name="editor">The text editor in which the event press occurred.</param>
+            <param name="margin">The margin in which the event occurred.</param>
+            <param name="args">The event arguments.</param>
+        </member>
+        <member name="M:Mono.TextEditor.MarginMarker.InformMouseHover(Mono.TextEditor.MonoTextEditor,Mono.TextEditor.Margin,Mono.TextEditor.MarginMouseEventArgs)">
+            <summary>
+            Informs the margin marker of a mouse hover event.
+            </summary>
+            <param name="editor">The text editor in which the event press occurred.</param>
+            <param name="margin">The margin in which the event occurred.</param>
+            <param name="args">The event arguments.</param>
+        </member>
+        <member name="M:Mono.TextEditor.IActionTextLineMarker.MousePressed(Mono.TextEditor.MonoTextEditor,Mono.TextEditor.MarginMouseEventArgs)">
+            <returns>
+            true, if the mouse press was handled - false otherwise.
+            </returns>
+        </member>
+        <member name="M:Mono.TextEditor.TextLineMarker.DrawBackground(Mono.TextEditor.MonoTextEditor,Cairo.Context,Mono.TextEditor.LineMetrics)">
+            <summary>
+            Draws the background of the text.
+            </summary>
+            <returns><c>true</c>, if background was drawn, <c>false</c> otherwise.</returns>
+            <param name="editor">The editor.</param>
+            <param name="cr">The cairo context.</param>
+            <param name="metrics">The line metrics.</param>
+        </member>
+        <member name="M:Mono.TextEditor.TextLineMarker.DrawAfterEol(Mono.TextEditor.MonoTextEditor,Cairo.Context,Mono.TextEditor.EndOfLineMetrics)">
+            <summary>
+            Is used to draw in the area after the visible text.
+            </summary>
+        </member>
+        <member name="E:Mono.TextEditor.TextEditorData.EditModeChanged">
+            <summary>
+            Occurs when the edit mode changed.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.TextEditorData.SuppressTooltips">
+            <summary>
+            If set the tooltips wont show up.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.TextEditorData.EolMarker">
+            <value>
+            The eol mark used in this document - it's taken from the first line in the document,
+            if no eol mark is found it's using the default (Environment.NewLine).
+            The value is saved, even when all lines are deleted the eol marker will still be the old eol marker.
+            </value>
+        </member>
+        <member name="M:Mono.TextEditor.TextEditorData.FixVirtualIndentation">
+            <summary>
+            Removes the indent on the caret line, if the indent mode is set to virtual and the indent matches
+            the current virtual indent in that line.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.TextEditorData.SelectionRange">
+            <summary>
+            Gets or sets the selection range. If nothing is selected (Caret.Offset, 0) is returned.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextEditorData.EnsureCaretIsNotVirtual">
+            <summary>
+            Ensures the caret is not in a virtual position by adding whitespaces up to caret position.
+            That method should always be called in an undo group.
+            </summary>
+        </member>
+        <member name="P:Mono.TextEditor.TextEditorData.TextPasteHandler">
+            <summary>
+            Gets or sets the text paste handler.
+            </summary>
+        </member>
+        <member name="M:Mono.TextEditor.TextEditorData.CreateImmutable(System.String,System.Boolean)">
+            <summary>
+            Creates the a text editor data object which document can't be changed. This is useful for 'view' only
+            documents.
+            </summary>
+            <remarks>
+            The Document itself is very fast because it uses a special case buffer and line splitter implementation.
+            Additionally highlighting is turned off as default.
+            </remarks>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.QuickTasks.QuickTaskOverviewMode.CachedDraw(Cairo.Context,MonoDevelop.Components.SurfaceWrapper@,Gdk.Rectangle,System.Object,System.Single,System.Action{Cairo.Context,System.Single},System.Nullable{System.Double})">
+            TODO: CairoExtensions.CachedDraw seems not to work correctly for me.
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.FileRegistry">
+            <summary>
+            The File registry handles events that are affecting all open source views to allow the 
+            operations to 'do action on all'/'ignore action on all'. (think of 50 files that needs to be reloaded)
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.Braces.BraceCompletionAdornmentService">
+            <summary>
+            A service for displaying an adornment under the inner most closing brace.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator">
+            <summary>
+            This class combines IBraceCompletionSessionProvider, IBraceCompletionContextProvider, and IBraceCompletionDefaultProvider
+            session providers. The aggregator will create a session using the best match with the following priorities.
+            
+            1. OpeningBrace
+            2. ContentType
+            3. Provider type: SessionProviders > ContextProviders > DefaultProviders
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator.TryCreateSession(Microsoft.VisualStudio.Text.Editor.ITextView,Microsoft.VisualStudio.Text.SnapshotPoint,System.Char,Microsoft.VisualStudio.Text.BraceCompletion.IBraceCompletionSession@)">
+            <summary>
+            Attempt to create a session using the provider that best matches the buffer content type for 
+            the given opening brace. This is called only for appropriate buffers in the view's buffer graph.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator.IsSupportedContentType(Microsoft.VisualStudio.Utilities.IContentType,System.Char)">
+            <summary>
+            Checks the content type against the providers.
+            </summary>
+            <returns>True if providers exist for the given content type.</returns>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator.OpeningBraces">
+            <summary>
+            Gives a string containing all opening brace chars that have providers
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator.ClosingBraces">
+            <summary>
+            Gives a string containing all closing brace chars that have providers
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator.Init">
+            <summary>
+            Build the _providerCache
+            Each opening brace is a key with a value of the providers and metadata in a 
+            sorted list. The list is order from most specific to least specific content
+            types with the provider type sorted secondary.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator.SortContentTypes(System.Collections.Generic.List{Microsoft.VisualStudio.Utilities.IContentType})">
+            <summary>
+            Sorts content types by most specific to least specific.
+            This checks the type against all others until it finds one that it is
+            a type of. List.Sort() does not work here since most types are unrelated.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.Braces.BraceCompletionAggregator.ProviderHelper">
+            <summary>
+            A private helper class to wrap lazy instances of Session, Context, and Default providers into one type.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.Braces.BraceCompletionDefaultSession">
+            <summary>
+            BraceCompletionDefaultSession is a language neutral brace completion session
+            capable of handling the default behaviors. Language specific behaviors 
+            and formatting are handled by the optional IBraceCompletionContext.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.BraceCompletionDefaultSession.#ctor(Microsoft.VisualStudio.Text.Editor.ITextView,Microsoft.VisualStudio.Text.ITextBuffer,Microsoft.VisualStudio.Text.SnapshotPoint,System.Char,System.Char,Microsoft.VisualStudio.Text.Operations.ITextBufferUndoManagerProvider,Microsoft.VisualStudio.Text.Operations.IEditorOperationsFactoryService)">
+            <summary>
+            Default session with no context
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.BraceCompletionDefaultSession.#ctor(Microsoft.VisualStudio.Text.Editor.ITextView,Microsoft.VisualStudio.Text.ITextBuffer,Microsoft.VisualStudio.Text.SnapshotPoint,System.Char,System.Char,Microsoft.VisualStudio.Text.Operations.ITextBufferUndoManagerProvider,Microsoft.VisualStudio.Text.Operations.IEditorOperationsFactoryService,Microsoft.VisualStudio.Text.BraceCompletion.IBraceCompletionContext)">
+            <summary>
+            Default session with a language specific context
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.Braces.BraceCompletionManager">
+            <summary>
+            A per view manager for brace completion. This is called by the command filter in the 
+            editor pkg.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.Braces.BraceCompletionStack">
+            <summary>
+            Represents the stack of active brace completion sessions.
+            The stack handles removing sessions no longer in focus as
+            well as marking the inner most closing brace with the 
+            adornment.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionAdornmentService.Point">
+            <summary>
+            Gets or sets the tracking point used by the brace completion adornment
+            to indicate the closing brace. The adornment span is length one
+            with the given point as the end.
+            </summary>
+            <remarks>Setting the tracking point to null clears the adornment.</remarks>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.IBraceCompletionAdornmentServiceFactory.GetOrCreateService(Microsoft.VisualStudio.Text.Editor.ITextView)">
+            <summary>
+            Creates an IBraceCompletionAdornmentService for the given text view.
+            </summary>
+            <remarks>Only one IBraceCompletionAdornmentService will exist per view.</remarks>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionAggregator.OpeningBraces">
+            <summary>
+            A unique list of all opening braces that have providers.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionAggregator.ClosingBraces">
+            <summary>
+            A unique list of all closing braces that have providers
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.IBraceCompletionAggregator.IsSupportedContentType(Microsoft.VisualStudio.Utilities.IContentType,System.Char)">
+            <summary>
+            Checks if a provider exists for the content type and opening brace.
+            </summary>
+            <param name="contentType">buffer content type</param>
+            <param name="openingBrace">opening brace character</param>
+            <returns>True if there is a matching provider</returns>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.IBraceCompletionAggregator.TryCreateSession(Microsoft.VisualStudio.Text.Editor.ITextView,Microsoft.VisualStudio.Text.SnapshotPoint,System.Char,Microsoft.VisualStudio.Text.BraceCompletion.IBraceCompletionSession@)">
+            <summary>
+            Creates a session using the best provider for the buffer content type and opening brace.
+            </summary>
+            <param name="textView">current text view</param>
+            <param name="openingPoint">current caret point</param>
+            <param name="openingBrace">opening brace chraracter</param>
+            <param name="session">Session created by the provider.</param>
+            <returns>True if the provider created a session.</returns>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.IBraceCompletionAggregatorFactory.CreateAggregator">
+            <summary>
+            Creates a brace completion aggregator to simplify
+            creating a session that best matches the buffer 
+            content type.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionAggregatorFactory.ContentTypes">
+            <summary>
+            Gives an IEnumerable of all content types with providers.
+            </summary>
+        </member>
+        <member name="T:MonoDevelop.SourceEditor.Braces.IBraceCompletionMetadata">
+            <summary>
+            Metadata for IBraceCompletionSessionProvider exports
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionMetadata.OpeningBraces">
+            <summary>
+            List of opening tokens.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionMetadata.ClosingBraces">
+            <summary>
+            List of closing tokens.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionMetadata.ContentTypes">
+            <summary>
+            Supported content types.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionStack.TopSession">
+            <summary>
+            Gets the top most session in the stack.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.IBraceCompletionStack.PushSession(Microsoft.VisualStudio.Text.BraceCompletion.IBraceCompletionSession)">
+            <summary>
+            Adds a session to the top of the stack.
+            </summary>
+        </member>
+        <member name="P:MonoDevelop.SourceEditor.Braces.IBraceCompletionStack.Sessions">
+            <summary>
+            Gets the list of sessions in the stack, ordered from bottom to top.
+            </summary>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.IBraceCompletionStack.RemoveOutOfRangeSessions(Microsoft.VisualStudio.Text.SnapshotPoint)">
+            <summary>
+            Remove all sessions which do not contain the given point.
+            </summary>
+            <param name="point">current caret point</param>
+        </member>
+        <member name="M:MonoDevelop.SourceEditor.Braces.IBraceCompletionStack.Clear">
+            <summary>
+            Remove all sessions from the stack.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.Implementation.SmartIndentationService.GetDesiredIndentation(Microsoft.VisualStudio.Text.ITextSnapshotLine)">
+            <summary>
+            This is the vacuous implementation for ContentTypes that have no provided ISmartIndent 
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.Implementation.SmartIndentationService.Dispose">
+            <summary>
+            This is for the vacuous ISmartIndent
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Text.Editor.Implementation.TextEditorFactoryService">
+            <summary>
+            Provides a VisualStudio Service that aids in creation of Editor Views
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.Implementation.PopupAgent.OnViewFocusLost(System.Object,System.EventArgs)">
+            <summary>
+            Handle focus change events for TextView and tooltip popup window.  If they both lose
+            focus, then dismiss the tooltip.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.Implementation.PopupAgent.OnLocationChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handle the LocationChanged event for the window hosting the view and dismiss the
+            tooltip.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.Implementation.SpaceReservationManager.OnViewClosed(System.Object,System.EventArgs)">
+            <summary>
+            Handle the close event for TextView.  If the view is closed, then dismiss all agents.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.IMdTextView.GetSpaceReservationManager(System.String)">
+            <summary>
+            Gets a named <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager"/>.
+            </summary>
+            <param name="name">The name of the manager.</param>
+            <returns>An instance of the manager in this view. Not null.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="name"/> is not registered via an <see cref="T:Microsoft.VisualStudio.Text.Editor.SpaceReservationManagerDefinition"/>.</exception>
+            <remarks>
+            <para>Managers must be exported using <see cref="T:Microsoft.VisualStudio.Text.Editor.SpaceReservationManagerDefinition"/> component parts.</para>
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent">
+            <summary>
+            Handles the display of space reservation adornments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent.PositionAndDisplay(System.Windows.Media.Geometry)">
+            <summary>
+            Positions and displays the contents of the the <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent"/>.
+            </summary>
+            <param name="reservedSpace">Currently reserved space.</param>
+            <returns>The space. If null is returned, the <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager"/> will remove the agent.</returns>
+            <remarks>If an agent does not want to be removed, but also does not wish to request any additional space, it can return a non-null but empty Geometry.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent.Hide">
+            <summary>
+            Called whenever the content of the space reservation agent should be hidden.
+            </summary>
+            <remarks>This method is called by the manager to hide the content of the space reservation agent.</remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent.IsMouseOver">
+            <summary>
+            Determines whether the mouse is over this agent or anything it contains.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent.HasFocus">
+            <summary>
+            Determines whether the adornment created by the space reservation agent has keyboard focus.
+            </summary>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent.LostFocus">
+            <summary>
+            Occurs when the adornment created by the ISpaceReservationAgent loses focus.
+            </summary>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent.GotFocus">
+            <summary>
+            Occurs when the adornment created by the ISpaceReservationAgent gets focus.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager">
+            <summary>
+            Manages space reservation adornments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.CreatePopupAgent(Microsoft.VisualStudio.Text.ITrackingSpan,Microsoft.VisualStudio.Text.Adornments.PopupStyles,Xwt.Widget)">
+            <summary>
+            Creates a default implementation of an <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent"/> that displays <paramref name="content"/> in a popup window.
+            </summary>
+            <param name="visualSpan">The span of text associated with the tip.</param>
+            <param name="style">The style options for displaying the tip.</param>
+            <param name="content">The UI element to be displayed in the tip.</param>
+            <returns>An <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent"/> that will display the desired content in a popup window.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.UpdatePopupAgent(Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent,Microsoft.VisualStudio.Text.ITrackingSpan,Microsoft.VisualStudio.Text.Adornments.PopupStyles)">
+            <summary>
+            Updates <paramref name="agent"/> with the <paramref name="visualSpan"/>.
+            This only works for PopupAgents and returns for other agents.
+            </summary>
+            <param name="agent">The agent to add.</param>
+            <param name="visualSpan">The agent's new visual span.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.AddAgent(Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent)">
+            <summary>
+            Adds <paramref name="agent"/> to the list of agents managed by this manager.
+            </summary>
+            <param name="agent">The agent to add.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.RemoveAgent(Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent)">
+            <summary>
+            Removes <paramref name="agent"/> from the list of agents managed by this manager.
+            </summary>
+            <param name="agent">The agent to remove.</param>
+            <returns><c>true</c> if the agent was in the list of agents to remove.</returns>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.Agents">
+            <summary>
+            Gets the list of agents managed by this manager.
+            </summary>
+            <remarks>Any implementation of aa <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent"/> can be used for this method.</remarks>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.AgentChanged">
+            <summary>
+            Occurs when the agent is changed.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.IsMouseOver">
+            <summary>
+            Determines whether the mouse is over an agent managed by this manager.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.HasAggregateFocus">
+            <summary>
+            Determines whether the adornment created by the space reservation agent has keyboard focus.
+            </summary>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.LostAggregateFocus">
+            <summary>
+            Occurs when keyboard focus is lost by any of the managed adornments.
+            </summary>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager.GotAggregateFocus">
+            <summary>
+            Occurs when any of the managed adornments gets keyboard focus.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Text.Editor.SpaceReservationAgentChangedEventArgs">
+            <summary>
+            Provides information when an <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent"/> is changed in an <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Text.Editor.SpaceReservationAgentChangedEventArgs.#ctor(Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent,Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.VisualStudio.Text.Editor.SpaceReservationAgentChangedEventArgs"/>.
+            </summary>
+            <param name="oldAgent">The <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent"/> associated with the previous value.</param>
+            <param name="newAgent">The <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationAgent"/> associated with the new value.</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Editor.SpaceReservationAgentChangedEventArgs.OldAgent">
+            <summary>
+            Gets the old agent.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Editor.SpaceReservationAgentChangedEventArgs.NewAgent">
+            <summary>
+            Gets the new agent.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Text.Editor.SpaceReservationManagerDefinition">
+            <summary>
+            Represents metadata for an <see cref="T:Microsoft.VisualStudio.Text.Editor.ISpaceReservationManager"/>.  
+            </summary>
+            <remarks> 
+            Because you cannot subclass this type, you can simply use the [Export] attribute.
+            </remarks>
+            <example>
+            internal sealed class Components
+            {
+               [Export]
+               [Name("SampleSpaceReservationManager")]
+               [Order(After = "Selection", Before = "Text")]
+               internal SpaceReservationManagerDefinition sampleManagerDefinition;
+               
+                { other components }
+            }
+            </example>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Text.Adornments.ToolTipPresenterStyle">
+            <summary>
+             Defines a set of properties that will be used to style the default WPF ToolTip presenter.
+            </summary>
+             <remarks>
+             This is a MEF component part, and should be exported with the following attributes:
+             [Export(typeof(ToolTipPresenterStyle))]
+             [Name]
+             [Order]
+             All exports of this component part should be ordered before the "default" ToolTip presenter style.  At a minimum, this
+             means adding [Order(Before="default")] to the export metadata.
+             </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Adornments.ToolTipPresenterStyle.AppearanceCategory">
+            <summary>
+            Gets a string that identifies the appearance category for the <see cref="T:Microsoft.VisualStudio.Text.Editor.ITextView"/>
+            displayed in the default ToolTip presenter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Adornments.ToolTipPresenterStyle.BorderBrush">
+            <summary>
+            Gets a <see cref="T:Xwt.Drawing.Color"/> that will be used to paint the borders in the ToolTip presenter.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Text.Adornments.ToolTipPresenterStyle.BackgroundBrush">
+            <summary>
+            Gets a <see cref="T:Xwt.Drawing.Color"/> that will be used to paint the background of the ToolTip presenter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Text.AdornmentLibrary.ToolTip.Implementation.ToolTipProvider">
+            <summary>
+            An adornment provider that can create and display ToolTips taking an arbitrary object as content.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Platform.ITagBasedSyntaxHighlightingFactory">
+            <summary>
+            Creates a syntax highlighter for VS ITextBuffer suitable for use in MD.
+            </summary>
+            <remarks>This is a MEF component part, and should be imported as follows:
+            [Import]
+            ITagBasedSyntaxHighlightingFactory factory = null;
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Language.Intellisense.Implementation.MDUtils.GetSnapshotPoint(Microsoft.VisualStudio.Text.ITextSnapshot,System.Int32,System.Int32)">
+            <summary>
+            Gets a snapshot point out of a monodevelop line/column pair or null.
+            </summary>
+            <returns>The snapshot point or null if the coordinate is invalid.</returns>
+            <param name="snapshot">The snapshot.</param>
+            <param name="line">Line number (1 based).</param>
+            <param name="column">Column number (1 based).</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Language.Intellisense.Implementation.MDUtils.TryGetSnapshotPoint(Microsoft.VisualStudio.Text.ITextSnapshot,System.Int32,System.Int32,Microsoft.VisualStudio.Text.SnapshotPoint@)">
+            <summary>
+            Tries to get a snapshot point out of a monodevelop line/column pair.
+            </summary>
+            <returns><c>true</c>, if get snapshot point was set, <c>false</c> otherwise.</returns>
+            <param name="snapshot">The snapshot.</param>
+            <param name="line">Line number (1 based).</param>
+            <param name="column">Column number (1 based).</param>
+            <param name="snapshotPoint">The snapshot point if return == true.</param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Language.Intellisense.Implementation.IMultiSessionIntellisensePresenter`1">
+            <summary>
+            An internal interface defining the basic operations for an <see cref="T:Microsoft.VisualStudio.Language.Intellisense.IIntellisensePresenter"/> that can be associated with more
+            than one <see cref="T:Microsoft.VisualStudio.Language.Intellisense.IIntellisenseSession"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Language.Intellisense.Implementation.IntellisenseSessionStack.ExecuteKeyboardCommand(Microsoft.VisualStudio.Language.Intellisense.IntellisenseKeyboardCommand)">
+            <summary>
+            Calls each of the stack's session presenters, in order, to see if they want to handle the keyboard command
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Language.Intellisense.Implementation.MultiSessionIntellisensePresenterProvider`2">
+            <summary>
+            An intellisense presenter provider that caches the presenters it provides in the session's text view's
+            property bag.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Language.Intellisense.Implementation.MultiSessionIntellisensePresenterProvider`2.GetOrCreatePresenter(`0,System.Func{`1},`1@)">
+            <summary>
+            Tries to obtain a presenter from the cache (session's view's property bag). If a valid presenter was found
+            in the cache returns true, otherwise returns false. It always constructs a new presenter using the
+            provided factory.
+            </summary>
+            <returns><c>true</c> if the instance was retrieved from a cache; <c>false</c> if a new instance was created.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter">
+            <summary>
+            Defines an IntelliSense presenter that is rendered as a popup within an
+            <see cref="T:Microsoft.VisualStudio.Text.Editor.ITextView"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.SurfaceElement">
+            <summary>
+            Gets the <see cref="T:Xwt.Widget"/> that the presenter wants to be displayed inside a
+            <see cref="T:Microsoft.VisualStudio.Text.Editor.ITextView"/> popup.
+            </summary>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.SurfaceElementChanged">
+            <summary>
+            Occurs when the WPF SurfaceElement is changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.PresentationSpan">
+            <summary>
+            Gets the <see cref="T:Microsoft.VisualStudio.Text.ITrackingSpan"/> to which this presenter is related.  
+            </summary>
+            <remarks>
+            This property is used to determine where to
+            place the <see cref="T:Microsoft.VisualStudio.Text.Editor.ITextView"/> popup inside of which the presenter's
+            SurfaceElement is hosted.
+            </remarks>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.PresentationSpanChanged">
+            <summary>
+            Occurs when the PresentationSpan property changes.  
+            </summary>
+            <remarks>
+            This is the way popup presenters signal that they should be moved.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.PopupStyles">
+            <summary>
+            Gets a set of flags that determine the popup style.
+            </summary>
+        </member>
+        <member name="E:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.PopupStylesChanged">
+            <summary>
+            Occurs when the PopupStyles property changes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.SpaceReservationManagerName">
+            <summary>
+            Gets the name of the space reservation manager that should be used to create popups for this presenter.  
+            </summary>
+            <remarks>
+            Space reservation
+            managers can be ordered, thus ensuring predictable popup placement.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Language.Intellisense.IPopupIntellisensePresenter.Opacity">
+            <summary>
+            Gets or sets the opacity of this popup presenter.  
+            </summary>
+            <remarks>
+            The presenter should use this property to set the
+            opacity of its surface element and of any other text-obscuring UI elements it has provided.
+            </remarks>
+        </member>
+    </members>
+</doc>
